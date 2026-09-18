@@ -13,10 +13,14 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icon-180.png" />
   <title>Rams GameDay</title>
-  <!-- Rams GameDay v1.8: Rams Media + Game Week Intelligence + live matchup Key Tracker -->
+  <!-- Rams GameDay v1.9: matchup plan builds itself on Tuesday of game week and refreshes all week from the live feeds -->
   <style>
     :root{--navy:#071a3a;--blue:#0b4fb3;--royal:#0047ab;--yellow:#ffd100;--sky:#78b7ff;--card:#0d2448;--card2:#102b55;--muted:#9db1d1;--text:#fff;--good:#4bdd9a;--warn:#ffd166;--bad:#ff6b6b;--line:#23446f;--opp-primary:#aa0000;--opp-secondary:#b3995d}
-    *{box-sizing:border-box}html{background:var(--navy);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{margin:0;background:linear-gradient(180deg,#051327 0,#071a3a 30%,#06152d 100%);min-height:100vh;padding-bottom:calc(102px + env(safe-area-inset-bottom))}button,a{font:inherit}button{cursor:pointer}.app{max-width:720px;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 16px 36px}.top{display:flex;align-items:center;gap:12px;margin:6px 0 14px}.mark{width:58px;height:58px;border-radius:18px;background:linear-gradient(145deg,var(--yellow),#ffb400);display:grid;place-items:center;color:#071a3a;font-weight:1000;font-size:24px;box-shadow:0 8px 24px #0007}.brand h1{font-size:25px;line-height:1;margin:0}.brand p{margin:6px 0 0;color:var(--muted);font-size:14px}.top-actions{margin-left:auto;display:flex;gap:8px}.iconbtn{border:1px solid var(--line);background:#0d2448;color:#fff;border-radius:14px;min-width:46px;height:46px;font-size:20px}.statusline{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:13px;margin-bottom:14px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--good);box-shadow:0 0 0 5px #4bdd9a1a;margin-right:8px}.hero{position:relative;background:radial-gradient(circle at 90% 0,#1b64d155 0,transparent 40%),linear-gradient(160deg,#0e2c5b,#0b2146);border:1px solid #315889;border-radius:26px;padding:22px 18px 18px;overflow:hidden}.hero:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--opp-primary) 0 28%,var(--opp-secondary) 28% 38%,#153f78 38% 62%,var(--royal) 62% 84%,var(--yellow) 84% 100%)}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--sky);font-weight:800}.matchup{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px;margin-top:14px}.team{text-align:center}.team-panel{min-width:0;border:1px solid #315889;border-radius:18px;padding:10px 7px 9px;transition:border-color .2s ease,background .2s ease}.team-panel.rams-panel{box-shadow:inset 0 0 0 1px #ffd10026,0 0 22px #0047ab20}.team-logo-wrap{width:50px;height:50px;margin:0 auto 4px;display:grid;place-items:center;position:relative}.team-logo{display:block;max-width:48px;max-height:48px;object-fit:contain;filter:drop-shadow(0 4px 7px #0008)}.team-logo-fallback{display:none;width:42px;height:42px;border-radius:50%;place-items:center;font-size:13px;font-weight:1000;background:#102b55;color:#fff;border:1px solid #ffffff33}.abbr{font-size:24px;font-weight:1000;letter-spacing:-.03em;line-height:1}.teamname{font-size:11px;color:var(--muted);margin-top:4px}.versus{font-size:13px;color:var(--muted)}.versus-badge{min-width:48px;padding:8px 7px;border:1px solid #315889;border-radius:999px;background:#071a3acc;text-align:center;font-weight:900;letter-spacing:.06em}.game-team-logo{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 3px 5px #0008);margin-bottom:3px}.score{font-size:48px;line-height:1;font-weight:1000}.gamestate{text-align:center;margin-top:13px;font-size:15px;font-weight:700}.substate{text-align:center;color:var(--muted);font-size:13px;margin-top:5px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.chip{padding:7px 9px;border-radius:999px;border:1px solid var(--line);background:#071a3a99;color:#dce9ff;font-size:12px}.yellow{color:var(--yellow)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.card{background:linear-gradient(180deg,var(--card),#0b2142);border:1px solid var(--line);border-radius:20px;padding:15px}.card h3,.section-title{margin:0 0 10px;font-size:17px}.section-title{margin-top:22px;display:flex;align-items:center;justify-content:space-between}.section-title small{font-size:12px;color:var(--muted);font-weight:500}.big{font-size:26px;font-weight:900}.muted{color:var(--muted)}.tiny{font-size:12px}.watch{display:flex;align-items:center;gap:10px}.watch-badge{height:44px;min-width:56px;padding:0 10px;border-radius:12px;background:var(--yellow);color:#071a3a;display:grid;place-items:center;font-size:12px;font-weight:900}.listen-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.listen-links a,.action-pill{color:#dce9ff;text-decoration:none}.listen-links a{border:1px solid var(--line);background:#081c39;border-radius:12px;padding:9px 11px;font-size:12px;font-weight:800}.listen-links a:active,.action-pill:active{transform:scale(.98)}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#081c39;border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}.stat strong{display:block;font-size:19px}.stat span{font-size:11px;color:var(--muted)}.tabs{display:flex;gap:7px;overflow:auto;padding:1px 0 4px}.tabs::-webkit-scrollbar{display:none}.tab{white-space:nowrap;border:1px solid var(--line);color:#d9e7ff;background:#0b2142;border-radius:999px;padding:9px 12px;font-size:13px}.tab.active{background:var(--yellow);border-color:var(--yellow);color:#071a3a;font-weight:900}.panel{display:none}.panel.active{display:block}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #1b3b65}.row:first-child{border-top:0}.row .left{min-width:0}.row b{display:block}.row .meta{font-size:12px;color:var(--muted);margin-top:3px}.pill{padding:5px 8px;border-radius:999px;background:#102b55;border:1px solid var(--line);font-size:11px}.drive{padding:12px;border-radius:15px;background:#081c39;border:1px solid var(--line);margin-bottom:8px}.drive .drive-head{display:flex;justify-content:space-between;gap:8px;font-weight:800}.play{font-size:13px;padding:10px 0;border-top:1px solid #1b3b65}.play:first-child{border-top:0}.schedule-week{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #1b3b65}.schedule-week:first-child{border-top:0}.wk{font-weight:1000;color:var(--yellow)}.network{font-size:11px;border:1px solid var(--line);padding:5px 7px;border-radius:9px;color:#d7e5ff}.bye{text-align:center;color:var(--muted);padding:14px}.standings-row{display:grid;grid-template-columns:1fr 42px 42px 42px;gap:8px;padding:10px 0;border-top:1px solid #1b3b65;align-items:center}.standings-row:first-child{border-top:0}.nav{position:fixed;z-index:50;left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));bottom:0;max-width:680px;margin:auto;background:#071831f7;border:1px solid #244b7e;border-bottom:0;border-radius:24px 24px 0 0;padding:7px 7px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:4px;backdrop-filter:blur(18px);box-shadow:0 -10px 30px #0008}.nav button{min-height:58px;border:0;background:transparent;color:#8fa8cd;border-radius:18px;font-size:11px;font-weight:750}.nav .ico{display:block;font-size:20px;margin-bottom:3px}.nav button.active{background:#102b55;color:#fff}.dad-overlay{display:none;position:fixed;inset:0;z-index:100;background:#030b18;color:white;padding:calc(18px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom));overflow:auto}.dad-overlay.on{display:block}.dad-close{float:right;border:1px solid #365a83;background:#0c1e38;color:#fff;border-radius:14px;width:50px;height:50px;font-size:20px}.dad-title{font-size:15px;color:#9db1d1;text-transform:uppercase;letter-spacing:.14em;margin-top:4px}.dad-match{clear:both;padding-top:36px;text-align:center}.dad-score{font-size:min(23vw,110px);line-height:.9;font-weight:1000;letter-spacing:-.06em}.dad-teams{font-size:30px;font-weight:900;margin-top:12px}.dad-state{font-size:22px;color:var(--yellow);margin-top:10px}.dad-situation{font-size:19px;margin-top:8px}.dad-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}.dad-stat{border:1px solid #294a72;border-radius:20px;padding:16px}.dad-stat b{display:block;font-size:24px}.dad-stat span{color:#9db1d1;font-size:13px}.offline{background:#392626;border-color:#704040}.hidden{display:none!important}.mode-card{position:relative;overflow:hidden;margin-top:12px;background:linear-gradient(135deg,#102d59,#0a2041);border:1px solid #315889;border-radius:20px;padding:18px 15px 15px}.mode-card:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--opp-primary),var(--opp-secondary),var(--yellow))}.mode-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.mode-badge{font-size:11px;letter-spacing:.1em;font-weight:950;padding:6px 9px;border-radius:999px;background:#173c70;color:#9dd0ff}.mode-card h3{font-size:19px;margin:12px 0 6px}.mode-card p{margin:0;color:#c0d1eb;font-size:13px;line-height:1.45}.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:13px}.scout-keys{grid-template-columns:1fr;gap:9px}.key{background:#081c39;border:1px solid var(--line);border-radius:13px;padding:10px}.scout-keys .key{position:relative;overflow:hidden;padding:14px 13px 13px 16px}.scout-keys .key:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--opp-primary),var(--opp-secondary))}.key-head{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:11px;min-height:34px}.key-num{width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,var(--yellow),#ffb400);color:#071a3a;display:grid;place-items:center;font-size:13px;line-height:1;font-weight:1000;box-shadow:inset 0 -2px 0 #c99700,0 3px 10px #0005}.key b{display:block;font-size:12px}.scout-keys .key b{font-size:14px;line-height:1.25}.key span{display:block;color:var(--muted);font-size:10px;margin-top:3px;line-height:1.3}.scout-keys .key>span{font-size:11px;line-height:1.45;margin-top:8px}.key-proof{margin-top:10px;padding-top:10px;border-top:1px solid #1b3b65;color:#c8d8ef;font-size:10.5px;line-height:1.45}.key-proof strong{color:var(--sky);font-size:9px;letter-spacing:.09em}.key-watch{margin-top:9px;padding:8px 9px;border-radius:10px;background:#ffd1000d;color:#fff0a6;font-size:10.5px;line-height:1.45}.key-watch strong{color:var(--yellow);font-size:9px;letter-spacing:.09em}.scout-stamp{display:inline-block;margin-top:10px;padding:5px 8px;border-radius:999px;background:#173c70;color:#b8dcff;font-size:9px;font-weight:850;letter-spacing:.05em}.mode-note{margin-top:10px;color:var(--muted);font-size:11px}.happening{margin-top:12px;border-left:4px solid var(--yellow)}.happening-label{font-size:11px;color:var(--sky);text-transform:uppercase;letter-spacing:.1em;font-weight:900}.happening h3{margin:7px 0 5px;font-size:18px}.happening p{margin:0;color:#bfd0e9;font-size:13px;line-height:1.45}.tracker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.tracker{background:#081c39;border:1px solid var(--line);border-radius:15px;padding:11px;min-height:104px}.tracker .role{font-size:10px;color:var(--sky);text-transform:uppercase;letter-spacing:.08em;font-weight:800}.tracker b{display:block;margin-top:6px;font-size:13px;line-height:1.2}.tracker strong{display:block;color:var(--yellow);font-size:17px;margin-top:8px}.standings-pro{display:grid;grid-template-columns:minmax(68px,1fr) 48px 34px 54px 44px;gap:5px;padding:10px 0;border-top:1px solid #1b3b65;align-items:center;font-size:12px}.standings-pro:first-child{border-top:0}.standings-pro .teamcell{font-weight:900}.seed{font-size:9px;color:var(--sky);font-weight:800}.west-impact{border-left:4px solid var(--yellow)}.west-impact h3{margin-bottom:6px}.dad-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.wake-btn{border:1px solid #365a83;background:#0c1e38;color:white;border-radius:12px;padding:10px 12px;font-weight:800}.dad-latest{margin-top:18px;border:1px solid #294a72;border-radius:18px;padding:15px}.dad-latest span{display:block;color:#9db1d1;font-size:12px;text-transform:uppercase;letter-spacing:.1em}.dad-latest b{display:block;margin-top:7px;font-size:18px;line-height:1.35}.schedule-opp{display:flex;align-items:center;gap:8px;border-left:3px solid var(--row-accent,var(--line));padding-left:8px}.schedule-logo{width:25px;height:25px;object-fit:contain;filter:drop-shadow(0 2px 4px #0006)}.teamcell{display:flex;align-items:center;gap:6px}.standings-logo{width:22px;height:22px;object-fit:contain}.opponent-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;border:1px solid var(--opp-secondary);background:#071a3aaa;color:#e9f1ff;font-size:10px;font-weight:850}.opponent-chip img{width:18px;height:18px;object-fit:contain}.scout-stamp{border:1px solid #315889}body.phase-live .hero{box-shadow:0 0 0 1px #4bdd9a33,0 0 28px #4bdd9a16}body.phase-live .mode-badge{background:#123f35;color:#7ff0bf}body.phase-post .mode-badge{background:#41390d;color:#ffe56b}@media(max-width:390px){.grid2{grid-template-columns:1fr}.keys,.tracker-grid{grid-template-columns:1fr}.standings-pro{grid-template-columns:minmax(68px,1fr) 45px 32px 50px 40px;font-size:11px}.hero{padding:19px 14px 15px}.team-logo-wrap{width:44px;height:44px}.team-logo{max-width:42px;max-height:42px}.team-panel{padding:9px 5px 8px}.abbr{font-size:21px}.score{font-size:40px}.brand h1{font-size:22px}.mark{width:52px;height:52px}.nav{left:8px;right:8px}.nav button{min-height:56px;font-size:10px}}@media(display-mode:standalone){.nav{bottom:0}}@media(min-width:721px){.nav{left:50%;right:auto;width:680px;transform:translateX(-50%)}}
+    *{box-sizing:border-box}html{background:var(--navy);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{margin:0;background:linear-gradient(180deg,#051327 0,#071a3a 30%,#06152d 100%);min-height:100vh;padding-bottom:calc(102px + env(safe-area-inset-bottom))}button,a{font:inherit}button{cursor:pointer}.app{max-width:720px;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 16px 36px}.top{display:flex;align-items:center;gap:12px;margin:6px 0 14px}.mark{width:58px;height:58px;border-radius:18px;background:linear-gradient(145deg,var(--yellow),#ffb400);display:grid;place-items:center;color:#071a3a;font-weight:1000;font-size:24px;box-shadow:0 8px 24px #0007}.brand h1{font-size:25px;line-height:1;margin:0}.brand p{margin:6px 0 0;color:var(--muted);font-size:14px}.top-actions{margin-left:auto;display:flex;gap:8px}.iconbtn{border:1px solid var(--line);background:#0d2448;color:#fff;border-radius:14px;min-width:46px;height:46px;font-size:20px}.statusline{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:13px;margin-bottom:14px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--good);box-shadow:0 0 0 5px #4bdd9a1a;margin-right:8px}.hero{position:relative;background:radial-gradient(circle at 90% 0,#1b64d155 0,transparent 40%),linear-gradient(160deg,#0e2c5b,#0b2146);border:1px solid #315889;border-radius:26px;padding:22px 18px 18px;overflow:hidden}.hero:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--opp-primary) 0 28%,var(--opp-secondary) 28% 38%,#153f78 38% 62%,var(--royal) 62% 84%,var(--yellow) 84% 100%)}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--sky);font-weight:800}.matchup{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px;margin-top:14px}.team{text-align:center}.team-panel{min-width:0;border:1px solid #315889;border-radius:18px;padding:10px 7px 9px;transition:border-color .2s ease,background .2s ease}.team-panel.rams-panel{box-shadow:inset 0 0 0 1px #ffd10026,0 0 22px #0047ab20}.team-logo-wrap{width:50px;height:50px;margin:0 auto 4px;display:grid;place-items:center;position:relative}.team-logo{display:block;max-width:48px;max-height:48px;object-fit:contain;filter:drop-shadow(0 4px 7px #0008)}.team-logo-fallback{display:none;width:42px;height:42px;border-radius:50%;place-items:center;font-size:13px;font-weight:1000;background:#102b55;color:#fff;border:1px solid #ffffff33}.abbr{font-size:24px;font-weight:1000;letter-spacing:-.03em;line-height:1}.teamname{font-size:11px;color:var(--muted);margin-top:4px}.versus{font-size:13px;color:var(--muted)}.versus-badge{min-width:48px;padding:8px 7px;border:1px solid #315889;border-radius:999px;background:#071a3acc;text-align:center;font-weight:900;letter-spacing:.06em}.game-team-logo{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 3px 5px #0008);margin-bottom:3px}.score{font-size:48px;line-height:1;font-weight:1000}.gamestate{text-align:center;margin-top:13px;font-size:15px;font-weight:700}.substate{text-align:center;color:var(--muted);font-size:13px;margin-top:5px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.chip{padding:7px 9px;border-radius:999px;border:1px solid var(--line);background:#071a3a99;color:#dce9ff;font-size:12px}.yellow{color:var(--yellow)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.card{background:linear-gradient(180deg,var(--card),#0b2142);border:1px solid var(--line);border-radius:20px;padding:15px}.card h3,.section-title{margin:0 0 10px;font-size:17px}.section-title{margin-top:22px;display:flex;align-items:center;justify-content:space-between}.section-title small{font-size:12px;color:var(--muted);font-weight:500}.big{font-size:26px;font-weight:900}.muted{color:var(--muted)}.tiny{font-size:12px}.watch{display:flex;align-items:center;gap:10px}.watch-badge{height:44px;min-width:56px;padding:0 10px;border-radius:12px;background:var(--yellow);color:#071a3a;display:grid;place-items:center;font-size:12px;font-weight:900}.listen-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.listen-links a,.action-pill{color:#dce9ff;text-decoration:none}.listen-links a{border:1px solid var(--line);background:#081c39;border-radius:12px;padding:9px 11px;font-size:12px;font-weight:800}.listen-links a:active,.action-pill:active{transform:scale(.98)}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#081c39;border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}.stat strong{display:block;font-size:19px}.stat span{font-size:11px;color:var(--muted)}.tabs{display:flex;gap:7px;overflow:auto;padding:1px 0 4px}.tabs::-webkit-scrollbar{display:none}.tab{white-space:nowrap;border:1px solid var(--line);color:#d9e7ff;background:#0b2142;border-radius:999px;padding:9px 12px;font-size:13px}.tab.active{background:var(--yellow);border-color:var(--yellow);color:#071a3a;font-weight:900}.panel{display:none}.panel.active{display:block}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #1b3b65}.row:first-child{border-top:0}.row .left{min-width:0}.row b{display:block}.row .meta{font-size:12px;color:var(--muted);margin-top:3px}.pill{padding:5px 8px;border-radius:999px;background:#102b55;border:1px solid var(--line);font-size:11px}.drive{padding:12px;border-radius:15px;background:#081c39;border:1px solid var(--line);margin-bottom:8px}.drive .drive-head{display:flex;justify-content:space-between;gap:8px;font-weight:800}.play{font-size:13px;padding:10px 0;border-top:1px solid #1b3b65}.play:first-child{border-top:0}.schedule-week{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #1b3b65}.schedule-week:first-child{border-top:0}.wk{font-weight:1000;color:var(--yellow)}.network{font-size:11px;border:1px solid var(--line);padding:5px 7px;border-radius:9px;color:#d7e5ff}.bye{text-align:center;color:var(--muted);padding:14px}.standings-row{display:grid;grid-template-columns:1fr 42px 42px 42px;gap:8px;padding:10px 0;border-top:1px solid #1b3b65;align-items:center}.standings-row:first-child{border-top:0}.nav{position:fixed;z-index:50;left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));bottom:0;max-width:680px;margin:auto;background:#071831f7;border:1px solid #244b7e;border-bottom:0;border-radius:24px 24px 0 0;padding:7px 7px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:4px;backdrop-filter:blur(18px);box-shadow:0 -10px 30px #0008}.nav button{min-height:58px;border:0;background:transparent;color:#8fa8cd;border-radius:18px;font-size:11px;font-weight:750}.nav .ico{display:block;font-size:20px;margin-bottom:3px}.nav button.active{background:#102b55;color:#fff}.dad-overlay{display:none;position:fixed;inset:0;z-index:100;background:#030b18;color:white;padding:calc(18px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom));overflow:auto}.dad-overlay.on{display:block}.dad-close{float:right;border:1px solid #365a83;background:#0c1e38;color:#fff;border-radius:14px;width:50px;height:50px;font-size:20px}.dad-title{font-size:15px;color:#9db1d1;text-transform:uppercase;letter-spacing:.14em;margin-top:4px}.dad-match{clear:both;padding-top:36px;text-align:center}.dad-score{font-size:min(23vw,110px);line-height:.9;font-weight:1000;letter-spacing:-.06em}.dad-teams{font-size:30px;font-weight:900;margin-top:12px}.dad-state{font-size:22px;color:var(--yellow);margin-top:10px}.dad-situation{font-size:19px;margin-top:8px}.dad-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}.dad-stat{border:1px solid #294a72;border-radius:20px;padding:16px}.dad-stat b{display:block;font-size:24px}.dad-stat span{color:#9db1d1;font-size:13px}.offline{background:#392626;border-color:#704040}.hidden{display:none!important}.mode-card{position:relative;overflow:hidden;margin-top:12px;background:linear-gradient(135deg,#102d59,#0a2041);border:1px solid #315889;border-radius:20px;padding:18px 15px 15px}.mode-card:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--opp-primary),var(--opp-secondary),var(--yellow))}.mode-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.mode-badge{font-size:11px;letter-spacing:.1em;font-weight:950;padding:6px 9px;border-radius:999px;background:#173c70;color:#9dd0ff}.mode-card h3{font-size:19px;margin:12px 0 6px}.mode-card p{margin:0;color:#c0d1eb;font-size:13px;line-height:1.45}.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:13px}.scout-keys{grid-template-columns:1fr;gap:9px}.key{background:#081c39;border:1px solid var(--line);border-radius:13px;padding:10px}.scout-keys .key{position:relative;overflow:hidden;padding:14px 13px 13px 16px}.scout-keys .key:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--opp-primary),var(--opp-secondary))}.key-head{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:11px;min-height:34px}.key-num{width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,var(--yellow),#ffb400);color:#071a3a;display:grid;place-items:center;font-size:13px;line-height:1;font-weight:1000;box-shadow:inset 0 -2px 0 #c99700,0 3px 10px #0005}.key b{display:block;font-size:12px}.scout-keys .key b{font-size:14px;line-height:1.25}.key span{display:block;color:var(--muted);font-size:10px;margin-top:3px;line-height:1.3}.scout-keys .key>span{font-size:11px;line-height:1.45;margin-top:8px}.key-proof{margin-top:10px;padding-top:10px;border-top:1px solid #1b3b65;color:#c8d8ef;font-size:10.5px;line-height:1.45}.key-proof strong{color:var(--sky);font-size:9px;letter-spacing:.09em}.key-watch{margin-top:9px;padding:8px 9px;border-radius:10px;background:#ffd1000d;color:#fff0a6;font-size:10.5px;line-height:1.45}.key-watch strong{color:var(--yellow);font-size:9px;letter-spacing:.09em}.scout-stamp{display:inline-block;margin-top:10px;padding:5px 8px;border-radius:999px;background:#173c70;color:#b8dcff;font-size:9px;font-weight:850;letter-spacing:.05em}.mode-note{margin-top:10px;color:var(--muted);font-size:11px}.happening{margin-top:12px;border-left:4px solid var(--yellow)}.happening-label{font-size:11px;color:var(--sky);text-transform:uppercase;letter-spacing:.1em;font-weight:900}.happening h3{margin:7px 0 5px;font-size:18px}.happening p{margin:0;color:#bfd0e9;font-size:13px;line-height:1.45}.tracker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.tracker{background:#081c39;border:1px solid var(--line);border-radius:15px;padding:11px;min-height:104px}.tracker .role{font-size:10px;color:var(--sky);text-transform:uppercase;letter-spacing:.08em;font-weight:800}.tracker b{display:block;margin-top:6px;font-size:13px;line-height:1.2}.tracker strong{display:block;color:var(--yellow);font-size:17px;margin-top:8px}.standings-pro{display:grid;grid-template-columns:minmax(68px,1fr) 48px 34px 54px 44px;gap:5px;padding:10px 0;border-top:1px solid #1b3b65;align-items:center;font-size:12px}.standings-pro:first-child{border-top:0}.standings-pro .teamcell{font-weight:900}.seed{font-size:9px;color:var(--sky);font-weight:800}.west-impact{border-left:4px solid var(--yellow)}.west-impact h3{margin-bottom:6px}.dad-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.wake-btn{border:1px solid #365a83;background:#0c1e38;color:white;border-radius:12px;padding:10px 12px;font-weight:800}.dad-latest{margin-top:18px;border:1px solid #294a72;border-radius:18px;padding:15px}.dad-latest span{display:block;color:#9db1d1;font-size:12px;text-transform:uppercase;letter-spacing:.1em}.dad-latest b{display:block;margin-top:7px;font-size:18px;line-height:1.35}.schedule-opp{display:flex;align-items:center;gap:8px;border-left:3px solid var(--row-accent,var(--line));padding-left:8px}.schedule-logo{width:25px;height:25px;object-fit:contain;filter:drop-shadow(0 2px 4px #0006)}.teamcell{display:flex;align-items:center;gap:6px}.standings-logo{width:22px;height:22px;object-fit:contain}.opponent-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;border:1px solid var(--opp-secondary);background:#071a3aaa;color:#e9f1ff;font-size:10px;font-weight:850}.opponent-chip img{width:18px;height:18px;object-fit:contain}.scout-stamp{border:1px solid #315889}
+.scout-keys .key-head{grid-template-columns:34px minmax(0,1fr) auto}
+.scout-keys .key-tag{justify-self:end;align-self:center;padding:4px 8px;border-radius:999px;background:#173c70;border:1px solid #2b5896;color:#9dd0ff;font-size:9px;font-weight:900;letter-spacing:.09em;white-space:nowrap}
+@media(max-width:390px){.scout-keys .key-head{grid-template-columns:34px minmax(0,1fr);row-gap:7px}.scout-keys .key-tag{grid-column:2;justify-self:start}}
+.plan-cadence{margin-top:10px;padding:9px 11px;border-radius:12px;background:#0047ab1f;border:1px solid #2b5896;color:#cfe2ff;font-size:11px;line-height:1.45}body.phase-live .hero{box-shadow:0 0 0 1px #4bdd9a33,0 0 28px #4bdd9a16}body.phase-live .mode-badge{background:#123f35;color:#7ff0bf}body.phase-post .mode-badge{background:#41390d;color:#ffe56b}@media(max-width:390px){.grid2{grid-template-columns:1fr}.keys,.tracker-grid{grid-template-columns:1fr}.standings-pro{grid-template-columns:minmax(68px,1fr) 45px 32px 50px 40px;font-size:11px}.hero{padding:19px 14px 15px}.team-logo-wrap{width:44px;height:44px}.team-logo{max-width:42px;max-height:42px}.team-panel{padding:9px 5px 8px}.abbr{font-size:21px}.score{font-size:40px}.brand h1{font-size:22px}.mark{width:52px;height:52px}.nav{left:8px;right:8px}.nav button{min-height:56px;font-size:10px}}@media(display-mode:standalone){.nav{bottom:0}}@media(min-width:721px){.nav{left:50%;right:auto;width:680px;transform:translateX(-50%)}}
   
 /* v1.6.2 scouting-number alignment hotfix */
 .key-head > .key-num{
@@ -401,9 +405,639 @@ const WEEKLY_SCOUT={
     {title:'Own the first 15 minutes',detail:"The travel approaches are completely different: San Francisco arrived in Melbourne early to acclimate, while the Rams kept a more normal routine and planned a much later arrival. McVay should script easy completions and tempo early so the offense settles in before asking Stafford to hold the ball.",proof:"This is the NFL's first regular-season game in Australia, with a Friday-morning local kickoff at the MCG. The 49ers arrived roughly a week early; Los Angeles chose a shorter acclimation window.",watch:"Rams tempo, substitution speed and communication on the opening two drives. A clean first quarter would be a very good sign that the travel plan worked."}
   ]}
 };
-function scoutFor(g){const s=WEEKLY_SCOUT[g?.w];if(s)return s;return {updated:'game week',keys:[{title:'Weekly scouting brief',detail:`The opponent-specific Rams plan for ${names[g?.opp]||g?.opp||'this matchup'} will be added here during game week rather than showing generic football keys.`,proof:'This section is intentionally matchup-specific.',watch:'Check back during game week for personnel, injury and scheme notes.'}]};}
-function scoutHTML(s){return s.keys.map((k,i)=>`<div class="key"><div class="key-head"><span class="key-num">${i+1}</span><b>${k.title}</b></div><span>${k.detail}</span><div class="key-proof"><strong>WHY IT MATTERS</strong><br>${k.proof}</div><div class="key-watch"><strong>👀 WATCH FOR</strong><br>${k.watch}</div></div>`).join('')+`<span class="scout-stamp">MATCHUP SCOUT • UPDATED ${s.updated.toUpperCase()}</span>`;}
-let liveEvent=null,liveSummary=null,currentGame=null,wakeLock=null,wakeWanted=false,lastStandings=[],gameWeatherSummary="";
+/* ===========================================================================
+   v1.9 — Automatic matchup plan
+   ---------------------------------------------------------------------------
+   The weekly brief used to be hand-typed into WEEKLY_SCOUT, so any week
+   without an entry fell back to a placeholder. This builds the plan from the
+   feeds the app already loads:
+
+     • ESPN scoreboard — season averages for every team playing that week,
+       which also yields league ranks for free (no extra request)
+     • ESPN summary    — the two teams' stats, statistical leaders, and the
+       injury report, which is the part that actually moves during the week
+     • Open-Meteo      — the kickoff forecast
+
+   Release cadence mirrors a real NFL week: an early look until game week
+   opens Tuesday morning, the first full plan Tuesday, practice-report
+   revisions Wednesday through Friday, designations Saturday, gameday final.
+
+   Every generator is independent and returns null when its inputs are
+   missing, so a thin feed produces a shorter plan rather than a broken one.
+   A hand-written WEEKLY_SCOUT entry always wins, so a week can still be
+   written by hand when it deserves it.
+   =========================================================================== */
+
+const PLAN_STAGES={
+  preview:{badge:'OPPONENT PREVIEW',stamp:'EARLY LOOK',lead:'Early look at'},
+  opener :{badge:'GAME PLAN',       stamp:'TUESDAY DROP',lead:'Rams matchup plan vs'},
+  midweek:{badge:'GAME PLAN v2',    stamp:'PRACTICE REPORTS',lead:'Rams matchup plan vs'},
+  final  :{badge:'FINAL PREP',      stamp:'DESIGNATIONS SET',lead:'Rams matchup plan vs'},
+  gameday:{badge:'GAMEDAY',         stamp:'GAMEDAY FINAL',lead:'Rams matchup plan vs'}
+};
+const DAY_NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+/* Game week opens the Tuesday 4am before kickoff, whatever day the game is. */
+function gameWeekOpensAt(kick){
+  const k=new Date(kick),d=new Date(kick);
+  d.setHours(4,0,0,0);
+  let back=(d.getDay()-2+7)%7;
+  if(back===0&&d.getTime()>k.getTime())back=7;
+  d.setDate(d.getDate()-back);
+  return d;
+}
+function planStage(g){
+  if(!g?.date)return'preview';
+  const kick=new Date(g.date).getTime(),now=Date.now();
+  if(now<gameWeekOpensAt(g.date).getTime())return'preview';
+  const days=(kick-now)/86400000;
+  if(days>=5)return'opener';
+  if(days>=3)return'midweek';
+  if(days>=1)return'final';
+  return'gameday';
+}
+function planNextUpdate(g,stage){
+  const kick=g?.date?new Date(g.date):null;
+  if(stage==='preview'&&kick){
+    const open=gameWeekOpensAt(g.date);
+    const when=new Intl.DateTimeFormat('en-US',{weekday:'long',month:'short',day:'numeric',timeZone:VIEWER_TZ}).format(open);
+    return `Full game plan builds itself ${when} morning when game week opens.`;
+  }
+  if(stage==='opener')return'Rebuilds Wednesday once the first practice reports post.';
+  if(stage==='midweek')return'Rebuilds every time you open the app as practice reports change.';
+  if(stage==='final')return'Locked in except for late designations and inactives.';
+  return'Final plan. It flips to live tracking at kickoff.';
+}
+
+/* --- stat plumbing -------------------------------------------------------- */
+/* ESPN names these differently across the scoreboard and summary payloads, so
+   each spec tries exact stat names first, then a loose label match. */
+const STAT_SPECS={
+  ppg       :{names:['avgPointsFor','totalPointsPerGame','pointsPerGame','avgPoints'],labels:['points per game','points/game'],better:'high',short:'points/gm'},
+  papg      :{names:['avgPointsAgainst','pointsAgainstPerGame','opponentTotalPointsPerGame'],labels:['points against','points allowed'],better:'low',short:'points allowed/gm'},
+  ypg       :{names:['totalYardsPerGame','yardsPerGame','avgTotalYards'],labels:['total yards per game','yards per game'],better:'high',short:'yards/gm'},
+  yapg      :{names:['avgYardsAgainst','yardsAgainstPerGame','opponentTotalYardsPerGame'],labels:['yards allowed','yards against'],better:'low',short:'yards allowed/gm'},
+  passYpg   :{names:['passingYardsPerGame','netPassingYardsPerGame','avgPassingYards'],labels:['passing yards per game','net passing yards per game'],better:'high',short:'pass yards/gm'},
+  rushYpg   :{names:['rushingYardsPerGame','avgRushingYards'],labels:['rushing yards per game'],better:'high',short:'rush yards/gm'},
+  passYapg  :{names:['opponentPassingYardsPerGame','passingYardsAgainstPerGame','avgPassingYardsAgainst'],labels:['passing yards allowed'],better:'low',short:'pass yards allowed/gm'},
+  rushYapg  :{names:['opponentRushingYardsPerGame','rushingYardsAgainstPerGame','avgRushingYardsAgainst'],labels:['rushing yards allowed'],better:'low',short:'rush yards allowed/gm'},
+  sacks     :{names:['sacks','totalSacks','defensiveSacks'],labels:['sacks'],better:'high',short:'sacks'},
+  sacksTaken:{names:['sacksAllowed','totalSacksAllowed','passingSacks'],labels:['sacks allowed'],better:'low',short:'sacks allowed'},
+  toDiff    :{names:['turnOverDifferential','turnoverDifferential','differential'],labels:['turnover differential'],better:'high',short:'turnover margin'},
+  takeaways :{names:['totalTakeaways','takeaways'],labels:['takeaways'],better:'high',short:'takeaways'},
+  giveaways :{names:['totalGiveaways','giveaways'],labels:['giveaways'],better:'low',short:'giveaways'},
+  thirdPct  :{names:['thirdDownConvPct','thirdDownPct','thirdDownConversionPct'],labels:['third down conv'],better:'high',short:'3rd down'},
+  redzonePct:{names:['redzoneScoringPct','redZoneScoringPct','redzoneEfficiencyPct'],labels:['red zone'],better:'high',short:'red zone'}
+};
+function statNumber(raw){
+  if(raw==null)return null;
+  const m=String(raw).replace(/,/g,'').match(/-?\d+(\.\d+)?/);
+  return m?parseFloat(m[0]):null;
+}
+function readStats(list){
+  const out={};
+  if(!Array.isArray(list))return out;
+  for(const [key,spec] of Object.entries(STAT_SPECS)){
+    let hit=null;
+    for(const n of spec.names){hit=list.find(x=>String(x.name||'').toLowerCase()===n.toLowerCase());if(hit)break;}
+    if(!hit)for(const l of spec.labels){hit=list.find(x=>String(x.label||x.displayName||'').toLowerCase().includes(l));if(hit)break;}
+    const v=statNumber(hit?.displayValue??hit?.value);
+    if(v!=null&&Number.isFinite(v))out[key]=v;
+  }
+  return out;
+}
+let leagueStats={},leagueRecords={};
+/* The weekly scoreboard carries ~30 teams' season averages. Harvesting it
+   costs nothing extra and is what makes league ranks possible. */
+function harvestLeague(board){
+  const next={};
+  for(const ev of (board?.events||[])){
+    for(const c of (ev.competitions?.[0]?.competitors||[])){
+      const ab=c.team?.abbreviation;
+      if(!ab)continue;
+      const st=readStats(c.statistics);
+      if(Object.keys(st).length)next[ab]=st;
+      const rec=(c.records||[]).find(r=>r.type==='total'||r.name==='overall')||((c.records||[])[0]);
+      if(rec?.summary)leagueRecords[ab]=rec.summary;
+    }
+  }
+  if(Object.keys(next).length>=8){leagueStats=next;planDataVersion++;}
+}
+function rankOf(abbr,key){
+  const spec=STAT_SPECS[key];
+  if(!spec)return null;
+  const rows=Object.entries(leagueStats).filter(([,s])=>Number.isFinite(s[key]));
+  if(rows.length<8)return null;
+  rows.sort((a,b)=>spec.better==='low'?a[1][key]-b[1][key]:b[1][key]-a[1][key]);
+  const i=rows.findIndex(([ab])=>ab===abbr);
+  return i<0?null:{rank:i+1,of:rows.length};
+}
+function rankPhrase(abbr,key){
+  const r=rankOf(abbr,key);
+  return r?`${ordinal(r.rank)} of ${r.of}`:'';
+}
+/* Rank as a 0-1 "how extreme is this" score, used to weight the generators. */
+function rankEdge(abbr,key){
+  const r=rankOf(abbr,key);
+  if(!r)return 0;
+  const mid=(r.of+1)/2;
+  return Math.min(1,Math.abs(r.rank-mid)/mid);
+}
+
+/* --- context -------------------------------------------------------------- */
+function planLeaders(summary,ab){
+  const t=(summary?.leaders||[]).find(x=>x.team?.abbreviation===ab);
+  const out={};
+  for(const cat of (t?.leaders||[])){
+    const label=String(cat.name||cat.displayName||'').toLowerCase();
+    const top=cat.leaders?.[0];
+    if(!top?.athlete?.displayName)continue;
+    const row={name:top.athlete.displayName,display:top.displayValue||'',pos:top.athlete.position?.abbreviation||''};
+    if(label.includes('pass'))out.passing=out.passing||row;
+    else if(label.includes('rush'))out.rushing=out.rushing||row;
+    else if(label.includes('receiv'))out.receiving=out.receiving||row;
+  }
+  return out;
+}
+const SIDELINED=/\b(out|inj-?res|injured reserve|\bir\b|doubtful|suspend|pup)\b/i;
+const IFFY=/\b(question|limited|dnp|did not|game-?time)\b/i;
+function planInjuries(summary,ab){
+  const rows=[];
+  for(const grp of (summary?.injuries||[])){
+    if(grp.team?.abbreviation!==ab)continue;
+    for(const i of (grp.injuries||[])){
+      const status=String(i.status||i.details?.type||'').trim();
+      rows.push({
+        name:i.athlete?.displayName||'Player',
+        pos:i.athlete?.position?.abbreviation||'',
+        status:status||'Injury',
+        detail:[i.details?.type,i.details?.detail].filter(Boolean).join(' • '),
+        out:SIDELINED.test(status),
+        iffy:IFFY.test(status)
+      });
+    }
+  }
+  return rows;
+}
+function planOdds(summary){
+  const o=(summary?.pickcenter||summary?.odds||[])[0]||(summary?.header?.competitions?.[0]?.odds||[])[0];
+  if(!o)return null;
+  return {details:o.details||'',overUnder:statNumber(o.overUnder),provider:o.provider?.name||''};
+}
+function planContext(g,summary){
+  const opp=g?.opp||'OPP';
+  const teams=summary?.boxscore?.teams||[];
+  const fromSummary=ab=>readStats(teams.find(t=>t.team?.abbreviation===ab)?.statistics);
+  /* league table is definitively season-average, so it wins the merge */
+  const lar=Object.assign({},fromSummary('LAR'),leagueStats.LAR||{});
+  const oppStats=Object.assign({},fromSummary(opp),leagueStats[opp]||{});
+  const ctx={
+    g,opp,oppName:names[opp]||opp,
+    oppThe:`the ${names[opp]||opp}`,
+    OppThe:`The ${names[opp]||opp}`,
+    home:g?.loc==='vs',
+    lar,oppStats,
+    larLead:planLeaders(summary,'LAR'),
+    oppLead:planLeaders(summary,opp),
+    larInj:planInjuries(summary,'LAR'),
+    oppInj:planInjuries(summary,opp),
+    larRec:leagueRecords.LAR||'',
+    oppRec:leagueRecords[opp]||'',
+    odds:planOdds(summary),
+    weather:gameWeatherData||null,
+    stage:planStage(g)
+  };
+  ctx.quality=Object.keys(lar).length+Object.keys(oppStats).length
+    +Object.keys(ctx.larLead).length+Object.keys(ctx.oppLead).length
+    +ctx.larInj.length+ctx.oppInj.length;
+  return ctx;
+}
+
+/* --- live grading helpers ------------------------------------------------- */
+function band(val,goodAt,badAt,evidence,invert,tick){
+  const good=invert?val<=goodAt:val>=goodAt;
+  const bad =invert?val>=badAt :val<=badAt;
+  if(good)return trackerState('good',tick.late?'✅ WON IT':'✅ ON TRACK',evidence);
+  if(bad) return tick.half?trackerState('bad','❌ LOSING',evidence):trackerState('mixed','🟡 TRACKING',evidence);
+  return trackerState('mixed','🟡 MIXED',evidence);
+}
+function pending(){return trackerState('','STARTS AT KICKOFF','Graded live from the box score once the game begins.');}
+
+/* --- key generators ------------------------------------------------------- */
+/* Each returns a key or null. `weight` decides which five make the card. */
+const PLAN_KEYS=[
+
+/* Opponent unavailability. This is the generator that makes the plan move
+   between Wednesday and Sunday, so it outranks everything else. */
+{id:'opp-out',build(c){
+  const out=c.oppInj.filter(p=>p.out);
+  const iffy=c.oppInj.filter(p=>p.iffy&&!p.out);
+  if(!out.length&&!iffy.length)return null;
+  const stars=Object.values(c.oppLead).map(l=>l.name);
+  const surname=n=>String(n||'').toLowerCase().replace(/\b(jr|sr|ii|iii|iv|v)\.?$/,'').trim().split(' ').pop();
+  const bigOut=out.find(p=>surname(p.name).length>2&&stars.some(st=>surname(st)===surname(p.name)));
+  const headline=bigOut?`Attack ${c.oppThe} without ${bigOut.name}`
+    :out.length?`${c.OppThe} are down ${out.length===1?'a starter':out.length+' starters'}`
+    :`${c.OppThe} have ${iffy.length===1?'a name':iffy.length+' names'} in doubt`;
+  const listOut=out.slice(0,4).map(p=>`${p.name}${p.pos?' ('+p.pos+')':''}`).join(', ');
+  const listIffy=iffy.slice(0,4).map(p=>`${p.name}${p.pos?' ('+p.pos+')':''} — ${p.status}`).join(', ');
+  return{
+    id:'opp-out',weight:bigOut?100:(out.length?82:66),tag:'PERSONNEL',
+    fp:c.oppInj.map(p=>p.name+':'+p.status).join(','),
+    title:headline,
+    detail:bigOut
+      ? `${bigOut.name} is ${bigOut.status.toLowerCase()}${bigOut.detail?' ('+bigOut.detail+')':''}. That is a produced player off the field, and the rest of the plan should be pointed at whatever he was covering up.`
+      : `The injury report says ${c.oppThe} are working around real absences. Find the replacement and make him play a lot of snaps in space.`,
+    proof:[listOut&&`Ruled out or on IR: ${listOut}.`,listIffy&&`Still in question: ${listIffy}.`].filter(Boolean).join(' ')||'Live ESPN injury report.',
+    watch:c.stage==='gameday'?'Inactives post about 90 minutes before kickoff — that is the final word on this.':'This key rewrites itself every time a new practice report posts, so check back midweek.',
+    grade:(s,comp,tick)=>{
+      const pts=quarterPts(comp,'LAR',0)+quarterPts(comp,'LAR',1)+quarterPts(comp,'LAR',2)+quarterPts(comp,'LAR',3);
+      const opp=quarterPts(comp,c.opp,0)+quarterPts(comp,c.opp,1)+quarterPts(comp,c.opp,2)+quarterPts(comp,c.opp,3);
+      return band(pts-opp,1,-1,`Scoreboard margin with the short-handed matchup: Rams ${pts}, ${c.oppName} ${opp}.`,false,tick);
+    }
+  };
+}},
+
+/* Rams unavailability — same idea pointed the other way. */
+{id:'lar-out',build(c){
+  const out=c.larInj.filter(p=>p.out);
+  const iffy=c.larInj.filter(p=>p.iffy&&!p.out);
+  if(!out.length&&!iffy.length)return null;
+  const listOut=out.slice(0,4).map(p=>`${p.name}${p.pos?' ('+p.pos+')':''}`).join(', ');
+  const listIffy=iffy.slice(0,4).map(p=>`${p.name}${p.pos?' ('+p.pos+')':''} — ${p.status}`).join(', ');
+  return{
+    id:'lar-out',weight:out.length?74:52,tag:'OUR ROOM',
+    fp:c.larInj.map(p=>p.name+':'+p.status).join(','),
+    title:out.length?`Cover for ${out.length} missing Ram${out.length===1?'':'s'}`:'Watch the Rams practice report',
+    detail:out.length
+      ? `Los Angeles is playing this one without ${listOut||'listed starters'}. McVay usually answers a missing body with formation and motion rather than a like-for-like swap, so watch who inherits the role rather than who inherits the jersey number.`
+      : `Nobody is ruled out yet, but the report has names on it. Friday's designations are the ones that actually stick.`,
+    proof:[listOut&&`Ruled out or on IR: ${listOut}.`,listIffy&&`Still in question: ${listIffy}.`].filter(Boolean).join(' ')||'Live ESPN injury report.',
+    watch:'Snap counts for the backup at that spot early — if he is out there on third down, the staff trusts him.',
+    grade:(s,comp,tick)=>{
+      const y=teamStatNum(s,'LAR',['totalYards','yardsPerGame']);
+      return band(y,300,150,`Rams total offense with the shorthanded group: ${y} yards.`,false,tick);
+    }
+  };
+}},
+
+/* Run the ball at a soft run defense, or acknowledge they stop it. */
+{id:'run-game',build(c){
+  const mine=c.lar.rushYpg,theirs=c.oppStats.rushYapg;
+  if(!Number.isFinite(mine)&&!Number.isFinite(theirs))return null;
+  const theirRank=rankOf(c.opp,'rushYapg'),myRank=rankOf('LAR','rushYpg');
+  const soft=theirRank?theirRank.rank>Math.ceil(theirRank.of*0.6):Number.isFinite(theirs)&&theirs>125;
+  const edge=Math.max(rankEdge(c.opp,'rushYapg'),rankEdge('LAR','rushYpg'));
+  return{
+    id:'run-game',weight:58+Math.round(edge*28),tag:soft?'ATTACK':'EARLY DOWNS',
+    fp:`${mine||'-'}/${theirs||'-'}`,
+    title:soft?`Run it at ${c.oppThe}`:'Stay on schedule against a stout front',
+    detail:soft
+      ? `${c.OppThe} are giving up ground on early downs. Kyren Williams and the play-action game feed off each other, so the run does not have to break for 40 — it has to keep the offense out of third-and-long.`
+      : `${c.OppThe} defend the run well, which means the answer is not to stubbornly keep running into it. Win early downs with quick throws and motion, then run when the box gets light.`,
+    proof:[Number.isFinite(mine)&&`Rams rush ${mine.toFixed(1)} yards/gm${myRank?' ('+rankPhrase('LAR','rushYpg')+')':''}.`,
+           Number.isFinite(theirs)&&`${c.oppName} allow ${theirs.toFixed(1)} rush yards/gm${theirRank?' ('+rankPhrase(c.opp,'rushYapg')+')':''}.`].filter(Boolean).join(' '),
+    watch:'First-quarter run/pass split and whether the Rams stay under 3rd-and-6.',
+    grade:(s,comp,tick)=>{
+      const y=teamStatNum(s,'LAR',['rushingYards','netRushingYards']);
+      return band(y,110,45,`Rams rushing: ${y} yards.`,false,tick);
+    }
+  };
+}},
+
+/* Throw at a soft secondary. */
+{id:'pass-game',build(c){
+  const mine=c.lar.passYpg,theirs=c.oppStats.passYapg;
+  if(!Number.isFinite(mine)&&!Number.isFinite(theirs))return null;
+  const theirRank=rankOf(c.opp,'passYapg');
+  const soft=theirRank?theirRank.rank>Math.ceil(theirRank.of*0.6):Number.isFinite(theirs)&&theirs>230;
+  const wr=c.larLead.receiving;
+  const edge=Math.max(rankEdge(c.opp,'passYapg'),rankEdge('LAR','passYpg'));
+  return{
+    id:'pass-game',weight:56+Math.round(edge*30),tag:soft?'ATTACK':'BE PATIENT',
+    fp:`${mine||'-'}/${theirs||'-'}`,
+    title:soft?'Let Stafford throw it':`Take the completions ${c.oppThe} give up`,
+    detail:soft
+      ? `${c.OppThe} have been throwable. Stafford does his best work when the first read is clean, so expect stacks, bunches and motion to declare the coverage before the snap${wr?`, with ${wr.name} as the first place to look`:''}.`
+      : `${c.OppThe} cover well enough that forcing it is how this game gets away. Underneath throws and yards after catch beat contested shots here${wr?`; ${wr.name} is the one who turns a 6-yard throw into a first down`:''}.`,
+    proof:[Number.isFinite(mine)&&`Rams pass ${mine.toFixed(1)} yards/gm.`,
+           Number.isFinite(theirs)&&`${c.oppName} allow ${theirs.toFixed(1)} pass yards/gm${theirRank?' ('+rankPhrase(c.opp,'passYapg')+')':''}.`,
+           wr&&`Rams receiving leader: ${wr.name} (${wr.display}).`].filter(Boolean).join(' '),
+    watch:'Where the first throw of each drive goes, and whether Stafford is getting it out on rhythm.',
+    grade:(s,comp,tick)=>{
+      const y=teamStatNum(s,'LAR',['netPassingYards','passingYards']);
+      return band(y,230,110,`Rams passing: ${y} net yards.`,false,tick);
+    }
+  };
+}},
+
+/* Take away their best producer, by name. */
+{id:'contain',build(c){
+  const rush=c.oppLead.rushing,rec=c.oppLead.receiving,qb=c.oppLead.passing;
+  const star=rec||rush||qb;
+  if(!star)return null;
+  const out=c.oppInj.some(p=>p.out&&p.name===star.name);
+  if(out)return null;
+  const both=[rush,rec].filter(Boolean);
+  return{
+    id:'contain',weight:76,tag:'DEFENSE',
+    fp:both.map(x=>x.name+':'+x.display).join(','),
+    title:`Take ${star.name} away first`,
+    detail:`${c.OppThe} run their offense through ${star.name}${star.pos?` (${star.pos})`:''}. Make somebody else be the reason they score${both.length>1?`, and account for ${both.map(x=>x.name).join(' and ')} on every snap, not just obvious passing downs`:''}.`,
+    proof:both.map(x=>`${x.name}: ${x.display}.`).join(' ')||(qb?`${qb.name}: ${qb.display}.`:''),
+    watch:'Whether the Rams bracket him, and who they are willing to leave one-on-one to do it.',
+    grade:(s,comp,tick)=>{
+      const total=both.reduce((n,x)=>n+playerYards(s,c.opp,x.name),0)||playerYards(s,c.opp,star.name);
+      return band(total,70,130,`${both.map(x=>x.name).join(' + ')||star.name}: ${total} yards.`,true,tick);
+    }
+  };
+}},
+
+/* Feed our own. */
+{id:'feature',build(c){
+  const star=c.larLead.receiving||c.larLead.rushing;
+  if(!star)return null;
+  const hurt=c.larInj.find(p=>p.name===star.name);
+  if(hurt?.out)return null;
+  return{
+    id:'feature',weight:64,tag:'OFFENSE',
+    fp:star.name+':'+star.display+':'+(hurt?hurt.status:''),
+    title:`Get ${star.name} the ball early`,
+    detail:`${star.name} is the Rams' most productive skill player right now${hurt?`, though he is on the report as ${hurt.status.toLowerCase()}`:''}. Touches in the first fifteen plays set the tone for how ${c.oppThe} have to defend the rest of the game.`,
+    proof:`${star.name}${star.pos?` (${star.pos})`:''}: ${star.display}.${hurt?` Injury report: ${hurt.status}.`:''}`,
+    watch:`How early ${star.name} gets a designed touch, and whether ${c.oppThe} start rolling coverage his way.`,
+    grade:(s,comp,tick)=>{
+      const y=playerYards(s,'LAR',star.name);
+      return band(y,80,30,`${star.name}: ${y} yards.`,false,tick);
+    }
+  };
+}},
+
+/* Pass protection vs their rush. */
+{id:'protect',build(c){
+  const theirSacks=c.oppStats.sacks;
+  if(!Number.isFinite(theirSacks))return null;
+  const edge=rankEdge(c.opp,'sacks');
+  const r=rankOf(c.opp,'sacks');
+  const scary=r?r.rank<=Math.ceil(r.of*0.4):theirSacks>=2.5;
+  if(!scary&&edge<0.3)return null;
+  return{
+    id:'protect',weight:54+Math.round(edge*26),tag:'TRENCHES',
+    fp:String(theirSacks),
+    title:scary?'Keep Stafford clean':'Let Stafford hold the ball',
+    detail:scary
+      ? `${c.OppThe} get after the quarterback${r?` — ${rankPhrase(c.opp,'sacks')} in the league at it`:''}. Stafford is still the best version of this offense when he is upright, and chips, quick game and a real run threat are all pass protection by another name.`
+      : `${c.OppThe} have not generated much pressure${r?` (${rankPhrase(c.opp,'sacks')} in sacks)`:''}. That is permission to run deeper concepts and let routes actually develop instead of living on three-step throws.`,
+    proof:`${c.oppName} sacks: ${theirSacks}${r?` (${rankPhrase(c.opp,'sacks')} in the league)`:''}.`,
+    watch:scary?'Sacks and hits allowed, and whether the Rams keep a back or tight end in on third down.':'Whether the Rams are taking shots downfield instead of settling for the checkdown.',
+    grade:(s,comp,tick)=>{
+      const taken=teamStatNum(s,c.opp,['sacks','totalSacks']);
+      return band(taken,1,3,`Sacks allowed by the Rams: ${taken}.`,true,tick);
+    }
+  };
+}},
+
+/* Turnovers. */
+{id:'takeaways',build(c){
+  const mine=c.lar.toDiff,theirs=c.oppStats.toDiff,giveaways=c.oppStats.giveaways;
+  if(!Number.isFinite(mine)&&!Number.isFinite(theirs)&&!Number.isFinite(giveaways))return null;
+  const loose=Number.isFinite(theirs)&&theirs<0;
+  return{
+    id:'takeaways',weight:60,tag:'MARGIN',
+    fp:`${mine??'-'}/${theirs??'-'}`,
+    title:loose?`Make ${c.oppThe} give it away`:'Win the turnover column',
+    detail:loose
+      ? `${c.OppThe} are already in the red on turnover margin. The single most repeatable way this game gets comfortable is a short field the Rams did not have to earn.`
+      : `Neither side is handing games away, which usually means this one gets decided by a single possession. Ball security on offense is worth as much as a takeaway here.`,
+    proof:[Number.isFinite(mine)&&`Rams turnover margin: ${mine>0?'+':''}${mine}.`,
+           Number.isFinite(theirs)&&`${c.oppName}: ${theirs>0?'+':''}${theirs}.`].filter(Boolean).join(' '),
+    watch:'Strip attempts after the catch, and whether the Rams are protecting it on contact in traffic.',
+    grade:(s,comp,tick)=>{
+      const larTo=teamStatNum(s,'LAR',['turnovers']),oppTo=teamStatNum(s,c.opp,['turnovers']);
+      return band(oppTo-larTo,1,-1,`Turnovers — Rams ${larTo}, ${c.oppName} ${oppTo}.`,false,tick);
+    }
+  };
+}},
+
+/* Third down. */
+{id:'third-down',build(c){
+  const mine=c.lar.thirdPct;
+  if(!Number.isFinite(mine))return null;
+  return{
+    id:'third-down',weight:48+Math.round(rankEdge('LAR','thirdPct')*20),tag:'SITUATIONAL',
+    fp:String(mine),
+    title:'Stay out of third-and-long',
+    detail:`Third down is where a game plan either holds up or falls apart. Every second-and-3 the Rams create is a down where McVay gets to call anything he wants.`,
+    proof:`Rams third-down conversion: ${mine.toFixed(1)}%${rankPhrase('LAR','thirdPct')?` (${rankPhrase('LAR','thirdPct')})`:''}.`,
+    watch:'Average distance on third down. Under 6 is a good day; over 8 is a punting day.',
+    grade:(s,comp,tick)=>{
+      const t=(s?.boxscore?.teams||[]).find(x=>x.team?.abbreviation==='LAR');
+      const st=(t?.statistics||[]).find(x=>x.name==='thirdDownEff');
+      const parts=String(st?.displayValue||'').split('-').map(Number);
+      if(parts.length!==2||!parts[1])return trackerState('mixed','🟡 TRACKING','Third-down data has not posted yet.');
+      const pct=Math.round(parts[0]/parts[1]*100);
+      return band(pct,40,25,`Third down: ${parts[0]}-of-${parts[1]} (${pct}%).`,false,tick);
+    }
+  };
+}},
+
+/* Scoring shape — always available once either PPG number exists. */
+{id:'scoreboard',build(c){
+  const mine=c.lar.ppg,theirs=c.oppStats.ppg,myD=c.lar.papg,theirD=c.oppStats.papg;
+  if(![mine,theirs,myD,theirD].some(Number.isFinite))return null;
+  const proj=Number.isFinite(mine)&&Number.isFinite(theirD)?(mine+theirD)/2:null;
+  const projOpp=Number.isFinite(theirs)&&Number.isFinite(myD)?(theirs+myD)/2:null;
+  const shootout=proj&&projOpp&&(proj+projOpp)>47;
+  return{
+    id:'scoreboard',weight:46,tag:'GAME SHAPE',
+    fp:`${mine??'-'}/${theirs??'-'}`,
+    title:shootout?'Treat every possession like points':'Expect a possession game',
+    detail:shootout
+      ? `The scoring profiles on both sides point at a game where field goals in the red zone are the thing you regret afterward. Settling for three twice is usually the difference.`
+      : `The numbers point at a tight, low-possession game. Field position and red-zone touchdowns matter more than total yards in a game shaped like this.`,
+    proof:[Number.isFinite(mine)&&`Rams ${mine.toFixed(1)} pts/gm${rankPhrase('LAR','ppg')?` (${rankPhrase('LAR','ppg')})`:''}.`,
+           Number.isFinite(theirs)&&`${c.oppName} ${theirs.toFixed(1)} pts/gm.`,
+           Number.isFinite(theirD)&&`${c.oppName} allow ${theirD.toFixed(1)}.`,
+           proj&&projOpp&&`Blended projection: roughly ${Math.round(proj)}-${Math.round(projOpp)}.`].filter(Boolean).join(' '),
+    watch:'Red-zone trips that end in touchdowns instead of field goals.',
+    grade:(s,comp,tick)=>{
+      let lar=0,opp=0;
+      for(let q=0;q<4;q++){lar+=quarterPts(comp,'LAR',q);opp+=quarterPts(comp,c.opp,q);}
+      return band(lar-opp,1,-1,`Score: Rams ${lar}, ${c.oppName} ${opp}.`,false,tick);
+    }
+  };
+}},
+
+/* Weather, only when it is actually a factor. */
+{id:'weather',build(c){
+  const w=c.weather;
+  if(!w)return null;
+  const wind=Number(w.wind),rain=Number(w.rain),temp=Number(w.temp);
+  const windy=Number.isFinite(wind)&&wind>=15;
+  const wet=Number.isFinite(rain)&&rain>=40;
+  const cold=Number.isFinite(temp)&&temp<=32;
+  const hot=Number.isFinite(temp)&&temp>=90;
+  if(!windy&&!wet&&!cold&&!hot)return null;
+  const why=windy?'wind':wet?'rain':cold?'cold':'heat';
+  return{
+    id:'weather',weight:70,tag:'CONDITIONS',
+    fp:`${wind}/${rain}/${temp}`,
+    title:windy?'The wind is part of the game plan':wet?'Wet ball, short throws':cold?'Cold-weather football':'Heat is a real factor',
+    detail:windy
+      ? `${Math.round(wind)} mph at kickoff changes the deep ball and the kicking game. Watch which direction teams choose to defend after winning the toss.`
+      : wet?`Rain in the forecast means ball security, a heavier run lean, and kickers you cannot fully trust from distance.`
+      : cold?`Freezing kickoff temperatures tighten the throwing window and make tackling sloppier as the game goes on.`
+      : `Heat at kickoff shows up in the fourth quarter, not the first. Depth and rotation matter more than usual.`,
+    proof:[Number.isFinite(temp)&&`${Math.round(temp)}°F`,w.condition,Number.isFinite(rain)&&`${Math.round(rain)}% rain`,Number.isFinite(wind)&&`${Math.round(wind)} mph wind`].filter(Boolean).join(' • ')+' at kickoff (Open-Meteo).',
+    watch:`Anything that looks like a ${why} mistake — a short punt, a missed kick, a ball on the ground.`,
+    grade:(s,comp,tick)=>{
+      const larTo=teamStatNum(s,'LAR',['turnovers']);
+      return band(larTo,0,2,`Rams turnovers in these conditions: ${larTo}.`,true,tick);
+    }
+  };
+}},
+
+/* Situational framing — always produces something, so the plan is never empty. */
+{id:'situation',build(c){
+  const g=c.g;
+  const division=['SF','ARI','SEA'].includes(c.opp);
+  const kick=g?.date?new Date(g.date):null;
+  const primetime=kick?(kick.getHours()>=17||[1,4].includes(kick.getDay())):false;
+  const road=!c.home;
+  const bits=[];
+  if(division)bits.push('a division game that doubles as a tiebreaker');
+  if(primetime)bits.push('a standalone national window');
+  if(road)bits.push(`a road trip to ${g?.place||'their place'}`);
+  const title=division?`Division math is on the line`:primetime?`Primetime at ${c.home?'SoFi':g?.venue||'their place'}`:c.home?'Protect home field':'Steal one on the road';
+  return{
+    id:'situation',weight:division?62:40,tag:'STAKES',
+    fp:`${c.opp}/${g?.w}`,
+    title,
+    detail:division
+      ? `NFC West games count twice — once in the standings and once in the tiebreakers that decide January. ${c.OppThe} know it too, which is why these are almost never comfortable.`
+      : `This is ${bits.join(', ')||'a straightforward Week '+(g?.w||'')+' matchup'}. The Rams' formula does not change: start fast, stay on schedule, and make the other side drive the length of the field.`,
+    proof:[c.larRec&&`Rams ${c.larRec}.`,c.oppRec&&`${c.oppName} ${c.oppRec}.`,c.odds?.details&&`Line: ${c.odds.details}${c.odds.overUnder?` (O/U ${c.odds.overUnder})`:''}.`,g?.venue&&`${g.venue}, ${g.place||''}.`].filter(Boolean).join(' '),
+    watch:'The first two drives. A clean opening script is the single best early signal in any Rams game.',
+    grade:(s,comp,tick)=>{
+      const q1L=quarterPts(comp,'LAR',0),q1O=quarterPts(comp,c.opp,0);
+      const period=Number(comp?.status?.period||comp?.status?.type?.period||0);
+      if(period<2&&!tick.done)return trackerState('mixed','🟡 IN PROGRESS',`First quarter: LAR ${q1L}, ${c.opp} ${q1O}.`);
+      if(q1L>q1O)return trackerState('good','✅ WON IT',`First quarter: Rams ${q1L}, ${c.oppName} ${q1O}.`);
+      if(q1L===q1O)return trackerState('mixed','🟡 EVEN',`First quarter: tied ${q1L}-${q1O}.`);
+      return trackerState('bad','❌ LOST IT',`First quarter: Rams ${q1L}, ${c.oppName} ${q1O}.`);
+    }
+  };
+}}
+];
+
+let planDataVersion=0,planCache={key:'',plan:null};
+function buildAutoPlan(g,summary){
+  const cacheKey=`${g?.w}|${planStage(g)}|${planDataVersion}|${summary?1:0}`;
+  if(planCache.key===cacheKey&&planCache.plan)return planCache.plan;
+  let ctx;
+  try{ctx=planContext(g,summary);}catch(e){console.warn('plan ctx',e);ctx=null;}
+  const meta=PLAN_STAGES[ctx?.stage||'preview']||PLAN_STAGES.preview;
+  const keys=[];
+  if(ctx){
+    for(const gen of PLAN_KEYS){
+      try{const k=gen.build(ctx);if(k)keys.push(k);}catch(e){console.warn('plan key',gen.id,e);}
+    }
+  }
+  keys.sort((a,b)=>b.weight-a.weight);
+  /* Preview stage stays deliberately short — the point is that the real plan
+     arrives Tuesday, not that we pad it out early. */
+  const take=ctx?.stage==='preview'?3:5;
+  const chosen=keys.slice(0,take);
+  const stamp=meta.stamp;
+  const updated=new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:VIEWER_TZ}).format(new Date());
+  const plan={
+    auto:true,
+    stage:ctx?.stage||'preview',
+    badge:meta.badge,
+    lead:meta.lead,
+    stamp,
+    updated,
+    nextUpdate:planNextUpdate(g,ctx?.stage||'preview'),
+    quality:ctx?.quality||0,
+    keys:chosen,
+    ctx
+  };
+  if(!chosen.length){
+    plan.keys=[{
+      id:'waiting',weight:0,tag:'STANDBY',fp:'',
+      title:`Building the ${names[g?.opp]||'opponent'} plan`,
+      detail:`The plan writes itself from the live ESPN feed — team stats, statistical leaders and the injury report. None of that has posted for this matchup yet.`,
+      proof:'The app rebuilds this card every time you open it, so nothing here needs to be typed in by hand.',
+      watch:planNextUpdate(g,plan.stage),
+      grade:()=>pending()
+    }];
+  }
+  plan.changes=planChanges(plan,g?.w);
+  planCache={key:cacheKey,plan};
+  return plan;
+}
+
+/* Diffing across visits is what makes the plan visibly evolve. Same-session
+   re-renders are stored silently so a single page load never spams changes. */
+function planChanges(plan,week){
+  if(!plan.quality)return[];
+  const storeKey=`rams-gameday-plan-${SEASON}-${week||0}`;
+  const snapshot={at:Date.now(),stage:plan.stage,keys:plan.keys.map(k=>({id:k.id,title:k.title,fp:k.fp||''}))};
+  let prev=null;
+  try{prev=JSON.parse(localStorage.getItem(storeKey)||'null');}catch(e){}
+  let changes=[];
+  if(prev&&Date.now()-(prev.at||0)>10*60*1000){
+    if(prev.stage!==plan.stage)
+      changes.push({title:`Plan advanced to ${plan.stamp.toLowerCase()}`,detail:`This is the ${DAY_NAMES[new Date().getDay()]} revision of the ${names[currentGame?.opp]||'matchup'} plan.`});
+    const prevIds=new Set(prev.keys.map(k=>k.id));
+    const nowIds=new Set(snapshot.keys.map(k=>k.id));
+    for(const k of snapshot.keys)if(!prevIds.has(k.id))changes.push({title:'New key on the plan',detail:k.title});
+    for(const k of prev.keys)if(!nowIds.has(k.id))changes.push({title:'Dropped off the plan',detail:k.title});
+    for(const k of snapshot.keys){
+      const p=prev.keys.find(x=>x.id===k.id);
+      if(p&&p.fp!==k.fp)changes.push({title:'Updated since your last look',detail:k.title});
+    }
+  }
+  try{localStorage.setItem(storeKey,JSON.stringify(snapshot));}catch(e){}
+  return changes.slice(0,4);
+}
+
+/* Week 1 was written by hand. Give its keys the same live grading the
+   generated plans get, so renderKeyTracker has no opponent-specific code. */
+(function(){
+  const keys=WEEKLY_SCOUT[1]&&WEEKLY_SCOUT[1].keys;
+  if(!keys)return;
+  const tags=['ATTACK','TRENCHES','TRENCHES','DEFENSE','STAKES'];
+  const grades=[
+    (s,comp,t)=>{const y=playerYards(s,'LAR','Puka Nacua')+playerYards(s,'LAR','Davante Adams');
+      return band(y,140,75,`Puka + Davante: ${y} receiving yards.`,false,t);},
+    (s,comp,t)=>{const n=numStat(athleteStatMap(s,'SF','Nick Bosa'),['SACKS','SACK']);
+      return band(n,0,2,`Bosa: ${n} sack${n===1?'':'s'}.`,true,t);},
+    (s,comp,t)=>{const n=teamStatNum(s,'LAR',['sacks','totalSacks']);
+      return band(n,3,0,`Rams defense: ${n} sack${n===1?'':'s'}.`,false,t);},
+    (s,comp,t)=>{const y=playerYards(s,'SF','Christian McCaffrey')+playerYards(s,'SF','George Kittle');
+      return band(y,70,125,`CMC + Kittle: ${y} total yards.`,true,t);},
+    (s,comp,t)=>{const l=quarterPts(comp,'LAR',0),o=quarterPts(comp,'SF',0);
+      if(t.period<2&&!t.done)return trackerState('mixed','\ud83d\udfe1 IN PROGRESS',`First quarter: LAR ${l}, SF ${o}.`);
+      if(l>o)return trackerState('good','\u2705 WON IT',`First quarter: Rams ${l}, 49ers ${o}.`);
+      if(l===o)return trackerState('mixed','\ud83d\udfe1 EVEN',`First quarter: tied ${l}-${o}.`);
+      return trackerState('bad','\u274c LOST IT',`First quarter: Rams ${l}, 49ers ${o}.`);}
+  ];
+  keys.forEach((k,i)=>{k.id='w1-'+i;k.tag=tags[i]||'';if(grades[i])k.grade=grades[i];});
+})();
+
+function scoutFor(g,summary){
+  const hand=WEEKLY_SCOUT[g?.w];
+  if(hand)return Object.assign({auto:false,stage:'written',badge:'PREGAME',lead:'Rams matchup plan vs',stamp:hand.updated||'game week',nextUpdate:'',changes:[]},hand);
+  return buildAutoPlan(g,summary!==undefined?summary:liveSummary);
+}
+function scoutHTML(s){
+  const keys=s.keys.map((k,i)=>`<div class="key"><div class="key-head"><span class="key-num">${i+1}</span><b>${esc(k.title)}</b>${k.tag?`<span class="key-tag">${esc(k.tag)}</span>`:''}</div><span>${esc(k.detail)}</span>${k.proof?`<div class="key-proof"><strong>WHY IT MATTERS</strong><br>${esc(k.proof)}</div>`:''}${k.watch?`<div class="key-watch"><strong>&#128064; WATCH FOR</strong><br>${esc(k.watch)}</div>`:''}</div>`).join('');
+  const stamp=`<span class="scout-stamp">MATCHUP SCOUT &bull; ${String(s.stamp||s.updated||'game week').toUpperCase()}${s.auto?` &bull; ${String(s.updated||'').toUpperCase()}`:''}</span>`;
+  const cadence=s.nextUpdate?`<div class="plan-cadence">&#128260; ${esc(s.nextUpdate)}</div>`:'';
+  return keys+stamp+cadence;
+}
+let liveEvent=null,liveSummary=null,currentGame=null,wakeLock=null,wakeWanted=false,lastStandings=[],gameWeatherSummary="",gameWeatherData=null;
 const $=id=>document.getElementById(id);
 function watchInfo(g){
   const n=(g.network||'TBD').toUpperCase();
@@ -427,27 +1061,42 @@ function phaseFrom(status){if(status?.state==='in')return'live';if(status?.compl
 function remainingDivisionGames(){const now=Date.now();return schedule.filter(g=>!g.bye&&['SF','ARI','SEA'].includes(g.opp)&&(!g.date||new Date(g.date).getTime()+5*60*60*1000>=now));}
 
 function esc(v=''){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function intelFor(g){return WEEKLY_INTEL[g?.w]||{updated:'game week',headline:`${names[g?.opp]||g?.opp||'Opponent'} personnel watch`,headlineDetail:'Live injury information will populate here when the game feed publishes it.',sources:'Live game feed',rams:[],opp:[],changes:[]};}
+function intelFor(g,summary){
+  const hand=WEEKLY_INTEL[g?.w];
+  if(hand)return hand;
+  const plan=scoutFor(g,summary);
+  const personnel=(plan.keys||[]).find(k=>k.id==='opp-out'||k.id==='lar-out');
+  return{updated:plan.stamp||'game week',
+    headline:personnel?personnel.title:`${names[g?.opp]||g?.opp||'Opponent'} personnel watch`,
+    headlineDetail:personnel?personnel.proof:'Live injury information will populate here when the game feed publishes it.',
+    sources:'ESPN injury report + team stats, rebuilt on every open',
+    rams:[],opp:[],changes:plan.changes||[]};
+}
 function injuryTone(status=''){const s=String(status).toLowerCase();if(s.includes('out')||s.includes('ir')||s.includes('doubt'))return'out';if(s.includes('question')||s.includes('limit')||s.includes('dnp')||s.includes('did not'))return'questionable';if(s.includes('full')||s.includes('ready')||s.includes('play')||s.includes('active'))return'full';return'';}
 function injuryRows(items){if(!items?.length)return'<div class="intel-fallback">No detailed statuses available yet.</div>';return items.slice(0,6).map(i=>`<div class="intel-player"><div class="intel-player-top"><span class="intel-player-name">${esc(i.name)}</span><span class="intel-status ${injuryTone(i.status)}">${esc(i.status||'WATCH')}</span></div><div class="intel-detail">${esc(i.detail||'')}</div></div>`).join('');}
 function liveInjuryGroups(s){const groups={LAR:[],OPP:[]};const opp=currentGame?.opp;for(const grp of (s?.injuries||[])){const ab=grp.team?.abbreviation;for(const i of (grp.injuries||[])){const status=i.status||i.details?.status||i.details?.type||'Injury';const detail=[i.details?.type,i.details?.detail,i.details?.returnDate].filter(Boolean).join(' • ');const row={name:i.athlete?.displayName||'Player',status,detail};if(ab==='LAR')groups.LAR.push(row);else if(ab===opp)groups.OPP.push(row);}}return groups;}
 function injurySnapshot(groups){const flat=[...groups.LAR.map(x=>['LAR',x]),...groups.OPP.map(x=>[currentGame?.opp||'OPP',x])];return Object.fromEntries(flat.map(([team,x])=>[`${team}:${x.name}`,`${x.status}|${x.detail}`]));}
 function compareInjurySnapshot(next){const key=`rams-gameday-inj-${SEASON}-${currentGame?.w||0}`;let prev={};try{prev=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}const changes=[];for(const [k,v] of Object.entries(next)){if(prev[k]&&prev[k]!==v){const name=k.split(':').slice(1).join(':');changes.push({title:`${name} changed`,detail:`Previous: ${prev[k].split('|')[0]} → Now: ${v.split('|')[0]}`});}else if(!prev[k]&&Object.keys(prev).length){const name=k.split(':').slice(1).join(':');changes.push({title:`${name} added to the report`,detail:`Current status: ${v.split('|')[0]}`});}}try{localStorage.setItem(key,JSON.stringify(next))}catch(e){}return changes.slice(0,4);}
-function renderGameWeekIntel(s){const fallback=intelFor(currentGame);const live=liveInjuryGroups(s);const hasLive=live.LAR.length||live.OPP.length;const rams=live.LAR.length?live.LAR:fallback.rams;const opp=live.OPP.length?live.OPP:fallback.opp;$('intelUpdated').textContent=`Week ${currentGame?.w||''} • ${hasLive?'LIVE FEED':fallback.updated}`;$('intelHeadline').textContent=fallback.headline;$('intelHeadlineDetail').textContent=hasLive?'Live statuses are now layered over the saved game-week brief. '+fallback.headlineDetail:fallback.headlineDetail;setLogo('intelRamsLogo',null,'LAR');setLogo('intelOppLogo',null,currentGame?.opp);$('intelOppTitle').textContent=`${names[currentGame?.opp]||'Opponent'} availability`;$('intelRamsList').innerHTML=injuryRows(rams);$('intelOppList').innerHTML=injuryRows(opp);let changes=fallback.changes||[];if(hasLive){const deviceChanges=compareInjurySnapshot(injurySnapshot(live));if(deviceChanges.length)changes=deviceChanges;}$('intelChanges').innerHTML=changes.length?changes.map(c=>`<div class="change-item"><span class="change-dot"></span><div><b>${esc(c.title)}</b><span>${esc(c.detail)}</span></div></div>`).join(''):'<div class="change-item"><span class="change-dot"></span><div><b>No new status changes</b><span>The injury snapshot matches the last check on this device.</span></div></div>';$('intelSource').textContent=hasLive?'Live game-feed injury statuses take priority • '+fallback.sources:fallback.sources;}
+function renderGameWeekIntel(s){const fallback=intelFor(currentGame,s);const live=liveInjuryGroups(s);const hasLive=live.LAR.length||live.OPP.length;const rams=live.LAR.length?live.LAR:fallback.rams;const opp=live.OPP.length?live.OPP:fallback.opp;$('intelUpdated').textContent=`Week ${currentGame?.w||''} • ${hasLive?'LIVE FEED':fallback.updated}`;$('intelHeadline').textContent=fallback.headline;$('intelHeadlineDetail').textContent=hasLive?'Live statuses are now layered over the saved game-week brief. '+fallback.headlineDetail:fallback.headlineDetail;setLogo('intelRamsLogo',null,'LAR');setLogo('intelOppLogo',null,currentGame?.opp);$('intelOppTitle').textContent=`${names[currentGame?.opp]||'Opponent'} availability`;$('intelRamsList').innerHTML=injuryRows(rams);$('intelOppList').innerHTML=injuryRows(opp);let changes=[...(fallback.changes||[])];if(hasLive){const deviceChanges=compareInjurySnapshot(injurySnapshot(live));for(const d of deviceChanges)if(!changes.some(c=>c.title===d.title))changes.push(d);}changes=changes.slice(0,4);$('intelChanges').innerHTML=changes.length?changes.map(c=>`<div class="change-item"><span class="change-dot"></span><div><b>${esc(c.title)}</b><span>${esc(c.detail)}</span></div></div>`).join(''):'<div class="change-item"><span class="change-dot"></span><div><b>No new status changes</b><span>The injury snapshot matches the last check on this device.</span></div></div>';$('intelSource').textContent=hasLive?'Live game-feed injury statuses take priority • '+fallback.sources:fallback.sources;}
 function teamStatNum(s,abbr,namesArr){const t=(s?.boxscore?.teams||[]).find(x=>x.team?.abbreviation===abbr);if(!t)return 0;for(const n of namesArr){const st=(t.statistics||[]).find(x=>(x.name||'').toLowerCase()===n.toLowerCase()||(x.label||'').toLowerCase()===n.toLowerCase());if(st){const v=parseFloat(String(st.value??st.displayValue??0).replace(/[^0-9.-]/g,''));if(Number.isFinite(v))return v;}}return 0;}
 function athleteStatMap(s,abbr,nameNeedle){for(const grp of (s?.boxscore?.players||[])){if(grp.team?.abbreviation!==abbr)continue;for(const cat of (grp.statistics||[])){const labels=cat.labels||[];for(const row of (cat.athletes||[])){const nm=row.athlete?.displayName||'';if(!nm.toLowerCase().includes(nameNeedle.toLowerCase()))continue;const map={category:(cat.name||cat.displayName||'').toLowerCase()};(row.stats||[]).forEach((v,i)=>{map[String(labels[i]||i).toUpperCase()]=v});return map;}}}return{};}
 function numStat(map,keys){for(const k of keys){const raw=map[k];if(raw!=null){const n=parseFloat(String(raw).replace(/[^0-9.-]/g,''));if(Number.isFinite(n))return n;}}return 0;}
 function playerYards(s,abbr,needle){let total=0;for(const grp of (s?.boxscore?.players||[])){if(grp.team?.abbreviation!==abbr)continue;for(const cat of (grp.statistics||[])){const labels=cat.labels||[];for(const row of (cat.athletes||[])){if(!(row.athlete?.displayName||'').toLowerCase().includes(needle.toLowerCase()))continue;const yi=labels.findIndex(x=>String(x).toUpperCase()==='YDS');if(yi>=0){const n=parseFloat(String(row.stats?.[yi]||0).replace(/[^0-9.-]/g,''));if(Number.isFinite(n))total+=n;}}}}return total;}
 function quarterPts(comp,abbr,q=0){const c=(comp?.competitors||[]).find(x=>x.team?.abbreviation===abbr);const n=Number(c?.linescores?.[q]?.value??c?.linescores?.[q]?.displayValue??0);return Number.isFinite(n)?n:0;}
 function trackerState(cls,label,evidence){return{cls,label,evidence};}
-function renderKeyTracker(s,phase='pre',comp){const scout=scoutFor(currentGame);$('trackerPhase').textContent=phase==='pre'?'Pregame':phase==='post'?'Final':'Live';let rows=[];if(phase==='pre'||!s){rows=scout.keys.map((k,i)=>({title:k.title,state:trackerState('','STARTS AT KICKOFF','The app will grade this key from live production and play-by-play.')}));}else{const period=Number(comp?.status?.period||comp?.status?.type?.period||0);const larSacks=teamStatNum(s,'LAR',['sacks','totalSacks']);const sfSacks=teamStatNum(s,currentGame?.opp,['sacks','totalSacks']);const puka=playerYards(s,'LAR','Puka Nacua'),davante=playerYards(s,'LAR','Davante Adams');const bosa=athleteStatMap(s,currentGame?.opp,'Nick Bosa');const bosaSacks=numStat(bosa,['SACKS','SACK']);const cmc=playerYards(s,currentGame?.opp,'Christian McCaffrey'),kittle=playerYards(s,currentGame?.opp,'George Kittle');const q1L=quarterPts(comp,'LAR',0),q1O=quarterPts(comp,currentGame?.opp,0);const passY=puka+davante;const done=phase==='post';const late=done||period>=4;const half=done||period>=3;rows=[
- {title:scout.keys[0]?.title||'Stress Renardo Green',state:passY>=140?trackerState('good','✅ WINNING',`Puka + Davante: ${passY} receiving yards.`):passY>=75?trackerState('mixed','🟡 MIXED',`Puka + Davante: ${passY} receiving yards so far.`):(half?trackerState('bad','❌ LOSING',`Puka + Davante: only ${passY} receiving yards so far.`):trackerState('mixed','🟡 TRACKING',`Puka + Davante: ${passY} receiving yards.`))},
- {title:scout.keys[1]?.title||'Make Bosa work',state:bosaSacks===0?(late?trackerState('good','✅ WINNING','Bosa has no recorded sacks.'):trackerState('good','✅ ON TRACK','Bosa has no recorded sacks so far.')):bosaSacks===1?trackerState('mixed','🟡 MIXED','Bosa has 1 sack; LA has limited but not erased his impact.'):trackerState('bad','❌ LOSING',`Bosa has ${bosaSacks} sacks.`)},
- {title:scout.keys[2]?.title||'Attack SF interior',state:larSacks>=3?trackerState('good','✅ WINNING',`Rams defense: ${larSacks} sacks — pressure plan is landing.`):larSacks>=1?trackerState('mixed','🟡 MIXED',`Rams defense: ${larSacks} sack${larSacks===1?'':'s'} so far.`):(half?trackerState('bad','❌ LOSING','No Rams sacks yet; the pressure proxy has not shown up.'):trackerState('mixed','🟡 TRACKING','No Rams sacks yet — still early.'))},
- {title:scout.keys[3]?.title||'Close the easy middle',state:(cmc+kittle)<=70?(late?trackerState('good','✅ WINNING',`CMC + Kittle: ${cmc+kittle} total yards.`):trackerState('good','✅ ON TRACK',`CMC + Kittle: ${cmc+kittle} total yards so far.`)):(cmc+kittle)<=125?trackerState('mixed','🟡 MIXED',`CMC + Kittle: ${cmc+kittle} total yards.`):trackerState('bad','❌ LOSING',`CMC + Kittle: ${cmc+kittle} total yards — SF's core is producing.`)},
- {title:scout.keys[4]?.title||'Own the first quarter',state:period<2&&!done?trackerState('mixed','🟡 IN PROGRESS',`First-quarter score: LAR ${q1L}, ${currentGame?.opp} ${q1O}.`):q1L>q1O?trackerState('good','✅ WON IT',`First quarter: Rams ${q1L}, ${names[currentGame?.opp]||currentGame?.opp} ${q1O}.`):q1L===q1O?trackerState('mixed','🟡 EVEN',`First quarter: tied ${q1L}-${q1O}.`):trackerState('bad','❌ LOST IT',`First quarter: Rams ${q1L}, ${names[currentGame?.opp]||currentGame?.opp} ${q1O}.`)}
- ];}
- $('keyTrackList').innerHTML=rows.map((r,i)=>`<div class="key-track-row"><span class="key-track-num">${i+1}</span><div class="key-track-copy"><b>${esc(r.title)}</b><span>${esc(r.state.evidence)}</span></div><span class="track-state ${r.state.cls}">${r.state.label}</span></div>`).join('');}
+function renderKeyTracker(s,phase='pre',comp){
+  const scout=scoutFor(currentGame,s||liveSummary);
+  $('trackerPhase').textContent=phase==='pre'?'Pregame':phase==='post'?'Final':'Live';
+  const period=Number(comp?.status?.period||comp?.status?.type?.period||0);
+  const done=phase==='post';
+  const tick={done,late:done||period>=4,half:done||period>=3,period};
+  const rows=(scout.keys||[]).map(k=>{
+    if(phase==='pre'||!s||typeof k.grade!=='function')return{title:k.title,state:pending()};
+    try{return{title:k.title,state:k.grade(s,comp,tick)||pending()};}
+    catch(e){console.warn('grade',k.id,e);return{title:k.title,state:pending()};}
+  });
+  $('keyTrackList').innerHTML=rows.map((r,i)=>`<div class="key-track-row"><span class="key-track-num">${i+1}</span><div class="key-track-copy"><b>${esc(r.title)}</b><span>${esc(r.state.evidence)}</span></div><span class="track-state ${r.state.cls}">${r.state.label}</span></div>`).join('');
+}
 
 
 function mediaChannelSearch(handle,query){return `https://www.youtube.com/${handle}/search?query=${encodeURIComponent(query)}`;}
@@ -467,7 +1116,7 @@ function renderRamsMedia(phase='pre'){
   if($('mediaWeekNote'))$('mediaWeekNote').textContent=phase==='pre'?`Before kickoff: jump straight to ${opp} previews from two Rams shows worth having on your radar.`:phase==='live'?`Game is live: the shortcuts now look for ${opp} live/reaction coverage from your favorite Rams shows.`:`Final: jump straight to ${opp} postgame reaction from your favorite Rams shows.`;
 }
 
-function renderMode(phase,comp){renderRamsMedia(phase);document.body.classList.remove('phase-pre','phase-live','phase-post');document.body.classList.add('phase-'+phase);const opp=names[currentGame?.opp]||currentGame?.opp||'opponent';const keys=$('gameKeys');if(phase==='pre'){const scout=scoutFor(currentGame);keys.className='keys scout-keys';$('modeBadge').textContent='PREGAME';$('modeClock').textContent=$('countdownChip').textContent;$('modeTitle').textContent=`Rams matchup plan vs ${opp}`;$('modeText').textContent=`Kickoff ${currentGame?.date?fmtHero(currentGame.date):'TBD'} • ${currentGame?.venue||''} • ${currentGame?.network||'TV TBD'}`;keys.innerHTML=scoutHTML(scout);$('whatsTitle').textContent=`Next up: ${opp}`;$('whatsText').textContent=`The Rams kick off ${currentGame?.date?fmtHero(currentGame.date):'at a time to be announced'}. The matchup plan above is built around this week's personnel, injuries and scheme — then this page switches to live context at kickoff.`;$('dadLatest').textContent=$('whatsText').textContent;}
+function renderMode(phase,comp){renderRamsMedia(phase);document.body.classList.remove('phase-pre','phase-live','phase-post');document.body.classList.add('phase-'+phase);const opp=names[currentGame?.opp]||currentGame?.opp||'opponent';const keys=$('gameKeys');if(phase==='pre'){const scout=scoutFor(currentGame,liveSummary);keys.className='keys scout-keys';$('modeBadge').textContent=scout.badge||'PREGAME';$('modeClock').textContent=$('countdownChip').textContent;$('modeTitle').textContent=`${scout.lead||'Rams matchup plan vs'} ${opp}`;$('modeText').textContent=`Kickoff ${currentGame?.date?fmtHero(currentGame.date):'TBD'} • ${currentGame?.venue||''} • ${currentGame?.network||'TV TBD'}`;keys.innerHTML=scoutHTML(scout);$('whatsTitle').textContent=`Next up: ${opp}`;$('whatsText').textContent=`The Rams kick off ${currentGame?.date?fmtHero(currentGame.date):'at a time to be announced'}. The matchup plan above is built around this week's personnel, injuries and scheme — then this page switches to live context at kickoff.`;$('dadLatest').textContent=$('whatsText').textContent;}
 else if(phase==='live'){keys.className='keys live-keys';const sit=comp?.situation||{};$('modeBadge').textContent='LIVE';$('modeClock').textContent=comp?.status?.type?.shortDetail||'Live';$('modeTitle').textContent=sit.downDistanceText||'Rams game is live';$('modeText').textContent=sit.lastPlay?.text||'Live game data is updating every minute.';keys.innerHTML=`<div class="key"><b>Possession</b><span>${$('possession').textContent||'—'}</span></div><div class="key"><b>Down & distance</b><span>${$('downDist').textContent||'—'}</span></div><div class="key"><b>Win probability</b><span>${$('winPct').textContent||'—'}</span></div>`;}
 else{keys.className='keys live-keys';$('modeBadge').textContent='FINAL';$('modeClock').textContent='Postgame';$('modeTitle').textContent='Final whistle';$('modeText').textContent='Final score, leaders and NFC West impact are ready below.';keys.innerHTML=`<div class="key"><b>Final</b><span>${$('midScore').textContent}</span></div><div class="key"><b>Rams yards</b><span>${$('larYards').textContent}</span></div><div class="key"><b>Turnovers</b><span>${$('larTurn').textContent}</span></div>`;}}
 function classifyPlay(text=''){const t=text.toLowerCase();if(t.includes('touchdown'))return['TOUCHDOWN','A scoring play just changed the game.'];if(t.includes('intercept')||t.includes('fumble')||t.includes('turnover'))return['TURNOVER','Possession just flipped — a major leverage play.'];if(t.includes('field goal'))return['POINTS ON THE BOARD','The drive ended with a field goal.'];if(t.includes('punt'))return['CHANGE OF POSSESSION','The drive ended with a punt.'];if(t.includes('sack'))return['BIG DEFENSIVE PLAY','A sack put the offense behind schedule.'];if(t.includes('first down'))return['CHAINS MOVING','The offense extended the drive.'];return['LIVE UPDATE','Here’s the latest from the field.'];}
@@ -477,9 +1126,9 @@ function venueTimeParts(date,tz){const parts=new Intl.DateTimeFormat('en-US',{ti
 function venueClock(date,tz){return new Intl.DateTimeFormat('en-US',{timeZone:tz,weekday:'short',hour:'numeric',minute:'2-digit',hour12:true}).format(new Date(date));}
 function wmoWeather(code){code=Number(code);if(code===0)return ['☀️','Clear'];if(code===1)return ['🌤️','Mostly clear'];if(code===2)return ['⛅','Partly cloudy'];if(code===3)return ['☁️','Cloudy'];if(code===45||code===48)return ['🌫️','Fog'];if([51,53,55,56,57].includes(code))return ['🌦️','Drizzle'];if([61,63,65,66,67,80,81,82].includes(code))return ['🌧️','Rain'];if([71,73,75,77,85,86].includes(code))return ['🌨️','Snow'];if([95,96,99].includes(code))return ['⛈️','Thunderstorms'];return ['🌤️','Forecast'];}
 function setWeatherUnavailable(msg,source='Forecast will appear automatically during game week.'){const card=$('gameWeatherCard');if(!card)return;card.classList.remove('loading');card.classList.add('unavailable');$('weatherIcon').textContent='🌦️';$('weatherLocalTime').textContent=currentGame?.venue||'Game site';$('weatherTemp').textContent=msg;$('weatherCondition').textContent='';$('weatherFeels').textContent='';$('weatherRain').textContent='';$('weatherWind').textContent='';$('weatherSource').textContent=source;gameWeatherSummary='';}
-async function loadGameWeather(){const g=currentGame;if(!g?.date){setWeatherUnavailable('Kickoff time TBD');return;}const v=VENUE_WEATHER[g.venue];if(!v){setWeatherUnavailable('Venue forecast unavailable');return;}const card=$('gameWeatherCard');card.classList.add('loading');card.classList.remove('unavailable');$('weatherLocalTime').textContent=`${v.label} • ${venueClock(g.date,v.tz)} local`;$('weatherTemp').textContent='Checking forecast…';$('weatherCondition').textContent='';$('weatherFeels').textContent='';$('weatherRain').textContent='';$('weatherWind').textContent='';try{const p=venueTimeParts(g.date,v.tz);const params=new URLSearchParams({latitude:String(v.lat),longitude:String(v.lon),hourly:'temperature_2m,apparent_temperature,precipitation_probability,weather_code,wind_speed_10m',temperature_unit:'fahrenheit',wind_speed_unit:'mph',timezone:v.tz,start_date:p.date,end_date:p.date});const d=await fetchJSON(`https://api.open-meteo.com/v1/forecast?${params}`);const h=d.hourly||{},times=h.time||[];if(!times.length)throw new Error('No forecast hours');const target=p.hour*60+p.minute;let idx=-1,best=1e9;times.forEach((t,i)=>{if(!String(t).startsWith(p.date))return;const hm=String(t).slice(11).split(':').map(Number);const delta=Math.abs(hm[0]*60+(hm[1]||0)-target);if(delta<best){best=delta;idx=i;}});if(idx<0)throw new Error('Kickoff hour unavailable');const temp=Math.round(Number(h.temperature_2m?.[idx]));const feels=Math.round(Number(h.apparent_temperature?.[idx]));const rain=Math.round(Number(h.precipitation_probability?.[idx]));const wind=Math.round(Number(h.wind_speed_10m?.[idx]));const [icon,condition]=wmoWeather(h.weather_code?.[idx]);$('weatherIcon').textContent=icon;$('weatherTemp').textContent=Number.isFinite(temp)?`${temp}°F`:'—';$('weatherCondition').textContent=condition;$('weatherFeels').textContent=Number.isFinite(feels)?`Feels ${feels}°`:'';$('weatherRain').textContent=Number.isFinite(rain)?`Rain ${rain}%`:'';$('weatherWind').textContent=Number.isFinite(wind)?`Wind ${wind} mph`:'';$('weatherSource').textContent=`Open-Meteo forecast • matched to kickoff at ${g.venue}`;card.classList.remove('loading');gameWeatherSummary=[Number.isFinite(temp)?`${temp}°F`:null,condition,Number.isFinite(rain)?`${rain}% rain`:null].filter(Boolean).join(' • ');}catch(e){console.warn('weather forecast',e);setWeatherUnavailable('Forecast not available yet','Game-time weather will populate automatically once the venue forecast is in range.');}}
+async function loadGameWeather(){const g=currentGame;if(!g?.date){setWeatherUnavailable('Kickoff time TBD');return;}const v=VENUE_WEATHER[g.venue];if(!v){setWeatherUnavailable('Venue forecast unavailable');return;}const card=$('gameWeatherCard');card.classList.add('loading');card.classList.remove('unavailable');$('weatherLocalTime').textContent=`${v.label} • ${venueClock(g.date,v.tz)} local`;$('weatherTemp').textContent='Checking forecast…';$('weatherCondition').textContent='';$('weatherFeels').textContent='';$('weatherRain').textContent='';$('weatherWind').textContent='';try{const p=venueTimeParts(g.date,v.tz);const params=new URLSearchParams({latitude:String(v.lat),longitude:String(v.lon),hourly:'temperature_2m,apparent_temperature,precipitation_probability,weather_code,wind_speed_10m',temperature_unit:'fahrenheit',wind_speed_unit:'mph',timezone:v.tz,start_date:p.date,end_date:p.date});const d=await fetchJSON(`https://api.open-meteo.com/v1/forecast?${params}`);const h=d.hourly||{},times=h.time||[];if(!times.length)throw new Error('No forecast hours');const target=p.hour*60+p.minute;let idx=-1,best=1e9;times.forEach((t,i)=>{if(!String(t).startsWith(p.date))return;const hm=String(t).slice(11).split(':').map(Number);const delta=Math.abs(hm[0]*60+(hm[1]||0)-target);if(delta<best){best=delta;idx=i;}});if(idx<0)throw new Error('Kickoff hour unavailable');const temp=Math.round(Number(h.temperature_2m?.[idx]));const feels=Math.round(Number(h.apparent_temperature?.[idx]));const rain=Math.round(Number(h.precipitation_probability?.[idx]));const wind=Math.round(Number(h.wind_speed_10m?.[idx]));const [icon,condition]=wmoWeather(h.weather_code?.[idx]);$('weatherIcon').textContent=icon;$('weatherTemp').textContent=Number.isFinite(temp)?`${temp}°F`:'—';$('weatherCondition').textContent=condition;$('weatherFeels').textContent=Number.isFinite(feels)?`Feels ${feels}°`:'';$('weatherRain').textContent=Number.isFinite(rain)?`Rain ${rain}%`:'';$('weatherWind').textContent=Number.isFinite(wind)?`Wind ${wind} mph`:'';$('weatherSource').textContent=`Open-Meteo forecast • matched to kickoff at ${g.venue}`;gameWeatherData={temp,feels,rain,wind,condition};card.classList.remove('loading');gameWeatherSummary=[Number.isFinite(temp)?`${temp}°F`:null,condition,Number.isFinite(rain)?`${rain}% rain`:null].filter(Boolean).join(' • ');}catch(e){console.warn('weather forecast',e);setWeatherUnavailable('Forecast not available yet','Game-time weather will populate automatically once the venue forecast is in range.');}}
 function weatherText(s){const w=s?.gameInfo?.weather||s?.header?.competitions?.[0]?.weather;if(!w)return'';if(w.displayValue)return w.displayValue;const bits=[];if(w.temperature!=null)bits.push(`${w.temperature}°`);if(w.condition)bits.push(w.condition);return bits.join(' • ');}
-function updateModeContext(s,phase,comp){const weather=gameWeatherSummary||weatherText(s);const injuryCount=(s?.injuries||[]).filter(g=>g.team?.abbreviation==='LAR').reduce((n,g)=>n+(g.injuries?.length||0),0);const parts=[];if(weather)parts.push(`Weather: ${weather}`);parts.push(injuryCount?`Rams injury feed: ${injuryCount} listed`:'Game-week intelligence is active below');$('modeInjury').textContent=parts.join(' • ');updateWhats(s,phase,comp);renderPlayerTracker(s);renderGameWeekIntel(s);renderKeyTracker(s,phase,comp);}
+function updateModeContext(s,phase,comp){const weather=gameWeatherSummary||weatherText(s);const injuryCount=(s?.injuries||[]).filter(g=>g.team?.abbreviation==='LAR').reduce((n,g)=>n+(g.injuries?.length||0),0);const parts=[];if(weather)parts.push(`Weather: ${weather}`);parts.push(injuryCount?`Rams injury feed: ${injuryCount} listed`:'Game-week intelligence is active below');$('modeInjury').textContent=parts.join(' • ');if(phase==='pre')renderMode('pre',comp);updateWhats(s,phase,comp);renderPlayerTracker(s);renderGameWeekIntel(s);renderKeyTracker(s,phase,comp);}
 function statObj(entry){return Object.fromEntries((entry?.stats||[]).map(x=>[x.name,x]));}
 function statDisplay(st,names,fallback='—'){for(const n of names){if(st[n]?.displayValue!=null)return st[n].displayValue;if(st[n]?.value!=null)return String(st[n].value)}return fallback;}
 function updateWestImpact(entries){lastStandings=entries||[];const r=entries.findIndex(e=>e.team?.abbreviation==='LAR');const rem=remainingDivisionGames();$('westRemainChip').textContent=`Division games ${rem.length}`;if(r<0){$('westImpactTitle').textContent='NFC West race';$('westImpactText').textContent='Standings are loading from the live feed.';return;}const ram=entries[r],rst=statObj(ram),leader=entries[0],lst=statObj(leader);const gb=statDisplay(rst,['gamesBehind'],r===0?'—':(((Number(statDisplay(lst,['wins'],'0'))-Number(statDisplay(rst,['wins'],'0')))+(Number(statDisplay(rst,['losses'],'0'))-Number(statDisplay(lst,['losses'],'0'))))/2).toString());$('westRankChip').textContent=`Rams #${r+1}`;if(r===0){$('westImpactTitle').textContent='Rams lead the NFC West';const second=entries[1];$('westImpactText').textContent=second?`Los Angeles is in first. ${second.team?.abbreviation||'The next team'} is the closest challenger; every division game matters for tiebreakers.`:'Los Angeles is on top of the division.';}else{$('westImpactTitle').textContent=`Rams are ${gb} GB of ${leader.team?.abbreviation||'1st'}`;$('westImpactText').textContent=`Los Angeles is currently #${r+1} in the West. ${rem.length?`Next remaining division game: Week ${rem[0].w} ${rem[0].loc==='vs'?'vs':'at'} ${names[rem[0].opp]}.`:''}`;}if(currentGame&&['SF','ARI','SEA'].includes(currentGame.opp))$('westImpactText').textContent+=` Week ${currentGame.w} is a head-to-head division game, so the result has extra tiebreaker value.`;}
@@ -490,7 +1139,7 @@ function updateCountdown(){if(!currentGame||!currentGame.date){$('countdownChip'
 function renderSchedule(){const el=$('scheduleList');el.innerHTML=schedule.map(g=>{if(g.bye)return `<div class="schedule-week"><div class="wk">${g.w}</div><div><b>BYE WEEK</b></div><span class="network">Rest</span></div>`;const m=teamMeta(g.opp),a=teamAccent(g.opp);return `<div class="schedule-week"><div class="wk">${g.w}</div><div class="schedule-opp" style="--row-accent:${a.primary};--row-accent2:${a.secondary}"><img class="schedule-logo" src="${teamLogo(g.opp)}" alt="${names[g.opp]} logo"><div><b>${g.loc==='vs'?'vs':'@'} ${names[g.opp]}</b><div class="meta">${g.date?fmt(g.date):'TBD'} • ${g.venue}<br>👕 ${g.jersey}</div></div></div><span class="network">${g.network}</span></div>`}).join('');$('divisionList').innerHTML=remainingDivisionGames().map(g=>`<div class="row"><div class="left"><b>Week ${g.w}: ${g.loc==='vs'?'vs':'@'} ${names[g.opp]}</b><div class="meta">${g.date?fmt(g.date):'TBD'}</div></div><span class="pill">${g.network}</span></div>`).join('')||'<div class="muted tiny">No remaining NFC West games.</div>'; }
 function findStat(stats,name){const s=(stats||[]).find(x=>(x.name||'').toLowerCase()===name.toLowerCase()||(x.label||'').toLowerCase()===name.toLowerCase());return s?s.displayValue||s.value:'—';}
 async function fetchJSON(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}
-async function refreshLive(){try{const g=currentGame||currentWeek();const week=g.w;const board=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${SEASON}&seasontype=2&week=${week}`);const ev=(board.events||[]).find(e=>(e.competitions?.[0]?.competitors||[]).some(c=>c.team?.abbreviation==='LAR'));if(ev){liveEvent=ev;applyScoreboard(ev);try{liveSummary=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=${encodeURIComponent(ev.id)}`);applySummary(liveSummary);}catch(e){console.warn('summary',e)}}await Promise.allSettled([loadStandings(),loadNews(),loadGameWeather()]);$('dot').className='dot';$('updated').textContent='Updated '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})+' '+viewerZoneLabel(Date.now());}catch(e){console.warn(e);$('dot').className='dot offline';$('updated').textContent='Live feed unavailable • schedule still works';}}
+async function refreshLive(){try{const g=currentGame||currentWeek();const week=g.w;const board=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${SEASON}&seasontype=2&week=${week}`);harvestLeague(board);const ev=(board.events||[]).find(e=>(e.competitions?.[0]?.competitors||[]).some(c=>c.team?.abbreviation==='LAR'));if(ev){liveEvent=ev;applyScoreboard(ev);try{liveSummary=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=${encodeURIComponent(ev.id)}`);planDataVersion++;applySummary(liveSummary);}catch(e){console.warn('summary',e)}}await Promise.allSettled([loadStandings(),loadNews(),loadGameWeather()]);$('dot').className='dot';$('updated').textContent='Updated '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})+' '+viewerZoneLabel(Date.now());}catch(e){console.warn(e);$('dot').className='dot offline';$('updated').textContent='Live feed unavailable • schedule still works';}}
 function applyScoreboard(ev){const comp=ev.competitions?.[0]||{};const cs=comp.competitors||[];const away=cs.find(c=>c.homeAway==='away'),home=cs.find(c=>c.homeAway==='home');const status=comp.status?.type||ev.status?.type||{};const complete=!!status.completed||status.state==='post',active=status.state==='in';const phase=active?'live':complete?'post':'pre';const a=away?.score||'0',h=home?.score||'0';const eventDate=ev.date||comp.date||currentGame?.date;const statusText=(!active&&!complete)?fmtHero(eventDate):liveStatusText(status,eventDate);$('midScore').textContent=(active||complete)?`${a} – ${h}`:'AT';$('gameState').textContent=statusText;$('heroEyebrow').textContent=active?'LIVE RAMS GAME':complete?'FINAL':'NEXT RAMS GAME';$('gAwayScore').textContent=a;$('gHomeScore').textContent=h;$('gClock').textContent=statusText;$('dadScore').textContent=`${a}–${h}`;$('dadState').textContent=statusText;$('companionStatus').textContent=statusText;const situation=comp.situation||{};let poss=situation.possessionText||situation.possession||'—';if(poss&&typeof poss==='string'&&poss.length>8)poss=poss.slice(0,8);$('possession').textContent=poss||'—';$('dadPoss').textContent=poss||'—';const down=situation.shortDownDistanceText||situation.downDistanceText||'—';$('downDist').textContent=down==='—'?'—':down.replace(/&/g,'&');$('dadDown').textContent=down;$('gSituation').textContent=situation.downDistanceText||situation.lastPlay?.text||'Kickoff information above';$('dadSituation').textContent=$('gSituation').textContent;$('recordChip').textContent='LAR '+((cs.find(c=>c.team?.abbreviation==='LAR')?.records||[])[0]?.summary||'0-0');renderMode(phase,comp);if(phase==='live')updateWhats(liveSummary,phase,comp);if(phase==='post')updateWhats(liveSummary,phase,comp);}
 function applySummary(s){const teams=s.boxscore?.teams||[];const rt=teams.find(t=>t.team?.abbreviation==='LAR');if(rt){$('larYards').textContent=findStat(rt.statistics,'totalYards');$('larFirst').textContent=findStat(rt.statistics,'firstDowns');$('larTurn').textContent=findStat(rt.statistics,'turnovers');$('dadYards').textContent=$('larYards').textContent;const rows=['totalYards','firstDowns','turnovers','possessionTime','thirdDownEff'].map(n=>{const st=(rt.statistics||[]).find(x=>x.name===n);return st?`<div class="row"><div class="left"><b>${st.label||n}</b></div><span>${st.displayValue}</span></div>`:''}).join('');$('teamStats').innerHTML=rows||'<div class="muted tiny">Stats populate during the game.</div>';}
 const wp=(s.winprobability||[]).at(-1);if(wp){const header=s.header?.competitions?.[0];const home=(header?.competitors||[]).find(c=>c.homeAway==='home')?.team?.abbreviation==='LAR';const pct=Math.round((home?wp.homeWinPercentage:1-wp.homeWinPercentage)*100);$('winPct').textContent=pct+'%';$('gWin').textContent=pct+'%';$('dadWin').textContent=pct+'%';}
