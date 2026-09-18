@@ -1320,6 +1320,26 @@ async function loadGameWeather(){const g=currentGame;if(!g?.date){setWeatherUnav
 function weatherText(s){const w=s?.gameInfo?.weather||s?.header?.competitions?.[0]?.weather;if(!w)return'';if(w.displayValue)return w.displayValue;const bits=[];if(w.temperature!=null)bits.push(`${w.temperature}°`);if(w.condition)bits.push(w.condition);return bits.join(' • ');}
 function updateModeContext(s,phase,comp){const weather=gameWeatherSummary||weatherText(s);const injuryCount=(s?.injuries||[]).filter(g=>g.team?.abbreviation==='LAR').reduce((n,g)=>n+(g.injuries?.length||0),0);const parts=[];if(weather)parts.push(`Weather: ${weather}`);parts.push(injuryCount?`Rams injury feed: ${injuryCount} listed`:'Game-week intelligence is active below');$('modeInjury').textContent=parts.join(' • ');if(phase==='pre')renderMode('pre',comp);renderMatchupExtras(s,phase,comp);updateWhats(s,phase,comp);renderPlayerTracker(s);renderGameWeekIntel(s);renderKeyTracker(s,phase,comp);}
 function statObj(entry){return Object.fromEntries((entry?.stats||[]).map(x=>[x.name,x]));}
+function recordLike(v){return /^\d+-\d+(-\d+)?$/.test(String(v==null?'':v).trim());}
+function statInt(st,name){
+  const raw=st?.[name]?.value;
+  const n=Number(raw);
+  if(Number.isInteger(n))return n;
+  const d=String(st?.[name]?.displayValue??'').trim();
+  return /^\d+$/.test(d)?Number(d):null;
+}
+/* Prefer a stat that already reads as a record; otherwise rebuild it from
+   whole-number wins and losses. Never print a win percentage as a record. */
+function divisionRecord(st){
+  for(const k of Object.keys(st||{})){
+    if(!/div/i.test(k))continue;
+    const v=st[k]?.displayValue??st[k]?.summary;
+    if(recordLike(v))return v;
+  }
+  const w=statInt(st,'divisionWins'),l=statInt(st,'divisionLosses'),t=statInt(st,'divisionTies');
+  if(w==null||l==null)return'—';
+  return t?`${w}-${l}-${t}`:`${w}-${l}`;
+}
 function statDisplay(st,names,fallback='—'){for(const n of names){if(st[n]?.displayValue!=null)return st[n].displayValue;if(st[n]?.value!=null)return String(st[n].value)}return fallback;}
 function updateWestImpact(entries){lastStandings=entries||[];const r=entries.findIndex(e=>e.team?.abbreviation==='LAR');const rem=remainingDivisionGames();$('westRemainChip').textContent=`Division games ${rem.length}`;if(r<0){$('westImpactTitle').textContent='NFC West race';$('westImpactText').textContent='Standings are loading from the live feed.';return;}const ram=entries[r],rst=statObj(ram),leader=entries[0],lst=statObj(leader);const gb=statDisplay(rst,['gamesBehind'],r===0?'—':(((Number(statDisplay(lst,['wins'],'0'))-Number(statDisplay(rst,['wins'],'0')))+(Number(statDisplay(rst,['losses'],'0'))-Number(statDisplay(lst,['losses'],'0'))))/2).toString());$('westRankChip').textContent=`Rams #${r+1}`;if(r===0){$('westImpactTitle').textContent='Rams lead the NFC West';const second=entries[1];$('westImpactText').textContent=second?`Los Angeles is in first. ${second.team?.abbreviation||'The next team'} is the closest challenger; every division game matters for tiebreakers.`:'Los Angeles is on top of the division.';}else{$('westImpactTitle').textContent=`Rams are ${gb} GB of ${leader.team?.abbreviation||'1st'}`;$('westImpactText').textContent=`Los Angeles is currently #${r+1} in the West. ${rem.length?`Next remaining division game: Week ${rem[0].w} ${rem[0].loc==='vs'?'vs':'at'} ${names[rem[0].opp]}.`:''}`;}if(currentGame&&['SF','ARI','SEA'].includes(currentGame.opp))$('westImpactText').textContent+=` Week ${currentGame.w} is a head-to-head division game, so the result has extra tiebreaker value.`;}
 async function toggleWakeLock(){if(!('wakeLock' in navigator)){$('wakeBtn').textContent='Screen awake not supported';return;}try{if(wakeLock){await wakeLock.release();wakeLock=null;wakeWanted=false;$('wakeBtn').textContent='☀️ Keep screen awake';}else{wakeLock=await navigator.wakeLock.request('screen');wakeWanted=true;$('wakeBtn').textContent='✅ Screen will stay awake';wakeLock.addEventListener('release',()=>{wakeLock=null;if(!wakeWanted)$('wakeBtn').textContent='☀️ Keep screen awake';});}}catch(e){$('wakeBtn').textContent='Could not keep screen awake';}}
@@ -1467,7 +1487,7 @@ async function loadStandings(){
   if(!entries.length){renderWestFallback();return;}
   try{
     const leader=entries[0],lst=statObj(leader),lw=Number(statDisplay(lst,['wins'],'0')),ll=Number(statDisplay(lst,['losses'],'0'));
-    $('standingsList').innerHTML=entries.map((e,idx)=>{const st=statObj(e),w=statDisplay(st,['wins'],'0'),l=statDisplay(st,['losses'],'0'),gb=statDisplay(st,['gamesBehind'],idx===0?'—':(((lw-Number(w))+(Number(l)-ll))/2).toString()),dw=statDisplay(st,['divisionWins'],'0'),dl=statDisplay(st,['divisionLosses'],'0'),dt=statDisplay(st,['divisionTies'],'0'),divrec=dt!=='0'?`${dw}-${dl}-${dt}`:`${dw}-${dl}`,str=statDisplay(st,['streak'],'—'),seed=statDisplay(st,['playoffSeed'],String(idx+1));return `<div class="standings-pro"><div class="teamcell"><img class="standings-logo" src="${teamLogo(e.team?.abbreviation)}" alt="${e.team?.abbreviation||'Team'} logo"><span><span class="seed">#${seed}</span> ${e.team?.abbreviation||e.team?.shortDisplayName||''}</span></div><span>${w}-${l}</span><span>${gb}</span><span>${divrec}</span><span>${str}</span></div>`}).join('');
+    $('standingsList').innerHTML=entries.map((e,idx)=>{const st=statObj(e),w=statDisplay(st,['wins'],'0'),l=statDisplay(st,['losses'],'0'),gb=(v=>v==='-'||v===''||v==='0'?'—':v)(statDisplay(st,['gamesBehind'],idx===0?'—':(((lw-Number(w))+(Number(l)-ll))/2).toString())),divrec=divisionRecord(st),str=statDisplay(st,['streak'],'—'),seed=String(idx+1);return `<div class="standings-pro"><div class="teamcell"><img class="standings-logo" src="${teamLogo(e.team?.abbreviation)}" alt="${e.team?.abbreviation||'Team'} logo"><span><span class="seed">#${seed}</span> ${e.team?.abbreviation||e.team?.shortDisplayName||''}</span></div><span>${w}-${l}</span><span>${gb}</span><span>${divrec}</span><span>${str}</span></div>`}).join('');
     updateWestImpact(entries);
     FEED.standings='OK '+(used.includes('web.api')?'(web.api)':'(site.api)');
   }catch(e){console.warn('standings render',e);renderWestFallback();}
