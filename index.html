@@ -108,6 +108,23 @@
 .series-res.loss{background:#5a2230;color:#ffb3b3}
 .series-sc{font-weight:900;color:#e7f0ff;font-variant-numeric:tabular-nums}
 .series-when{margin-left:auto;color:var(--muted);font-size:11px}
+/* The Rams mark is navy on navy: without a tile it disappears everywhere the
+   hero's v1.6.3 treatment does not reach. Same trick, applied systemically. */
+.west-logo,.ls-logo,.sp-logo,.schedule-logo,.standings-logo,.intel-team-logo{
+  border-radius:7px;
+  background:linear-gradient(145deg,rgba(255,255,255,.15),rgba(255,255,255,.05));
+  border:1px solid rgba(255,255,255,.14);
+  padding:2px;
+  box-sizing:border-box;
+}
+#pregameGrid.one-up{grid-template-columns:1fr}
+.debug-panel{position:fixed;left:8px;right:8px;bottom:calc(112px + env(safe-area-inset-bottom));z-index:300;max-height:46vh;overflow:auto;background:#020c1aee;border:1px solid #3a6bb0;border-radius:14px;padding:10px 12px;font:600 11px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#cfe2ff;box-shadow:0 10px 30px #000a}
+.dbg-head{display:flex;justify-content:space-between;align-items:center;color:var(--yellow);font-weight:900;letter-spacing:.08em;margin-bottom:6px}
+.dbg-head button{background:none;border:0;color:#9db1d1;font-size:14px;padding:0 4px}
+.dbg-row{display:flex;gap:10px;justify-content:space-between;padding:3px 0;border-top:1px solid #1b3b65}
+.dbg-row:first-of-type{border-top:0}
+.dbg-row b{color:#8fb4e8;font-weight:800;flex:none}
+.dbg-row span{text-align:right;word-break:break-word}
 .cal-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px}
 .cal-btn{border:1px solid var(--line);background:#0b2142;color:#d9e7ff;border-radius:14px;padding:13px 10px;font-size:12.5px;font-weight:800}
 .cal-btn.primary{background:var(--yellow);border-color:var(--yellow);color:#071a3a;font-weight:1000}
@@ -287,7 +304,7 @@
         <div class="mode-note" id="modeInjury">Injury and weather context will update when the game feed posts it.</div>
       </div>
 
-      <div class="grid2" style="margin-top:12px">
+      <div class="grid2" id="pregameGrid" style="margin-top:12px">
         <div class="card" id="oddsCard"><div class="odds-head"><span class="card-kicker">THE NUMBER</span></div><div class="muted tiny">The line and projection post closer to kickoff.</div></div>
         <div class="card" id="seriesCard"><div class="card-kicker">HISTORY</div><div class="muted tiny">Past meetings appear here.</div></div>
       </div>
@@ -690,6 +707,7 @@ function harvestLeague(board){
     }
   }
   if(Object.keys(next).length>=8){leagueStats=next;planDataVersion++;}
+  FEED.league=`${Object.keys(next).length} teams w/ stats, LAR has ${Object.keys(next.LAR||{}).length}`;
 }
 function rankOf(abbr,key){
   const spec=STAT_SPECS[key];
@@ -1141,6 +1159,7 @@ function buildAutoPlan(g,summary){
     }];
   }
   plan.changes=planChanges(plan,g?.w);
+  FEED.plan=`${plan.stage} · ${plan.keys.length} keys · quality ${plan.quality}`;
   planCache={key:cacheKey,plan};
   return plan;
 }
@@ -1205,7 +1224,8 @@ function scoutHTML(s){
   const cadence=s.nextUpdate?`<div class="plan-cadence">&#128260; ${esc(s.nextUpdate)}</div>`:'';
   return keys+stamp+cadence;
 }
-let liveEvent=null,liveSummary=null,currentGame=null,wakeLock=null,wakeWanted=false,lastStandings=[],gameWeatherSummary="",gameWeatherData=null;let livePhase='pre',refreshTimer=null,lastRefreshAt=0,firstScoreboard=true;
+let liveEvent=null,liveSummary=null,currentGame=null,wakeLock=null,wakeWanted=false,lastStandings=[],gameWeatherSummary="",gameWeatherData=null;
+const FEED={};let livePhase='pre',refreshTimer=null,lastRefreshAt=0,firstScoreboard=true;
 const $=id=>document.getElementById(id);
 function watchInfo(g){
   const n=(g.network||'TBD').toUpperCase();
@@ -1367,7 +1387,7 @@ function nextRefreshDelay(){
 }
 function scheduleNextRefresh(){if(refreshTimer)clearTimeout(refreshTimer);refreshTimer=setTimeout(refreshLive,nextRefreshDelay());}
 async function fetchJSON(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}
-async function refreshLive(){if(refreshTimer){clearTimeout(refreshTimer);refreshTimer=null;}try{const g=currentGame||currentWeek();const week=g.w;const board=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${SEASON}&seasontype=2&week=${week}`);harvestLeague(board);harvestWestGames(board,week);const ev=(board.events||[]).find(e=>(e.competitions?.[0]?.competitors||[]).some(c=>c.team?.abbreviation==='LAR'));if(ev){liveEvent=ev;applyScoreboard(ev);try{liveSummary=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=${encodeURIComponent(ev.id)}`);planDataVersion++;applySummary(liveSummary);}catch(e){console.warn('summary',e)}}await Promise.allSettled([loadStandings(),loadNews(),livePhase==='live'?Promise.resolve():loadGameWeather()]);lastRefreshAt=Date.now();const stamp='Updated '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})+' '+viewerZoneLabel(Date.now());$('updated').dataset.stamp=stamp;$('updated').textContent=stamp;$('dot').className='dot';refreshAgeText();saveSnapshot();}catch(e){console.warn(e);$('dot').className='dot offline';const el=$('updated');el.textContent=lastRefreshAt?`${el.dataset.stamp||'Last update'} • reconnecting…`:el.dataset.stamp?`${el.dataset.stamp} • offline`:'Live feed unavailable • schedule still works';}finally{scheduleNextRefresh();}}
+async function refreshLive(){if(refreshTimer){clearTimeout(refreshTimer);refreshTimer=null;}try{const g=currentGame||currentWeek();const week=g.w;const board=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${SEASON}&seasontype=2&week=${week}`);harvestLeague(board);harvestWestGames(board,week);const ev=(board.events||[]).find(e=>(e.competitions?.[0]?.competitors||[]).some(c=>c.team?.abbreviation==='LAR'));if(ev){liveEvent=ev;applyScoreboard(ev);try{seedResultFromEvent(ev);}catch(e){}try{liveSummary=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=${encodeURIComponent(ev.id)}`);planDataVersion++;applySummary(liveSummary);}catch(e){console.warn('summary',e)}}await Promise.allSettled([loadStandings(),loadNews(),livePhase==='live'?Promise.resolve():loadGameWeather()]);lastRefreshAt=Date.now();const stamp='Updated '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})+' '+viewerZoneLabel(Date.now());$('updated').dataset.stamp=stamp;$('updated').textContent=stamp;$('dot').className='dot';refreshAgeText();saveSnapshot();}catch(e){console.warn(e);$('dot').className='dot offline';const el=$('updated');el.textContent=lastRefreshAt?`${el.dataset.stamp||'Last update'} • reconnecting…`:el.dataset.stamp?`${el.dataset.stamp} • offline`:'Live feed unavailable • schedule still works';}finally{scheduleNextRefresh();}}
 function applyScoreboard(ev){const comp=ev.competitions?.[0]||{};const cs=comp.competitors||[];const away=cs.find(c=>c.homeAway==='away'),home=cs.find(c=>c.homeAway==='home');const status=comp.status?.type||ev.status?.type||{};const complete=!!status.completed||status.state==='post',active=status.state==='in';const phase=active?'live':complete?'post':'pre';const _cs=cs;const larC=_cs.find(c=>c.team?.abbreviation==='LAR'),oppC=_cs.find(c=>c.team?.abbreviation!=='LAR');checkScoreChange(larC?.score,oppC?.score,phase);const a=away?.score||'0',h=home?.score||'0';const eventDate=ev.date||comp.date||currentGame?.date;const statusText=(!active&&!complete)?fmtHero(eventDate):liveStatusText(status,eventDate);$('midScore').textContent=(active||complete)?`${a} – ${h}`:'AT';$('gameState').textContent=statusText;$('heroEyebrow').textContent=active?'LIVE RAMS GAME':complete?'FINAL':'NEXT RAMS GAME';$('gAwayScore').textContent=a;$('gHomeScore').textContent=h;$('gClock').textContent=statusText;$('dadScore').textContent=`${a}–${h}`;$('dadState').textContent=statusText;$('companionStatus').textContent=statusText;const situation=comp.situation||{};let poss=situation.possessionText||situation.possession||'—';if(poss&&typeof poss==='string'&&poss.length>8)poss=poss.slice(0,8);$('possession').textContent=poss||'—';$('dadPoss').textContent=poss||'—';const down=situation.shortDownDistanceText||situation.downDistanceText||'—';$('downDist').textContent=down==='—'?'—':down.replace(/&/g,'&');$('dadDown').textContent=down;$('gSituation').textContent=situation.downDistanceText||situation.lastPlay?.text||'Kickoff information above';$('dadSituation').textContent=$('gSituation').textContent;$('recordChip').textContent='LAR '+((cs.find(c=>c.team?.abbreviation==='LAR')?.records||[])[0]?.summary||'0-0');livePhase=phase;if($('gamePossession'))$('gamePossession').textContent=poss||'—';if($('gameDown'))$('gameDown').textContent=down||'—';renderMode(phase,comp);try{renderLinescore(liveSummary,comp);}catch(e){}if(phase==='live')updateWhats(liveSummary,phase,comp);if(phase==='post')updateWhats(liveSummary,phase,comp);if(firstScoreboard&&phase==='live'){switchView('game');}firstScoreboard=false;}
 function applySummary(s){const teams=s.boxscore?.teams||[];const rt=teams.find(t=>t.team?.abbreviation==='LAR');if(rt){$('larYards').textContent=findStat(rt.statistics,'totalYards');$('larFirst').textContent=findStat(rt.statistics,'firstDowns');$('larTurn').textContent=findStat(rt.statistics,'turnovers');$('dadYards').textContent=$('larYards').textContent;const rows=['totalYards','firstDowns','turnovers','possessionTime','thirdDownEff'].map(n=>{const st=(rt.statistics||[]).find(x=>x.name===n);return st?`<div class="row"><div class="left"><b>${st.label||n}</b></div><span>${st.displayValue}</span></div>`:''}).join('');$('teamStats').innerHTML=rows||'<div class="muted tiny">Stats populate during the game.</div>';}
 const wp=(s.winprobability||[]).at(-1);if(wp){const header=s.header?.competitions?.[0];const home=(header?.competitors||[]).find(c=>c.homeAway==='home')?.team?.abbreviation==='LAR';const pct=Math.round((home?wp.homeWinPercentage:1-wp.homeWinPercentage)*100);$('winPct').textContent=pct+'%';$('gWin').textContent=pct+'%';if($('gWinMirror'))$('gWinMirror').textContent=pct+'%';$('dadWin').textContent=pct+'%';}
@@ -1399,7 +1419,59 @@ function recentPlayFeed(s){
 }
 function renderPlays(s){const list=recentPlayFeed(s);const html=list.map(p=>{const text=p.text||'';const [badge]=classifyPlay(text);const t=text.toLowerCase();const cls=t.includes('touchdown')||t.includes('field goal')?'scoring':(t.includes('intercept')||t.includes('fumble')||t.includes('turnover'))?'turnover':'';const period=p.period?.number||p.__period||'';const clock=p.clock?.displayValue||p.__clock||'';return `<div class="play live-play ${cls}"><b>${clock} ${period?'Q'+period:''}<span class="play-badge">${badge}</span></b><div class="meta">${text}</div></div>`}).join('')||'<div class="muted tiny">Play-by-play feed is waiting on the live source.</div>';$('playsList').innerHTML=html;$('gameRecentPlays').innerHTML=html;}
 function renderInjuries(s){const arr=[];for(const grp of (s.injuries||[])){const ab=grp.team?.abbreviation;if(ab!=='LAR'&&ab!==currentGame?.opp)continue;for(const i of (grp.injuries||[]))arr.push(`<div class="row"><div class="left"><b>${ab==='LAR'?'🐏':'⚔️'} ${i.athlete?.displayName||'Player'}</b><div class="meta">${i.details?.type||i.status||''} ${i.details?.detail||''}</div></div><span class="pill">${i.status||'Injury'}</span></div>`)}$('injuriesList').innerHTML=arr.join('')||'<div class="muted tiny">No Rams/opponent injury details in the live feed yet.</div>';}
-async function loadStandings(){try{const data=await fetchJSON(`https://site.api.espn.com/apis/v2/sports/football/nfl/standings?season=${SEASON}`);let div=null;for(const conf of (data.children||[])){for(const d of (conf.children||[])){if((d.name||'').includes('NFC West'))div=d;}}const entries=div?.standings?.entries||[];const leader=entries[0],lst=statObj(leader),lw=Number(statDisplay(lst,['wins'],'0')),ll=Number(statDisplay(lst,['losses'],'0'));$('standingsList').innerHTML=entries.map((e,idx)=>{const st=statObj(e),w=statDisplay(st,['wins'],'0'),l=statDisplay(st,['losses'],'0'),gb=statDisplay(st,['gamesBehind'],idx===0?'—':(((lw-Number(w))+(Number(l)-ll))/2).toString()),dw=statDisplay(st,['divisionWins'],'0'),dl=statDisplay(st,['divisionLosses'],'0'),dt=statDisplay(st,['divisionTies'],'0'),divrec=dt!=='0'?`${dw}-${dl}-${dt}`:`${dw}-${dl}`,str=statDisplay(st,['streak'],'—'),seed=statDisplay(st,['playoffSeed'],String(idx+1));return `<div class="standings-pro"><div class="teamcell"><img class="standings-logo" src="${teamLogo(e.team?.abbreviation)}" alt="${e.team?.abbreviation||'Team'} logo"><span><span class="seed">#${seed}</span> ${e.team?.abbreviation||e.team?.shortDisplayName||''}</span></div><span>${w}-${l}</span><span>${gb}</span><span>${divrec}</span><span>${str}</span></div>`}).join('')||'<div class="muted tiny" style="padding:12px 0">Standings unavailable.</div>';updateWestImpact(entries);}catch(e){$('standingsList').innerHTML='<div class="muted tiny" style="padding:12px 0">Standings unavailable right now.</div>';$('westImpactTitle').textContent='NFC West race unavailable';$('westImpactText').textContent='The standings feed could not be loaded right now.';}}
+const STANDINGS_URLS=[
+  `https://site.web.api.espn.com/apis/v2/sports/football/nfl/standings?region=us&lang=en&contentorigin=espn&season=${SEASON}&type=0&level=3`,
+  `https://site.api.espn.com/apis/v2/sports/football/nfl/standings?season=${SEASON}&seasontype=2`,
+  `https://site.api.espn.com/apis/v2/sports/football/nfl/standings?season=${SEASON}`
+];
+function findWest(node,out){
+  if(!node||typeof node!=='object')return out;
+  if(/NFC West/i.test(node.name||node.displayName||'')&&node.standings?.entries)out.push(node);
+  for(const k of ['children','groups'])for(const c of (node[k]||[]))findWest(c,out);
+  return out;
+}
+/* Every NFC West team's record is already in the weekly scoreboard, so a dead
+   standings endpoint is a formatting problem, not a missing-data problem. */
+function westFromRecords(){
+  const rows=['LAR','SEA','SF','ARI'].map(ab=>{
+    const rec=leagueRecords[ab]||'';
+    const m=String(rec).match(/(\d+)-(\d+)(?:-(\d+))?/);
+    return m?{ab,w:+m[1],l:+m[2],t:+(m[3]||0)}:null;
+  }).filter(Boolean);
+  if(rows.length<2)return null;
+  rows.sort((a,b)=>(b.w-b.l)-(a.w-a.l)||b.w-a.w);
+  return rows;
+}
+function renderWestFallback(){
+  const rows=westFromRecords();
+  if(!rows){FEED.standings='FAIL (no fallback data)';return false;}
+  const lead=rows[0];
+  $('standingsList').innerHTML=rows.map((r,i)=>{
+    const gb=i===0?'—':(((lead.w-r.w)+(r.l-lead.l))/2);
+    return `<div class="standings-pro"><div class="teamcell"><img class="standings-logo" src="${teamLogo(r.ab)}" alt="${r.ab} logo"><span><span class="seed">#${i+1}</span> ${r.ab}</span></div><span>${r.w}-${r.l}${r.t?'-'+r.t:''}</span><span>${gb}</span><span>—</span><span>—</span></div>`;
+  }).join('');
+  const me=rows.findIndex(r=>r.ab==='LAR');
+  $('westRankChip').textContent=me<0?'Rams rank —':`Rams #${me+1}`;
+  $('westRemainChip').textContent=`Division games ${remainingDivisionGames().length}`;
+  $('westImpactTitle').textContent=me===0?'Rams lead the NFC West':`Rams are #${me+1} in the NFC West`;
+  $('westImpactText').textContent='Records come from this week\u2019s live scoreboard. Division records and streaks return when the standings feed does.';
+  FEED.standings='OK (scoreboard fallback)';
+  return true;
+}
+async function loadStandings(){
+  let data=null,used='';
+  for(const url of STANDINGS_URLS){
+    try{data=await fetchJSON(url);used=url;break;}catch(e){/* try the next shape */}
+  }
+  const entries=data?(findWest(data,[])[0]?.standings?.entries||[]):[];
+  if(!entries.length){renderWestFallback();return;}
+  try{
+    const leader=entries[0],lst=statObj(leader),lw=Number(statDisplay(lst,['wins'],'0')),ll=Number(statDisplay(lst,['losses'],'0'));
+    $('standingsList').innerHTML=entries.map((e,idx)=>{const st=statObj(e),w=statDisplay(st,['wins'],'0'),l=statDisplay(st,['losses'],'0'),gb=statDisplay(st,['gamesBehind'],idx===0?'—':(((lw-Number(w))+(Number(l)-ll))/2).toString()),dw=statDisplay(st,['divisionWins'],'0'),dl=statDisplay(st,['divisionLosses'],'0'),dt=statDisplay(st,['divisionTies'],'0'),divrec=dt!=='0'?`${dw}-${dl}-${dt}`:`${dw}-${dl}`,str=statDisplay(st,['streak'],'—'),seed=statDisplay(st,['playoffSeed'],String(idx+1));return `<div class="standings-pro"><div class="teamcell"><img class="standings-logo" src="${teamLogo(e.team?.abbreviation)}" alt="${e.team?.abbreviation||'Team'} logo"><span><span class="seed">#${seed}</span> ${e.team?.abbreviation||e.team?.shortDisplayName||''}</span></div><span>${w}-${l}</span><span>${gb}</span><span>${divrec}</span><span>${str}</span></div>`}).join('');
+    updateWestImpact(entries);
+    FEED.standings='OK '+(used.includes('web.api')?'(web.api)':'(site.api)');
+  }catch(e){console.warn('standings render',e);renderWestFallback();}
+}
 async function loadNews(){try{const d=await fetchJSON('https://site.api.espn.com/apis/site/v2/sports/football/nfl/news?team=14&limit=8');$('newsList').innerHTML=(d.articles||[]).slice(0,8).map(a=>`<a class="row" href="${a.links?.web?.href||'#'}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><div class="left"><b>${a.headline||'Rams news'}</b><div class="meta">${a.description?String(a.description).slice(0,110):''}</div></div><span>›</span></a>`).join('')||'<div class="muted tiny">No recent news found.</div>';}catch(e){$('newsList').innerHTML='<div class="muted tiny">News feed unavailable right now.</div>';}}
 function switchView(v){document.querySelectorAll('.view').forEach(x=>x.classList.add('hidden'));$('view-'+v).classList.remove('hidden');document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.view===v));scrollTo({top:0,behavior:'smooth'});}
 document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
@@ -1461,9 +1533,30 @@ function espnScore(c){
   const raw=c?.score?.displayValue??c?.score?.value??c?.score;
   return statNumber(raw);
 }
+/* The live scoreboard already knows the current week's score, so seed from it:
+   the schedule shows a result even if the season endpoint is unavailable. */
+function seedResultFromEvent(ev){
+  const comp=ev?.competitions?.[0];if(!comp)return;
+  const us=(comp.competitors||[]).find(c=>c.team?.abbreviation==='LAR');
+  const them=(comp.competitors||[]).find(c=>c.team?.abbreviation!=='LAR');
+  const a=espnScore(us),b=espnScore(them);
+  if(a==null||b==null)return;
+  const st=comp.status?.type||ev.status?.type||{};
+  const wk=currentGame?.w;
+  if(!wk)return;
+  if(!st.completed&&st.state!=='in')return;
+  ramsResults[wk]={us:a,them:b,completed:!!st.completed||st.state==='post',live:st.state==='in',detail:st.shortDetail||''};
+  renderSchedule();
+}
 async function loadRamsResults(){
+  const urls=[
+    `https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${RAMS_TEAM_ID}/schedule?season=${SEASON}`,
+    `https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${RAMS_TEAM_ID}/schedule?season=${SEASON}&seasontype=2`
+  ];
+  let d=null;
+  for(const u of urls){try{d=await fetchJSON(u);if((d?.events||[]).length)break;}catch(e){}}
   try{
-    const d=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${RAMS_TEAM_ID}/schedule?season=${SEASON}&seasontype=2`);
+    if(!d)throw new Error('no schedule payload');
     const next={};
     for(const ev of (d.events||[])){
       const comp=ev.competitions?.[0];if(!comp)continue;
@@ -1478,8 +1571,9 @@ async function loadRamsResults(){
         live:st.state==='in',
         detail:st.shortDetail||st.detail||''};
     }
-    if(Object.keys(next).length){ramsResults=next;renderSchedule();}
-  }catch(e){console.warn('results',e);}
+    if(Object.keys(next).length){ramsResults=Object.assign(next,ramsResults);renderSchedule();FEED.results=`OK (${Object.keys(next).length} games)`;}
+    else FEED.results='EMPTY (no scored events in payload)';
+  }catch(e){console.warn('results',e);FEED.results='FAIL '+e.message;}
 }
 function seasonRecord(){
   let w=0,l=0,t=0;
@@ -1514,6 +1608,7 @@ function harvestWestGames(board,week){
   }
   rows.sort((a,b)=>(b.isRams?1:0)-(a.isRams?1:0));   /* Rams game first */
   westBoard=rows;
+  FEED.west=`${rows.length} division games`;
   renderWestGames();
 }
 function renderWestGames(){
@@ -1767,9 +1862,14 @@ function renderSeries(s){
   const opp=names[currentGame?.opp]||'them';
   const events=(series?.events||[]).slice().sort((a,b)=>new Date(b.date||0)-new Date(a.date||0)).slice(0,4);
   if(!series&&!events.length){
-    card.innerHTML=`<div class="card-kicker">HISTORY</div><div class="muted tiny">Past meetings with the ${esc(opp)} appear here when the feed carries them.</div>`;
+    card.hidden=true;
+    $('pregameGrid')?.classList.add('one-up');
+    FEED.series='EMPTY (no seasonseries in payload)';
     return;
   }
+  card.hidden=false;
+  $('pregameGrid')?.classList.remove('one-up');
+  FEED.series='OK';
   const rows=events.map(ev=>{
     const comp=ev.competitions?.[0]||ev;
     const cs=comp.competitors||[];
@@ -1824,8 +1924,8 @@ function downloadICS(games,filename){
 function renderMatchupExtras(s,phase,comp){
   try{renderLinescore(s,comp);}catch(e){console.warn('linescore',e);}
   try{renderScoringPlays(s);}catch(e){console.warn('scoring',e);}
-  try{renderWinProbTrend(s);}catch(e){console.warn('winprob',e);}
-  try{renderOdds(s);}catch(e){console.warn('odds',e);}
+  try{renderWinProbTrend(s);FEED.winprob=`${(s?.winprobability||[]).length} points`;FEED.scoring=`${(s?.scoringPlays||[]).length} plays`;FEED.injuries=`${(s?.injuries||[]).reduce((n,g)=>n+(g.injuries?.length||0),0)} listed`;}catch(e){console.warn('winprob',e);}
+  try{renderOdds(s);FEED.odds=(s?.pickcenter||s?.odds||[]).length?'OK':'no pickcenter';FEED.predictor=s?.predictor?'OK':'absent';}catch(e){console.warn('odds',e);FEED.odds='FAIL';}
   try{renderSeries(s);}catch(e){console.warn('series',e);}
 }
 
@@ -1840,6 +1940,23 @@ loadRamsResults();
 setInterval(updateCountdown,60000);
 setInterval(refreshAgeText,1000);
 $('statusLine').addEventListener('click',()=>{toast('Refreshing…');refreshLive();});
+
+/* ?debug=1 — a plain readout of what each live feed actually returned, so one
+   screenshot is enough to diagnose the app from anywhere. */
+if(/[?&]debug=1/.test(location.search)){
+  const box=document.createElement('div');
+  box.className='debug-panel';
+  document.body.appendChild(box);
+  const paint=()=>{
+    const rows=Object.entries(FEED).map(([k,v])=>`<div class="dbg-row"><b>${esc(k)}</b><span>${esc(String(v))}</span></div>`).join('');
+    box.innerHTML=`<div class="dbg-head">FEED STATUS <button id="dbgClose">&#10005;</button></div>${rows||'<div class="dbg-row"><span>waiting for first refresh…</span></div>'}`
+      +`<div class="dbg-row"><b>week</b><span>${currentGame?.w} vs ${currentGame?.opp}</span></div>`
+      +`<div class="dbg-row"><b>scored wks</b><span>${Object.keys(ramsResults).length}</span></div>`
+      +`<div class="dbg-row"><b>tz</b><span>${esc(VIEWER_TZ)}</span></div>`;
+    const c=$('dbgClose');if(c)c.onclick=()=>box.remove();
+  };
+  paint();setInterval(paint,3000);
+}
 if($('calNextBtn'))$('calNextBtn').addEventListener('click',()=>{const g=currentGame;if(g?.date)downloadICS([g],`rams-week-${g.w}.ics`);else toast('Kickoff time is still TBD');});
 if($('calSeasonBtn'))$('calSeasonBtn').addEventListener('click',()=>downloadICS(schedule.filter(g=>g.date&&!g.bye),`rams-${SEASON}-season.ics`));
 if('serviceWorker' in navigator){
