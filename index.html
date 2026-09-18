@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icon-180.png" />
   <title>Rams GameDay</title>
-  <!-- Rams GameDay v2.1: live TV companion + self-building matchup plan, offline fallback, season results, NFC West scoreboard -->
+  <!-- Rams GameDay v2.2: quarter-by-quarter, scoring plays, win-probability trend, odds, series history, calendar + live TV companion + self-building matchup plan, offline fallback, season results, NFC West scoreboard -->
   <style>
     :root{--navy:#071a3a;--blue:#0b4fb3;--royal:#0047ab;--yellow:#ffd100;--sky:#78b7ff;--card:#0d2448;--card2:#102b55;--muted:#9db1d1;--text:#fff;--good:#4bdd9a;--warn:#ffd166;--bad:#ff6b6b;--line:#23446f;--opp-primary:#aa0000;--opp-secondary:#b3995d}
     *{box-sizing:border-box}html{background:var(--navy);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{margin:0;background:linear-gradient(180deg,#051327 0,#071a3a 30%,#06152d 100%);min-height:100vh;padding-bottom:calc(102px + env(safe-area-inset-bottom))}button,a{font:inherit}button{cursor:pointer}.app{max-width:720px;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 16px 36px}.top{display:flex;align-items:center;gap:12px;margin:6px 0 14px}.mark{width:58px;height:58px;border-radius:18px;background:linear-gradient(145deg,var(--yellow),#ffb400);display:grid;place-items:center;color:#071a3a;font-weight:1000;font-size:24px;box-shadow:0 8px 24px #0007}.brand h1{font-size:25px;line-height:1;margin:0}.brand p{margin:6px 0 0;color:var(--muted);font-size:14px}.top-actions{margin-left:auto;display:flex;gap:8px}.iconbtn{border:1px solid var(--line);background:#0d2448;color:#fff;border-radius:14px;min-width:46px;height:46px;font-size:20px}.statusline{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:13px;margin-bottom:14px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--good);box-shadow:0 0 0 5px #4bdd9a1a;margin-right:8px}.hero{position:relative;background:radial-gradient(circle at 90% 0,#1b64d155 0,transparent 40%),linear-gradient(160deg,#0e2c5b,#0b2146);border:1px solid #315889;border-radius:26px;padding:22px 18px 18px;overflow:hidden}.hero:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--opp-primary) 0 28%,var(--opp-secondary) 28% 38%,#153f78 38% 62%,var(--royal) 62% 84%,var(--yellow) 84% 100%)}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--sky);font-weight:800}.matchup{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px;margin-top:14px}.team{text-align:center}.team-panel{min-width:0;border:1px solid #315889;border-radius:18px;padding:10px 7px 9px;transition:border-color .2s ease,background .2s ease}.team-panel.rams-panel{box-shadow:inset 0 0 0 1px #ffd10026,0 0 22px #0047ab20}.team-logo-wrap{width:50px;height:50px;margin:0 auto 4px;display:grid;place-items:center;position:relative}.team-logo{display:block;max-width:48px;max-height:48px;object-fit:contain;filter:drop-shadow(0 4px 7px #0008)}.team-logo-fallback{display:none;width:42px;height:42px;border-radius:50%;place-items:center;font-size:13px;font-weight:1000;background:#102b55;color:#fff;border:1px solid #ffffff33}.abbr{font-size:24px;font-weight:1000;letter-spacing:-.03em;line-height:1}.teamname{font-size:11px;color:var(--muted);margin-top:4px}.versus{font-size:13px;color:var(--muted)}.versus-badge{min-width:48px;padding:8px 7px;border:1px solid #315889;border-radius:999px;background:#071a3acc;text-align:center;font-weight:900;letter-spacing:.06em}.game-team-logo{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 3px 5px #0008);margin-bottom:3px}.score{font-size:48px;line-height:1;font-weight:1000}.gamestate{text-align:center;margin-top:13px;font-size:15px;font-weight:700}.substate{text-align:center;color:var(--muted);font-size:13px;margin-top:5px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.chip{padding:7px 9px;border-radius:999px;border:1px solid var(--line);background:#071a3a99;color:#dce9ff;font-size:12px}.yellow{color:var(--yellow)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.card{background:linear-gradient(180deg,var(--card),#0b2142);border:1px solid var(--line);border-radius:20px;padding:15px}.card h3,.section-title{margin:0 0 10px;font-size:17px}.section-title{margin-top:22px;display:flex;align-items:center;justify-content:space-between}.section-title small{font-size:12px;color:var(--muted);font-weight:500}.big{font-size:26px;font-weight:900}.muted{color:var(--muted)}.tiny{font-size:12px}.watch{display:flex;align-items:center;gap:10px}.watch-badge{height:44px;min-width:56px;padding:0 10px;border-radius:12px;background:var(--yellow);color:#071a3a;display:grid;place-items:center;font-size:12px;font-weight:900}.listen-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.listen-links a,.action-pill{color:#dce9ff;text-decoration:none}.listen-links a{border:1px solid var(--line);background:#081c39;border-radius:12px;padding:9px 11px;font-size:12px;font-weight:800}.listen-links a:active,.action-pill:active{transform:scale(.98)}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#081c39;border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}.stat strong{display:block;font-size:19px}.stat span{font-size:11px;color:var(--muted)}.tabs{display:flex;gap:7px;overflow:auto;padding:1px 0 4px}.tabs::-webkit-scrollbar{display:none}.tab{white-space:nowrap;border:1px solid var(--line);color:#d9e7ff;background:#0b2142;border-radius:999px;padding:9px 12px;font-size:13px}.tab.active{background:var(--yellow);border-color:var(--yellow);color:#071a3a;font-weight:900}.panel{display:none}.panel.active{display:block}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #1b3b65}.row:first-child{border-top:0}.row .left{min-width:0}.row b{display:block}.row .meta{font-size:12px;color:var(--muted);margin-top:3px}.pill{padding:5px 8px;border-radius:999px;background:#102b55;border:1px solid var(--line);font-size:11px}.drive{padding:12px;border-radius:15px;background:#081c39;border:1px solid var(--line);margin-bottom:8px}.drive .drive-head{display:flex;justify-content:space-between;gap:8px;font-weight:800}.play{font-size:13px;padding:10px 0;border-top:1px solid #1b3b65}.play:first-child{border-top:0}.schedule-week{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #1b3b65}.schedule-week:first-child{border-top:0}.wk{font-weight:1000;color:var(--yellow)}.network{font-size:11px;border:1px solid var(--line);padding:5px 7px;border-radius:9px;color:#d7e5ff}.bye{text-align:center;color:var(--muted);padding:14px}.standings-row{display:grid;grid-template-columns:1fr 42px 42px 42px;gap:8px;padding:10px 0;border-top:1px solid #1b3b65;align-items:center}.standings-row:first-child{border-top:0}.nav{position:fixed;z-index:50;left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));bottom:0;max-width:680px;margin:auto;background:#071831f7;border:1px solid #244b7e;border-bottom:0;border-radius:24px 24px 0 0;padding:7px 7px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:4px;backdrop-filter:blur(18px);box-shadow:0 -10px 30px #0008}.nav button{min-height:58px;border:0;background:transparent;color:#8fa8cd;border-radius:18px;font-size:11px;font-weight:750}.nav .ico{display:block;font-size:20px;margin-bottom:3px}.nav button.active{background:#102b55;color:#fff}.dad-overlay{display:none;position:fixed;inset:0;z-index:100;background:#030b18;color:white;padding:calc(18px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom));overflow:auto}.dad-overlay.on{display:block}.dad-close{float:right;border:1px solid #365a83;background:#0c1e38;color:#fff;border-radius:14px;width:50px;height:50px;font-size:20px}.dad-title{font-size:15px;color:#9db1d1;text-transform:uppercase;letter-spacing:.14em;margin-top:4px}.dad-match{clear:both;padding-top:36px;text-align:center}.dad-score{font-size:min(23vw,110px);line-height:.9;font-weight:1000;letter-spacing:-.06em}.dad-teams{font-size:30px;font-weight:900;margin-top:12px}.dad-state{font-size:22px;color:var(--yellow);margin-top:10px}.dad-situation{font-size:19px;margin-top:8px}.dad-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}.dad-stat{border:1px solid #294a72;border-radius:20px;padding:16px}.dad-stat b{display:block;font-size:24px}.dad-stat span{color:#9db1d1;font-size:13px}.offline{background:#392626;border-color:#704040}.hidden{display:none!important}.mode-card{position:relative;overflow:hidden;margin-top:12px;background:linear-gradient(135deg,#102d59,#0a2041);border:1px solid #315889;border-radius:20px;padding:18px 15px 15px}.mode-card:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--opp-primary),var(--opp-secondary),var(--yellow))}.mode-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.mode-badge{font-size:11px;letter-spacing:.1em;font-weight:950;padding:6px 9px;border-radius:999px;background:#173c70;color:#9dd0ff}.mode-card h3{font-size:19px;margin:12px 0 6px}.mode-card p{margin:0;color:#c0d1eb;font-size:13px;line-height:1.45}.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:13px}.scout-keys{grid-template-columns:1fr;gap:9px}.key{background:#081c39;border:1px solid var(--line);border-radius:13px;padding:10px}.scout-keys .key{position:relative;overflow:hidden;padding:14px 13px 13px 16px}.scout-keys .key:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--opp-primary),var(--opp-secondary))}.key-head{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:11px;min-height:34px}.key-num{width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,var(--yellow),#ffb400);color:#071a3a;display:grid;place-items:center;font-size:13px;line-height:1;font-weight:1000;box-shadow:inset 0 -2px 0 #c99700,0 3px 10px #0005}.key b{display:block;font-size:12px}.scout-keys .key b{font-size:14px;line-height:1.25}.key span{display:block;color:var(--muted);font-size:10px;margin-top:3px;line-height:1.3}.scout-keys .key>span{font-size:11px;line-height:1.45;margin-top:8px}.key-proof{margin-top:10px;padding-top:10px;border-top:1px solid #1b3b65;color:#c8d8ef;font-size:10.5px;line-height:1.45}.key-proof strong{color:var(--sky);font-size:9px;letter-spacing:.09em}.key-watch{margin-top:9px;padding:8px 9px;border-radius:10px;background:#ffd1000d;color:#fff0a6;font-size:10.5px;line-height:1.45}.key-watch strong{color:var(--yellow);font-size:9px;letter-spacing:.09em}.scout-stamp{display:inline-block;margin-top:10px;padding:5px 8px;border-radius:999px;background:#173c70;color:#b8dcff;font-size:9px;font-weight:850;letter-spacing:.05em}.mode-note{margin-top:10px;color:var(--muted);font-size:11px}.happening{margin-top:12px;border-left:4px solid var(--yellow)}.happening-label{font-size:11px;color:var(--sky);text-transform:uppercase;letter-spacing:.1em;font-weight:900}.happening h3{margin:7px 0 5px;font-size:18px}.happening p{margin:0;color:#bfd0e9;font-size:13px;line-height:1.45}.tracker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.tracker{background:#081c39;border:1px solid var(--line);border-radius:15px;padding:11px;min-height:104px}.tracker .role{font-size:10px;color:var(--sky);text-transform:uppercase;letter-spacing:.08em;font-weight:800}.tracker b{display:block;margin-top:6px;font-size:13px;line-height:1.2}.tracker strong{display:block;color:var(--yellow);font-size:17px;margin-top:8px}.standings-pro{display:grid;grid-template-columns:minmax(68px,1fr) 48px 34px 54px 44px;gap:5px;padding:10px 0;border-top:1px solid #1b3b65;align-items:center;font-size:12px}.standings-pro:first-child{border-top:0}.standings-pro .teamcell{font-weight:900}.seed{font-size:9px;color:var(--sky);font-weight:800}.west-impact{border-left:4px solid var(--yellow)}.west-impact h3{margin-bottom:6px}.dad-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.wake-btn{border:1px solid #365a83;background:#0c1e38;color:white;border-radius:12px;padding:10px 12px;font-weight:800}.dad-latest{margin-top:18px;border:1px solid #294a72;border-radius:18px;padding:15px}.dad-latest span{display:block;color:#9db1d1;font-size:12px;text-transform:uppercase;letter-spacing:.1em}.dad-latest b{display:block;margin-top:7px;font-size:18px;line-height:1.35}.schedule-opp{display:flex;align-items:center;gap:8px;border-left:3px solid var(--row-accent,var(--line));padding-left:8px}.schedule-logo{width:25px;height:25px;object-fit:contain;filter:drop-shadow(0 2px 4px #0006)}.teamcell{display:flex;align-items:center;gap:6px}.standings-logo{width:22px;height:22px;object-fit:contain}.opponent-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;border:1px solid var(--opp-secondary);background:#071a3aaa;color:#e9f1ff;font-size:10px;font-weight:850}.opponent-chip img{width:18px;height:18px;object-fit:contain}.scout-stamp{border:1px solid #315889}
@@ -52,7 +52,66 @@
 .textsize-btn{border:1px solid var(--line);background:#0b2142;color:#d9e7ff;border-radius:13px;padding:13px 8px;font-size:13px;font-weight:800}
 .textsize-btn.active{background:var(--yellow);border-color:var(--yellow);color:#071a3a;font-weight:1000}
 :root[data-textsize="large"]{font-size:112.5%}
-:root[data-textsize="xlarge"]{font-size:125%}body.phase-live .hero{box-shadow:0 0 0 1px #4bdd9a33,0 0 28px #4bdd9a16}body.phase-live .mode-badge{background:#123f35;color:#7ff0bf}body.phase-post .mode-badge{background:#41390d;color:#ffe56b}@media(max-width:390px){.grid2{grid-template-columns:1fr}.keys,.tracker-grid{grid-template-columns:1fr}.standings-pro{grid-template-columns:minmax(68px,1fr) 45px 32px 50px 40px;font-size:11px}.hero{padding:19px 14px 15px}.team-logo-wrap{width:44px;height:44px}.team-logo{max-width:42px;max-height:42px}.team-panel{padding:9px 5px 8px}.abbr{font-size:21px}.score{font-size:40px}.brand h1{font-size:22px}.mark{width:52px;height:52px}.nav{left:8px;right:8px}.nav button{min-height:56px;font-size:10px}}@media(display-mode:standalone){.nav{bottom:0}}@media(min-width:721px){.nav{left:50%;right:auto;width:680px;transform:translateX(-50%)}}
+:root[data-textsize="xlarge"]{font-size:125%}
+
+/* v2.2 --------------------------------------------------------------------- */
+.ls-grid{display:grid;grid-template-columns:minmax(64px,1.3fr) repeat(calc(var(--ls-cols) + 1),minmax(26px,1fr));gap:5px 4px;align-items:center}
+.ls-h{font-size:10px;font-weight:900;letter-spacing:.07em;color:var(--muted);text-align:center;padding-bottom:3px;border-bottom:1px solid #1b3b65}
+.ls-h.ls-total{color:var(--sky)}
+.ls-team{display:flex;align-items:center;gap:6px;min-width:0;font-size:13px;font-weight:900;color:#dce9ff;padding:7px 0}
+.ls-team.ls-rams b{color:var(--yellow)}
+.ls-logo{width:20px;height:20px;object-fit:contain;flex:none}
+.ls-v{text-align:center;font-size:14px;font-weight:800;color:#e7f0ff;font-variant-numeric:tabular-nums}
+.ls-v.ls-total{font-size:17px;font-weight:1000}
+.ls-v.ls-win{color:var(--yellow)}
+.score-play{padding:12px 0;border-top:1px solid #1b3b65}
+.score-play:first-child{border-top:0}
+.score-play.is-rams{border-left:3px solid var(--yellow);padding-left:11px;margin-left:-11px}
+.sp-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sp-team{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:1000;color:#dce9ff}
+.sp-logo{width:19px;height:19px;object-fit:contain}
+.sp-kind{font-size:11px;font-weight:800;color:var(--sky)}
+.sp-when{margin-left:auto;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sp-text{margin-top:6px;font-size:12.5px;line-height:1.45;color:#c3d4ec}
+.sp-score{margin-top:7px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sp-score b{color:#e7f0ff;font-weight:900}
+.wp-card{overflow:hidden}
+.wp-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.wp-tip{font-size:11.5px;color:var(--sky);font-weight:800;opacity:0;transition:opacity .15s;font-variant-numeric:tabular-nums}
+.wp-tip.on{opacity:1}
+.wp-svg{display:block;width:100%;height:132px;touch-action:pan-y}
+.wp-plot{position:relative;margin-top:10px}
+.wp-zone{position:absolute;font-size:9px;font-weight:900;letter-spacing:.08em;pointer-events:none;white-space:nowrap}
+.wp-zone-top{top:2px;left:2px;color:#d8b43a}
+.wp-zone-bot{bottom:2px;left:2px;color:#c9737e}
+.wp-zone-mid{top:50%;right:2px;transform:translateY(-50%);color:#5d82b5;font-weight:700;background:#0a2041;padding:0 4px;border-radius:4px}
+.wp-line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.wp-line.wp-up{stroke:#ffd100}
+.wp-line.wp-down{stroke:#e05060}
+.wp-mid{stroke:#3a5f92;stroke-width:1;stroke-dasharray:3 4}
+.wp-now{fill:#fff;stroke:#071a3a;stroke-width:2}
+.wp-cross{stroke:#7fa4d4;stroke-width:1;stroke-dasharray:2 3}
+.wp-cross.hidden{display:none}
+.wp-axis{display:flex;justify-content:space-between;margin-top:8px;font-size:10px;color:var(--muted);letter-spacing:.06em}
+.odds-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.odds-src{font-size:9px;font-weight:900;letter-spacing:.07em;color:var(--muted)}
+.odds-grid{display:grid;gap:8px;margin-top:4px}
+.odds-cell{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.odds-cell span{font-size:11px;color:var(--muted)}
+.odds-cell b{font-size:16px;font-weight:1000;color:var(--yellow);font-variant-numeric:tabular-nums}
+.odds-read{margin-top:10px;padding-top:9px;border-top:1px solid #1b3b65;font-size:11px;line-height:1.45;color:#c3d4ec}
+.series-sum{display:block;font-size:14px;color:#e7f0ff;margin:2px 0 8px}
+.series-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid #1b3b65;font-size:12px}
+.series-row:first-of-type{border-top:0}
+.series-res{width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font-size:10px;font-weight:1000;background:#1b3b65;color:#d7e5ff;flex:none}
+.series-res.win{background:#14503a;color:#7ff0bf}
+.series-res.loss{background:#5a2230;color:#ffb3b3}
+.series-sc{font-weight:900;color:#e7f0ff;font-variant-numeric:tabular-nums}
+.series-when{margin-left:auto;color:var(--muted);font-size:11px}
+.cal-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px}
+.cal-btn{border:1px solid var(--line);background:#0b2142;color:#d9e7ff;border-radius:14px;padding:13px 10px;font-size:12.5px;font-weight:800}
+.cal-btn.primary{background:var(--yellow);border-color:var(--yellow);color:#071a3a;font-weight:1000}
+@media(max-width:390px){.ls-grid{grid-template-columns:minmax(54px,1.2fr) repeat(calc(var(--ls-cols) + 1),minmax(22px,1fr));gap:4px 3px}.ls-v{font-size:13px}.cal-row{grid-template-columns:1fr}}body.phase-live .hero{box-shadow:0 0 0 1px #4bdd9a33,0 0 28px #4bdd9a16}body.phase-live .mode-badge{background:#123f35;color:#7ff0bf}body.phase-post .mode-badge{background:#41390d;color:#ffe56b}@media(max-width:390px){.grid2{grid-template-columns:1fr}.keys,.tracker-grid{grid-template-columns:1fr}.standings-pro{grid-template-columns:minmax(68px,1fr) 45px 32px 50px 40px;font-size:11px}.hero{padding:19px 14px 15px}.team-logo-wrap{width:44px;height:44px}.team-logo{max-width:42px;max-height:42px}.team-panel{padding:9px 5px 8px}.abbr{font-size:21px}.score{font-size:40px}.brand h1{font-size:22px}.mark{width:52px;height:52px}.nav{left:8px;right:8px}.nav button{min-height:56px;font-size:10px}}@media(display-mode:standalone){.nav{bottom:0}}@media(min-width:721px){.nav{left:50%;right:auto;width:680px;transform:translateX(-50%)}}
   
 /* v1.6.2 scouting-number alignment hotfix */
 .key-head > .key-num{
@@ -228,6 +287,11 @@
         <div class="mode-note" id="modeInjury">Injury and weather context will update when the game feed posts it.</div>
       </div>
 
+      <div class="grid2" style="margin-top:12px">
+        <div class="card" id="oddsCard"><div class="odds-head"><span class="card-kicker">THE NUMBER</span></div><div class="muted tiny">The line and projection post closer to kickoff.</div></div>
+        <div class="card" id="seriesCard"><div class="card-kicker">HISTORY</div><div class="muted tiny">Past meetings appear here.</div></div>
+      </div>
+
       <div class="intel-wrap">
         <div class="intel-card" id="intelCard">
           <div class="intel-head"><div><div class="intel-kicker">Game-week intelligence</div><div class="intel-title">🧠 What changed & who matters</div></div><span class="intel-chip" id="intelUpdated">Week 1</span></div>
@@ -316,8 +380,21 @@
 
       <div class="grid2 live-primary-grid">
         <div class="card drive-now"><div class="card-kicker">CURRENT DRIVE</div><div class="big" id="currentDriveTeam">—</div><div class="muted tiny" id="currentDriveText">Starts when the game begins.</div></div>
-        <div class="card"><div class="card-kicker">RAMS WIN PROBABILITY</div><div class="big yellow" id="gWinMirror">—</div><div class="muted tiny" id="winTrendText">Live estimate when available</div></div>
+        <div class="card"><div class="card-kicker">RAMS WIN PROBABILITY</div><div class="big yellow" id="gWinPeek">—</div><div class="muted tiny">Full trend below</div></div>
       </div>
+
+      <div class="section-title"><span>🧮 Quarter by quarter</span><small>scoring by period</small></div>
+      <div class="card" id="lineScore"><div class="muted tiny">Quarter scoring appears once the game starts.</div></div>
+
+      <div class="section-title"><span>📈 Win probability</span><small>how the game has swung</small></div>
+      <div class="card wp-card">
+        <div class="wp-head"><div class="big yellow" id="gWinMirror">—</div><span class="wp-tip" id="wpTip"></span></div>
+        <div id="winTrend"><div class="muted tiny" style="padding:12px 0">The win-probability line draws itself once the game is under way.</div></div>
+        <div class="muted tiny" id="winTrendText" style="margin-top:9px">Live estimate when available</div>
+      </div>
+
+      <div class="section-title"><span>🎬 Scoring plays</span><small>newest first</small></div>
+      <div class="card" id="scoringFeed"><div class="muted tiny">Every touchdown, field goal and safety lands here as it happens.</div></div>
 
       <div class="section-title"><span>⚔️ Game control</span><small>Rams vs opponent</small></div>
       <div class="card stat-compare" id="gameStatCompare"><div class="muted tiny">Live comparison populates during the game.</div></div>
@@ -342,6 +419,10 @@
 
     <section id="view-schedule" class="view hidden">
       <div class="section-title" style="margin-top:4px"><span>2026 Rams schedule</span><small id="seasonRecord">Your local time</small></div>
+      <div class="cal-row">
+        <button class="cal-btn primary" id="calNextBtn">📅 Add next game</button>
+        <button class="cal-btn" id="calSeasonBtn">Add all 17 games</button>
+      </div>
       <div class="card" id="scheduleList"></div>
     </section>
 
@@ -380,7 +461,7 @@
       <div class="section-title"><span>Championship shelf</span><small>franchise history</small></div>
       <div class="grid2"><div class="card"><div class="eyebrow">SUPER BOWL XXXIV</div><div class="big">1999</div><div class="muted tiny">St. Louis Rams • “Greatest Show on Turf”</div></div><div class="card"><div class="eyebrow">SUPER BOWL LVI</div><div class="big">2021</div><div class="muted tiny">Los Angeles Rams • champions at SoFi</div></div></div>
       <div class="card" style="margin-top:10px"><h3>📺 Viewing options</h3><div class="row"><div class="left"><b>YouTube TV + NFL Sunday Ticket</b><div class="meta">For Sunday afternoon FOX/CBS games, use the local feed when the Rams are in-market; Sunday Ticket carries eligible out-of-market games.</div></div><a class="pill action-pill" href="https://tv.youtube.com/" target="_blank" rel="noopener">Open</a></div><div class="row"><div class="left"><b>Multiview</b><div class="meta">On Sundays, watch the Rams plus up to three other NFL games on one screen. Great for checking division rivals during commercials.</div></div><span class="pill">Up to 4</span></div><div class="row"><div class="left"><b>Key Plays + Stats</b><div class="meta">YouTube TV can surface live stats, key plays and condensed replays. Handy if you join late or want to catch up fast.</div></div><span class="pill">Built in</span></div><div class="row"><div class="left"><b>Exclusive games</b><div class="meta">Netflix, Prime Video and some other exclusive games are not carried by NFL Sunday Ticket. This app will show the correct service for those weeks.</div></div><span class="pill">Auto</span></div></div><div class="card" style="margin-top:10px"><h3>🎧 Audio anywhere</h3><div class="row"><div class="left"><b>SiriusXM</b><div class="meta">Rams radio on the phone app, car, smart speaker or compatible TV.</div></div><a class="pill action-pill" href="https://www.siriusxm.com/sports/nfl/los-angeles-rams" target="_blank" rel="noopener">Open</a></div><div class="row"><div class="left"><b>NFL+ live game audio</b><div class="meta">Home, away and national radio calls for NFL games throughout the U.S.</div></div><a class="pill action-pill" href="https://www.nfl.com/plus/" target="_blank" rel="noopener">Open</a></div></div>
-      <div class="card" style="margin-top:10px"><h3>About this app</h3><div class="muted tiny">Rams GameDay v2.1 beta. Scores and game data are pulled from public football data when available. v2.0.1 fixes live recent plays by reading NFL play-by-play from the current and previous drive feeds. v2.0 rebuilds the live-game experience with a sticky score/situation HUD, 15-second in-game refresh, plain-English Game Read, head-to-head control stats, Rams player pulse, live game-plan grading, drive log and highlighted scoring/turnover plays. v1.9.4 labels the schedule as viewer-local time and tightens/lowers the bottom navigation for better iPhone proportions. v1.9.2 names the actual cornerback matchup in the Week 1 scouting brief instead of using a generic CB2 label. v1.9.1 makes this build share-ready: kickoff times automatically follow each viewer’s local time zone, viewing guidance is no longer tied to one household, Rams Media is labeled for any fan, and the More tab includes one-tap sharing. v1.9 adds automatic venue-local game-time weather and docks the bottom navigation to the screen edge in Safari/GitHub-hosted mode. v1.8 adds opponent-aware Rams Media shortcuts. v1.7 adds Game-Week Intelligence, injury-status change tracking and a live Matchup Key Tracker that grades the weekly scouting plan as the game unfolds. The 2026 schedule, TV networks, venues and jersey selections remain saved locally as a fallback.</div></div>
+      <div class="card" style="margin-top:10px"><h3>About this app</h3><div class="muted tiny">Rams GameDay v2.2 beta. Scores and game data are pulled from public football data when available. v2.0.1 fixes live recent plays by reading NFL play-by-play from the current and previous drive feeds. v2.0 rebuilds the live-game experience with a sticky score/situation HUD, 15-second in-game refresh, plain-English Game Read, head-to-head control stats, Rams player pulse, live game-plan grading, drive log and highlighted scoring/turnover plays. v1.9.4 labels the schedule as viewer-local time and tightens/lowers the bottom navigation for better iPhone proportions. v1.9.2 names the actual cornerback matchup in the Week 1 scouting brief instead of using a generic CB2 label. v1.9.1 makes this build share-ready: kickoff times automatically follow each viewer’s local time zone, viewing guidance is no longer tied to one household, Rams Media is labeled for any fan, and the More tab includes one-tap sharing. v1.9 adds automatic venue-local game-time weather and docks the bottom navigation to the screen edge in Safari/GitHub-hosted mode. v1.8 adds opponent-aware Rams Media shortcuts. v1.7 adds Game-Week Intelligence, injury-status change tracking and a live Matchup Key Tracker that grades the weekly scouting plan as the game unfolds. The 2026 schedule, TV networks, venues and jersey selections remain saved locally as a fallback.</div></div>
     </section>
   </main>
 </div>
@@ -1217,7 +1298,7 @@ function wmoWeather(code){code=Number(code);if(code===0)return ['☀️','Clear'
 function setWeatherUnavailable(msg,source='Forecast will appear automatically during game week.'){const card=$('gameWeatherCard');if(!card)return;card.classList.remove('loading');card.classList.add('unavailable');$('weatherIcon').textContent='🌦️';$('weatherLocalTime').textContent=currentGame?.venue||'Game site';$('weatherTemp').textContent=msg;$('weatherCondition').textContent='';$('weatherFeels').textContent='';$('weatherRain').textContent='';$('weatherWind').textContent='';$('weatherSource').textContent=source;gameWeatherSummary='';}
 async function loadGameWeather(){const g=currentGame;if(!g?.date){setWeatherUnavailable('Kickoff time TBD');return;}const v=VENUE_WEATHER[g.venue];if(!v){setWeatherUnavailable('Venue forecast unavailable');return;}const card=$('gameWeatherCard');card.classList.add('loading');card.classList.remove('unavailable');$('weatherLocalTime').textContent=`${v.label} • ${venueClock(g.date,v.tz)} local`;$('weatherTemp').textContent='Checking forecast…';$('weatherCondition').textContent='';$('weatherFeels').textContent='';$('weatherRain').textContent='';$('weatherWind').textContent='';try{const p=venueTimeParts(g.date,v.tz);const params=new URLSearchParams({latitude:String(v.lat),longitude:String(v.lon),hourly:'temperature_2m,apparent_temperature,precipitation_probability,weather_code,wind_speed_10m',temperature_unit:'fahrenheit',wind_speed_unit:'mph',timezone:v.tz,start_date:p.date,end_date:p.date});const d=await fetchJSON(`https://api.open-meteo.com/v1/forecast?${params}`);const h=d.hourly||{},times=h.time||[];if(!times.length)throw new Error('No forecast hours');const target=p.hour*60+p.minute;let idx=-1,best=1e9;times.forEach((t,i)=>{if(!String(t).startsWith(p.date))return;const hm=String(t).slice(11).split(':').map(Number);const delta=Math.abs(hm[0]*60+(hm[1]||0)-target);if(delta<best){best=delta;idx=i;}});if(idx<0)throw new Error('Kickoff hour unavailable');const temp=Math.round(Number(h.temperature_2m?.[idx]));const feels=Math.round(Number(h.apparent_temperature?.[idx]));const rain=Math.round(Number(h.precipitation_probability?.[idx]));const wind=Math.round(Number(h.wind_speed_10m?.[idx]));const [icon,condition]=wmoWeather(h.weather_code?.[idx]);$('weatherIcon').textContent=icon;$('weatherTemp').textContent=Number.isFinite(temp)?`${temp}°F`:'—';$('weatherCondition').textContent=condition;$('weatherFeels').textContent=Number.isFinite(feels)?`Feels ${feels}°`:'';$('weatherRain').textContent=Number.isFinite(rain)?`Rain ${rain}%`:'';$('weatherWind').textContent=Number.isFinite(wind)?`Wind ${wind} mph`:'';$('weatherSource').textContent=`Open-Meteo forecast • matched to kickoff at ${g.venue}`;gameWeatherData={temp,feels,rain,wind,condition};card.classList.remove('loading');gameWeatherSummary=[Number.isFinite(temp)?`${temp}°F`:null,condition,Number.isFinite(rain)?`${rain}% rain`:null].filter(Boolean).join(' • ');}catch(e){console.warn('weather forecast',e);setWeatherUnavailable('Forecast not available yet','Game-time weather will populate automatically once the venue forecast is in range.');}}
 function weatherText(s){const w=s?.gameInfo?.weather||s?.header?.competitions?.[0]?.weather;if(!w)return'';if(w.displayValue)return w.displayValue;const bits=[];if(w.temperature!=null)bits.push(`${w.temperature}°`);if(w.condition)bits.push(w.condition);return bits.join(' • ');}
-function updateModeContext(s,phase,comp){const weather=gameWeatherSummary||weatherText(s);const injuryCount=(s?.injuries||[]).filter(g=>g.team?.abbreviation==='LAR').reduce((n,g)=>n+(g.injuries?.length||0),0);const parts=[];if(weather)parts.push(`Weather: ${weather}`);parts.push(injuryCount?`Rams injury feed: ${injuryCount} listed`:'Game-week intelligence is active below');$('modeInjury').textContent=parts.join(' • ');if(phase==='pre')renderMode('pre',comp);updateWhats(s,phase,comp);renderPlayerTracker(s);renderGameWeekIntel(s);renderKeyTracker(s,phase,comp);}
+function updateModeContext(s,phase,comp){const weather=gameWeatherSummary||weatherText(s);const injuryCount=(s?.injuries||[]).filter(g=>g.team?.abbreviation==='LAR').reduce((n,g)=>n+(g.injuries?.length||0),0);const parts=[];if(weather)parts.push(`Weather: ${weather}`);parts.push(injuryCount?`Rams injury feed: ${injuryCount} listed`:'Game-week intelligence is active below');$('modeInjury').textContent=parts.join(' • ');if(phase==='pre')renderMode('pre',comp);renderMatchupExtras(s,phase,comp);updateWhats(s,phase,comp);renderPlayerTracker(s);renderGameWeekIntel(s);renderKeyTracker(s,phase,comp);}
 function statObj(entry){return Object.fromEntries((entry?.stats||[]).map(x=>[x.name,x]));}
 function statDisplay(st,names,fallback='—'){for(const n of names){if(st[n]?.displayValue!=null)return st[n].displayValue;if(st[n]?.value!=null)return String(st[n].value)}return fallback;}
 function updateWestImpact(entries){lastStandings=entries||[];const r=entries.findIndex(e=>e.team?.abbreviation==='LAR');const rem=remainingDivisionGames();$('westRemainChip').textContent=`Division games ${rem.length}`;if(r<0){$('westImpactTitle').textContent='NFC West race';$('westImpactText').textContent='Standings are loading from the live feed.';return;}const ram=entries[r],rst=statObj(ram),leader=entries[0],lst=statObj(leader);const gb=statDisplay(rst,['gamesBehind'],r===0?'—':(((Number(statDisplay(lst,['wins'],'0'))-Number(statDisplay(rst,['wins'],'0')))+(Number(statDisplay(rst,['losses'],'0'))-Number(statDisplay(lst,['losses'],'0'))))/2).toString());$('westRankChip').textContent=`Rams #${r+1}`;if(r===0){$('westImpactTitle').textContent='Rams lead the NFC West';const second=entries[1];$('westImpactText').textContent=second?`Los Angeles is in first. ${second.team?.abbreviation||'The next team'} is the closest challenger; every division game matters for tiebreakers.`:'Los Angeles is on top of the division.';}else{$('westImpactTitle').textContent=`Rams are ${gb} GB of ${leader.team?.abbreviation||'1st'}`;$('westImpactText').textContent=`Los Angeles is currently #${r+1} in the West. ${rem.length?`Next remaining division game: Week ${rem[0].w} ${rem[0].loc==='vs'?'vs':'at'} ${names[rem[0].opp]}.`:''}`;}if(currentGame&&['SF','ARI','SEA'].includes(currentGame.opp))$('westImpactText').textContent+=` Week ${currentGame.w} is a head-to-head division game, so the result has extra tiebreaker value.`;}
@@ -1287,7 +1368,7 @@ function nextRefreshDelay(){
 function scheduleNextRefresh(){if(refreshTimer)clearTimeout(refreshTimer);refreshTimer=setTimeout(refreshLive,nextRefreshDelay());}
 async function fetchJSON(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}
 async function refreshLive(){if(refreshTimer){clearTimeout(refreshTimer);refreshTimer=null;}try{const g=currentGame||currentWeek();const week=g.w;const board=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${SEASON}&seasontype=2&week=${week}`);harvestLeague(board);harvestWestGames(board,week);const ev=(board.events||[]).find(e=>(e.competitions?.[0]?.competitors||[]).some(c=>c.team?.abbreviation==='LAR'));if(ev){liveEvent=ev;applyScoreboard(ev);try{liveSummary=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=${encodeURIComponent(ev.id)}`);planDataVersion++;applySummary(liveSummary);}catch(e){console.warn('summary',e)}}await Promise.allSettled([loadStandings(),loadNews(),livePhase==='live'?Promise.resolve():loadGameWeather()]);lastRefreshAt=Date.now();const stamp='Updated '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})+' '+viewerZoneLabel(Date.now());$('updated').dataset.stamp=stamp;$('updated').textContent=stamp;$('dot').className='dot';refreshAgeText();saveSnapshot();}catch(e){console.warn(e);$('dot').className='dot offline';const el=$('updated');el.textContent=lastRefreshAt?`${el.dataset.stamp||'Last update'} • reconnecting…`:el.dataset.stamp?`${el.dataset.stamp} • offline`:'Live feed unavailable • schedule still works';}finally{scheduleNextRefresh();}}
-function applyScoreboard(ev){const comp=ev.competitions?.[0]||{};const cs=comp.competitors||[];const away=cs.find(c=>c.homeAway==='away'),home=cs.find(c=>c.homeAway==='home');const status=comp.status?.type||ev.status?.type||{};const complete=!!status.completed||status.state==='post',active=status.state==='in';const phase=active?'live':complete?'post':'pre';const _cs=cs;const larC=_cs.find(c=>c.team?.abbreviation==='LAR'),oppC=_cs.find(c=>c.team?.abbreviation!=='LAR');checkScoreChange(larC?.score,oppC?.score,phase);const a=away?.score||'0',h=home?.score||'0';const eventDate=ev.date||comp.date||currentGame?.date;const statusText=(!active&&!complete)?fmtHero(eventDate):liveStatusText(status,eventDate);$('midScore').textContent=(active||complete)?`${a} – ${h}`:'AT';$('gameState').textContent=statusText;$('heroEyebrow').textContent=active?'LIVE RAMS GAME':complete?'FINAL':'NEXT RAMS GAME';$('gAwayScore').textContent=a;$('gHomeScore').textContent=h;$('gClock').textContent=statusText;$('dadScore').textContent=`${a}–${h}`;$('dadState').textContent=statusText;$('companionStatus').textContent=statusText;const situation=comp.situation||{};let poss=situation.possessionText||situation.possession||'—';if(poss&&typeof poss==='string'&&poss.length>8)poss=poss.slice(0,8);$('possession').textContent=poss||'—';$('dadPoss').textContent=poss||'—';const down=situation.shortDownDistanceText||situation.downDistanceText||'—';$('downDist').textContent=down==='—'?'—':down.replace(/&/g,'&');$('dadDown').textContent=down;$('gSituation').textContent=situation.downDistanceText||situation.lastPlay?.text||'Kickoff information above';$('dadSituation').textContent=$('gSituation').textContent;$('recordChip').textContent='LAR '+((cs.find(c=>c.team?.abbreviation==='LAR')?.records||[])[0]?.summary||'0-0');livePhase=phase;if($('gamePossession'))$('gamePossession').textContent=poss||'—';if($('gameDown'))$('gameDown').textContent=down||'—';renderMode(phase,comp);if(phase==='live')updateWhats(liveSummary,phase,comp);if(phase==='post')updateWhats(liveSummary,phase,comp);if(firstScoreboard&&phase==='live'){switchView('game');}firstScoreboard=false;}
+function applyScoreboard(ev){const comp=ev.competitions?.[0]||{};const cs=comp.competitors||[];const away=cs.find(c=>c.homeAway==='away'),home=cs.find(c=>c.homeAway==='home');const status=comp.status?.type||ev.status?.type||{};const complete=!!status.completed||status.state==='post',active=status.state==='in';const phase=active?'live':complete?'post':'pre';const _cs=cs;const larC=_cs.find(c=>c.team?.abbreviation==='LAR'),oppC=_cs.find(c=>c.team?.abbreviation!=='LAR');checkScoreChange(larC?.score,oppC?.score,phase);const a=away?.score||'0',h=home?.score||'0';const eventDate=ev.date||comp.date||currentGame?.date;const statusText=(!active&&!complete)?fmtHero(eventDate):liveStatusText(status,eventDate);$('midScore').textContent=(active||complete)?`${a} – ${h}`:'AT';$('gameState').textContent=statusText;$('heroEyebrow').textContent=active?'LIVE RAMS GAME':complete?'FINAL':'NEXT RAMS GAME';$('gAwayScore').textContent=a;$('gHomeScore').textContent=h;$('gClock').textContent=statusText;$('dadScore').textContent=`${a}–${h}`;$('dadState').textContent=statusText;$('companionStatus').textContent=statusText;const situation=comp.situation||{};let poss=situation.possessionText||situation.possession||'—';if(poss&&typeof poss==='string'&&poss.length>8)poss=poss.slice(0,8);$('possession').textContent=poss||'—';$('dadPoss').textContent=poss||'—';const down=situation.shortDownDistanceText||situation.downDistanceText||'—';$('downDist').textContent=down==='—'?'—':down.replace(/&/g,'&');$('dadDown').textContent=down;$('gSituation').textContent=situation.downDistanceText||situation.lastPlay?.text||'Kickoff information above';$('dadSituation').textContent=$('gSituation').textContent;$('recordChip').textContent='LAR '+((cs.find(c=>c.team?.abbreviation==='LAR')?.records||[])[0]?.summary||'0-0');livePhase=phase;if($('gamePossession'))$('gamePossession').textContent=poss||'—';if($('gameDown'))$('gameDown').textContent=down||'—';renderMode(phase,comp);try{renderLinescore(liveSummary,comp);}catch(e){}if(phase==='live')updateWhats(liveSummary,phase,comp);if(phase==='post')updateWhats(liveSummary,phase,comp);if(firstScoreboard&&phase==='live'){switchView('game');}firstScoreboard=false;}
 function applySummary(s){const teams=s.boxscore?.teams||[];const rt=teams.find(t=>t.team?.abbreviation==='LAR');if(rt){$('larYards').textContent=findStat(rt.statistics,'totalYards');$('larFirst').textContent=findStat(rt.statistics,'firstDowns');$('larTurn').textContent=findStat(rt.statistics,'turnovers');$('dadYards').textContent=$('larYards').textContent;const rows=['totalYards','firstDowns','turnovers','possessionTime','thirdDownEff'].map(n=>{const st=(rt.statistics||[]).find(x=>x.name===n);return st?`<div class="row"><div class="left"><b>${st.label||n}</b></div><span>${st.displayValue}</span></div>`:''}).join('');$('teamStats').innerHTML=rows||'<div class="muted tiny">Stats populate during the game.</div>';}
 const wp=(s.winprobability||[]).at(-1);if(wp){const header=s.header?.competitions?.[0];const home=(header?.competitors||[]).find(c=>c.homeAway==='home')?.team?.abbreviation==='LAR';const pct=Math.round((home?wp.homeWinPercentage:1-wp.homeWinPercentage)*100);$('winPct').textContent=pct+'%';$('gWin').textContent=pct+'%';if($('gWinMirror'))$('gWinMirror').textContent=pct+'%';$('dadWin').textContent=pct+'%';}
 const headerComp=s.header?.competitions?.[0]||{};const sit=headerComp.situation||{};const headerStatus=headerComp.status?.type||{};const headerDate=headerComp.date||currentGame?.date;const headerActive=headerStatus.state==='in';const headerComplete=!!headerStatus.completed||headerStatus.state==='post';$('situationTitle').textContent=(!headerActive&&!headerComplete)?fmtHero(headerDate):(sit.downDistanceText||headerStatus.detail||'Game status');$('situationText').textContent=sit.lastPlay?.text||'Live situation appears here when the game begins.';
@@ -1481,6 +1562,273 @@ function applyTextSize(size){
   try{localStorage.setItem(TEXT_KEY,s);}catch(e){}
 }
 
+/* ===========================================================================
+   v2.2 — pregame depth and in-game storytelling
+   ---------------------------------------------------------------------------
+   Pregame : the line and the projection, the series history, one-tap calendar
+   In-game : quarter-by-quarter, every scoring play, and the win-probability
+             swing that the single current number could never show
+   All of it comes out of the summary payload the app already fetches.
+   =========================================================================== */
+
+/* --- shared helpers ------------------------------------------------------- */
+function pct(v){const n=Number(v);return Number.isFinite(n)?(n<=1?n*100:n):null;}
+function clockFromSecondsLeft(sec){
+  const s=Number(sec);
+  if(!Number.isFinite(s))return'';
+  if(s<0)return'OT';
+  const elapsed=3600-s;
+  if(elapsed<=0)return'Q1 15:00';
+  const period=Math.min(4,Math.floor((elapsed-0.001)/900)+1);
+  const inQ=Math.max(0,900*period-elapsed);
+  const m=Math.floor(inQ/60),ss=Math.floor(inQ%60);
+  return `Q${period} ${m}:${String(ss).padStart(2,'0')}`;
+}
+function ramsIsHome(){return currentGame?.loc==='vs';}
+
+/* --- 1: quarter by quarter ------------------------------------------------ */
+function renderLinescore(s,comp){
+  const el=$('lineScore');if(!el)return;
+  const cs=comp?.competitors||s?.header?.competitions?.[0]?.competitors||[];
+  const away=cs.find(c=>c.homeAway==='away'),home=cs.find(c=>c.homeAway==='home');
+  const rows=[away,home].filter(Boolean);
+  if(rows.length<2||!rows.some(c=>(c.linescores||[]).length)){
+    el.innerHTML='<div class="muted tiny" style="padding:10px 0">Quarter scoring appears once the game starts.</div>';
+    return;
+  }
+  const maxQ=Math.max(4,...rows.map(c=>(c.linescores||[]).length));
+  const head=['',...Array.from({length:maxQ},(_,i)=>i<4?'Q'+(i+1):'OT'+(i>4?i-3:'')),'T'];
+  const body=rows.map(c=>{
+    const ab=c.team?.abbreviation||'';
+    const ls=c.linescores||[];
+    const cells=Array.from({length:maxQ},(_,i)=>{
+      const v=ls[i]?.value??ls[i]?.displayValue;
+      return Number.isFinite(Number(v))?String(Number(v)):'–';
+    });
+    const total=Number(c.score)||cells.reduce((n,v)=>n+(Number(v)||0),0);
+    return {ab,cells,total,rams:ab==='LAR'};
+  });
+  const winner=body[0].total===body[1].total?null:(body[0].total>body[1].total?0:1);
+  el.innerHTML=`<div class="ls-grid" style="--ls-cols:${maxQ}">
+    ${head.map((h,i)=>`<span class="ls-h${i===head.length-1?' ls-total':''}">${h}</span>`).join('')}
+    ${body.map((r,ri)=>`<span class="ls-team${r.rams?' ls-rams':''}">
+        <img class="ls-logo" src="${teamLogo(r.ab)}" alt=""><b>${r.ab}</b></span>
+      ${r.cells.map(v=>`<span class="ls-v">${v}</span>`).join('')}
+      <span class="ls-v ls-total${winner===ri?' ls-win':''}">${r.total}</span>`).join('')}
+  </div>`;
+}
+
+/* --- 2: every scoring play ------------------------------------------------ */
+function renderScoringPlays(s){
+  const el=$('scoringFeed');if(!el)return;
+  const plays=(s?.scoringPlays||[]).slice().reverse();   /* newest first */
+  if(!plays.length){
+    el.innerHTML='<div class="muted tiny" style="padding:10px 0">Every touchdown, field goal and safety lands here as it happens.</div>';
+    return;
+  }
+  el.innerHTML=plays.map(p=>{
+    const ab=p.team?.abbreviation||'';
+    const rams=ab==='LAR';
+    const kind=String(p.scoringType?.displayName||p.scoringType?.name||p.type?.text||'Score');
+    const icon=/touchdown/i.test(kind)?'🏈':/field goal/i.test(kind)?'🥅':/safety/i.test(kind)?'🛡️':/extra|point after/i.test(kind)?'✔️':'•';
+    const q=p.period?.number?`Q${p.period.number}`:'';
+    const clock=p.clock?.displayValue||'';
+    const away=p.awayScore,home=p.homeScore;
+    const lar=ramsIsHome()?home:away,opp=ramsIsHome()?away:home;
+    return `<div class="score-play${rams?' is-rams':''}">
+      <div class="sp-top">
+        <span class="sp-team"><img class="sp-logo" src="${teamLogo(ab)}" alt="">${esc(ab)}</span>
+        <span class="sp-kind">${icon} ${esc(kind)}</span>
+        <span class="sp-when">${esc([q,clock].filter(Boolean).join(' '))}</span>
+      </div>
+      <div class="sp-text">${esc(p.text||'')}</div>
+      <div class="sp-score"><b class="${Number(lar)>=Number(opp)?'yellow':''}">LAR ${lar}</b><span>–</span><b>${esc(currentGame?.opp||'OPP')} ${opp}</b></div>
+    </div>`;
+  }).join('');
+}
+
+/* --- 3: the win-probability swing ----------------------------------------
+   One series, so no legend — the title names it. Polarity around 50% is the
+   whole point, so the midline is drawn and the fill takes the Rams gold above
+   it and a red below. Colour is never the only cue: the midline, the direct
+   labels and the hero number all carry it too. */
+const WP_UP='#ffd100', WP_DOWN='#e05060';
+let wpSeries=[];
+function renderWinProbTrend(s){
+  const wrap=$('winTrend');if(!wrap)return;
+  const raw=s?.winprobability||[];
+  const home=ramsIsHome();
+  const pts=raw.map(w=>{
+    const hp=pct(w.homeWinPercentage);
+    if(hp==null)return null;
+    return {v:home?hp:100-hp,sec:Number(w.secondsLeft)};
+  }).filter(Boolean);
+  wpSeries=pts;
+  const cur=pts.length?pts[pts.length-1].v:null;
+  if($('gWinMirror'))$('gWinMirror').textContent=cur==null?'—':Math.round(cur)+'%';
+  if(pts.length<3){
+    wrap.innerHTML='<div class="muted tiny" style="padding:12px 0">The win-probability line draws itself once the game is under way.</div>';
+    if($('winTrendText'))$('winTrendText').textContent='Live estimate when available';
+    return;
+  }
+  const W=320,H=132,PAD=6;
+  const n=pts.length;
+  const x=i=>PAD+(i/(n-1))*(W-PAD*2);
+  const y=v=>PAD+(1-v/100)*(H-PAD*2);
+  const mid=y(50);
+  const line=pts.map((p,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(p.v).toFixed(1)}`).join('');
+  const areaUp=`${line}L${x(n-1).toFixed(1)},${mid}L${x(0).toFixed(1)},${mid}Z`;
+  const lo=pts.reduce((a,b)=>b.v<a.v?b:a),hi=pts.reduce((a,b)=>b.v>a.v?b:a);
+  const loI=pts.indexOf(lo),hiI=pts.indexOf(hi);
+  wrap.innerHTML=`
+  <div class="wp-plot">
+  <svg class="wp-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img"
+       aria-label="Rams win probability over the game, currently ${Math.round(cur)} percent">
+    <defs>
+      <clipPath id="wpAbove"><rect x="0" y="0" width="${W}" height="${mid}"/></clipPath>
+      <clipPath id="wpBelow"><rect x="0" y="${mid}" width="${W}" height="${H-mid}"/></clipPath>
+      <linearGradient id="wpFillUp" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${WP_UP}" stop-opacity=".34"/><stop offset="100%" stop-color="${WP_UP}" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="wpFillDown" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0%" stop-color="${WP_DOWN}" stop-opacity=".30"/><stop offset="100%" stop-color="${WP_DOWN}" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path d="${areaUp}" fill="url(#wpFillUp)" clip-path="url(#wpAbove)"/>
+    <path d="${areaUp}" fill="url(#wpFillDown)" clip-path="url(#wpBelow)"/>
+    <line class="wp-mid" x1="0" y1="${mid}" x2="${W}" y2="${mid}" vector-effect="non-scaling-stroke"/>
+    <path d="${line}" class="wp-line wp-up" clip-path="url(#wpAbove)" vector-effect="non-scaling-stroke"/>
+    <path d="${line}" class="wp-line wp-down" clip-path="url(#wpBelow)" vector-effect="non-scaling-stroke"/>
+    <circle class="wp-now" cx="${x(n-1).toFixed(1)}" cy="${y(cur).toFixed(1)}" r="4.5" vector-effect="non-scaling-stroke"/>
+    <line class="wp-cross hidden" id="wpCross" y1="0" y2="${H}" vector-effect="non-scaling-stroke"/>
+  </svg>
+  <span class="wp-zone wp-zone-top">RAMS FAVORED</span>
+  <span class="wp-zone wp-zone-bot">${esc((names[currentGame?.opp]||'OPP').toUpperCase())} FAVORED</span>
+  <span class="wp-zone wp-zone-mid">50%</span>
+  </div>
+  <div class="wp-axis"><span>Kickoff</span><span>Now</span></div>`;
+  const svg=wrap.querySelector('.wp-svg');
+  const tip=$('wpTip');
+  const show=e=>{
+    const r=svg.getBoundingClientRect();
+    const cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
+    const i=Math.max(0,Math.min(n-1,Math.round((cx/r.width)*(n-1))));
+    const p=pts[i];
+    const cross=$('wpCross');
+    if(cross){cross.classList.remove('hidden');cross.setAttribute('x1',x(i));cross.setAttribute('x2',x(i));}
+    if(tip){tip.textContent=`${clockFromSecondsLeft(p.sec)} · Rams ${Math.round(p.v)}%`;tip.classList.add('on');}
+  };
+  const hide=()=>{const c=$('wpCross');if(c)c.classList.add('hidden');if(tip)tip.classList.remove('on');};
+  svg.addEventListener('pointermove',show);
+  svg.addEventListener('pointerdown',show);
+  svg.addEventListener('pointerleave',hide);
+  svg.addEventListener('pointerup',hide);
+  if($('winTrendText')){
+    const swing=Math.round(hi.v-lo.v);
+    $('winTrendText').textContent=swing>=25
+      ? `Swung ${swing} points — low of ${Math.round(lo.v)}% at ${clockFromSecondsLeft(pts[loI].sec)}, high of ${Math.round(hi.v)}% at ${clockFromSecondsLeft(pts[hiI].sec)}.`
+      : `Steady game: between ${Math.round(lo.v)}% and ${Math.round(hi.v)}% all the way.`;
+  }
+}
+
+/* --- 4: the line and the projection --------------------------------------- */
+function renderOdds(s){
+  const card=$('oddsCard');if(!card)return;
+  const o=(s?.pickcenter||s?.odds||[])[0]||(s?.header?.competitions?.[0]?.odds||[])[0];
+  const pred=s?.predictor;
+  const home=ramsIsHome();
+  let proj=null;
+  if(pred){
+    const p=pct(home?pred.homeTeam?.gameProjection:pred.awayTeam?.gameProjection);
+    if(p!=null)proj=p;
+  }
+  const bits=[];
+  if(o?.details)bits.push({k:'Line',v:o.details});
+  const ou=o?.overUnder??o?.overOdds;
+  if(Number.isFinite(Number(ou)))bits.push({k:'Total',v:'O/U '+Number(ou)});
+  if(proj!=null)bits.push({k:'ESPN gives the Rams',v:Math.round(proj)+'%'});
+  if(!bits.length){
+    card.innerHTML='<div class="odds-head"><span class="card-kicker">THE NUMBER</span></div><div class="muted tiny">The line and projection post closer to kickoff.</div>';
+    return;
+  }
+  const favored=o?.details?/LAR/i.test(o.details):(proj!=null?proj>50:null);
+  const read=favored==null?'':favored
+    ? 'Los Angeles is favored here — the kind of game where the plan above is about not letting it stay close.'
+    : 'Los Angeles is getting points here. Early execution matters more than usual.';
+  card.innerHTML=`<div class="odds-head"><span class="card-kicker">THE NUMBER</span>${o?.provider?.name?`<span class="odds-src">${esc(o.provider.name)}</span>`:''}</div>
+    <div class="odds-grid">${bits.map(b=>`<div class="odds-cell"><span>${esc(b.k)}</span><b>${esc(b.v)}</b></div>`).join('')}</div>
+    ${read?`<div class="odds-read">${esc(read)}</div>`:''}`;
+}
+
+/* --- 5: the history between these two ------------------------------------- */
+function renderSeries(s){
+  const card=$('seriesCard');if(!card)return;
+  const series=(s?.seasonseries||[])[0];
+  const opp=names[currentGame?.opp]||'them';
+  const events=(series?.events||[]).slice().sort((a,b)=>new Date(b.date||0)-new Date(a.date||0)).slice(0,4);
+  if(!series&&!events.length){
+    card.innerHTML=`<div class="card-kicker">HISTORY</div><div class="muted tiny">Past meetings with the ${esc(opp)} appear here when the feed carries them.</div>`;
+    return;
+  }
+  const rows=events.map(ev=>{
+    const comp=ev.competitions?.[0]||ev;
+    const cs=comp.competitors||[];
+    const us=cs.find(c=>c.team?.abbreviation==='LAR'),them=cs.find(c=>c.team?.abbreviation!=='LAR');
+    const a=statNumber(us?.score?.displayValue??us?.score),b=statNumber(them?.score?.displayValue??them?.score);
+    if(a==null||b==null)return'';
+    const when=ev.date?new Intl.DateTimeFormat('en-US',{month:'short',year:'numeric',timeZone:VIEWER_TZ}).format(new Date(ev.date)):'';
+    const w=a>b,t=a===b;
+    return `<div class="series-row"><span class="series-res ${t?'tie':w?'win':'loss'}">${t?'T':w?'W':'L'}</span>
+      <span class="series-sc">${a}–${b}</span><span class="series-when">${esc(when)}</span></div>`;
+  }).filter(Boolean).join('');
+  card.innerHTML=`<div class="card-kicker">HISTORY</div>
+    <b class="series-sum">${esc(series?.summary||series?.title||`Rams vs ${opp}`)}</b>
+    ${rows||'<div class="muted tiny" style="margin-top:8px">No completed meetings on record yet.</div>'}`;
+}
+
+/* --- 6: one tap into his calendar ----------------------------------------- */
+function icsEscape(t){return String(t||'').replace(/([,;\\])/g,'\\$1').replace(/\n/g,'\\n');}
+function icsStamp(d){return new Date(d).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');}
+function buildICS(games){
+  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Rams GameDay//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:Rams GameDay'];
+  for(const g of games){
+    if(!g.date||g.bye)continue;
+    const start=new Date(g.date),end=new Date(start.getTime()+3.5*60*60*1000);
+    const title=`Rams ${g.loc==='vs'?'vs':'@'} ${names[g.opp]||g.opp}`;
+    lines.push('BEGIN:VEVENT',
+      `UID:rams-${SEASON}-w${g.w}@ramsgameday`,
+      `DTSTAMP:${icsStamp(Date.now())}`,
+      `DTSTART:${icsStamp(start)}`,
+      `DTEND:${icsStamp(end)}`,
+      `SUMMARY:${icsEscape(title)}`,
+      `LOCATION:${icsEscape(g.venue+(g.place?', '+g.place:''))}`,
+      `DESCRIPTION:${icsEscape(`Week ${g.w} • ${g.network||'TV TBD'} • Jersey: ${g.jersey||'TBD'}`)}`,
+      'BEGIN:VALARM','TRIGGER:-PT60M','ACTION:DISPLAY','DESCRIPTION:Rams kickoff in an hour','END:VALARM',
+      'END:VEVENT');
+  }
+  lines.push('END:VCALENDAR');
+  return lines.join('\r\n');
+}
+function downloadICS(games,filename){
+  try{
+    const blob=new Blob([buildICS(games)],{type:'text/calendar;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download=filename;document.body.appendChild(a);a.click();
+    setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},1500);
+    toast('📅 Added to your calendar app');
+  }catch(e){toast('Could not build the calendar file');}
+}
+
+/* --- wire the new panels into the existing render cycle ------------------- */
+function renderMatchupExtras(s,phase,comp){
+  try{renderLinescore(s,comp);}catch(e){console.warn('linescore',e);}
+  try{renderScoringPlays(s);}catch(e){console.warn('scoring',e);}
+  try{renderWinProbTrend(s);}catch(e){console.warn('winprob',e);}
+  try{renderOdds(s);}catch(e){console.warn('odds',e);}
+  try{renderSeries(s);}catch(e){console.warn('series',e);}
+}
+
 /* ---- bootstrap ---- */
 applyTextSize((()=>{try{return localStorage.getItem(TEXT_KEY)||'normal'}catch(e){return'normal'}})());
 document.querySelectorAll('.textsize-btn').forEach(b=>b.addEventListener('click',()=>applyTextSize(b.dataset.size)));
@@ -1492,6 +1840,8 @@ loadRamsResults();
 setInterval(updateCountdown,60000);
 setInterval(refreshAgeText,1000);
 $('statusLine').addEventListener('click',()=>{toast('Refreshing…');refreshLive();});
+if($('calNextBtn'))$('calNextBtn').addEventListener('click',()=>{const g=currentGame;if(g?.date)downloadICS([g],`rams-week-${g.w}.ics`);else toast('Kickoff time is still TBD');});
+if($('calSeasonBtn'))$('calSeasonBtn').addEventListener('click',()=>downloadICS(schedule.filter(g=>g.date&&!g.bye),`rams-${SEASON}-season.ics`));
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>{
     navigator.serviceWorker.register('./sw.js?v=2.1.0',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
