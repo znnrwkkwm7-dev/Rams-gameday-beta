@@ -13,14 +13,49 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icon-180.png" />
   <title>Rams GameDay</title>
-  <!-- Rams GameDay v1.9: matchup plan builds itself on Tuesday of game week and refreshes all week from the live feeds -->
+  <!-- Rams GameDay v2.0: self-building matchup plan, adaptive refresh, offline fallback, season results, NFC West scoreboard, score alerts -->
   <style>
     :root{--navy:#071a3a;--blue:#0b4fb3;--royal:#0047ab;--yellow:#ffd100;--sky:#78b7ff;--card:#0d2448;--card2:#102b55;--muted:#9db1d1;--text:#fff;--good:#4bdd9a;--warn:#ffd166;--bad:#ff6b6b;--line:#23446f;--opp-primary:#aa0000;--opp-secondary:#b3995d}
     *{box-sizing:border-box}html{background:var(--navy);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{margin:0;background:linear-gradient(180deg,#051327 0,#071a3a 30%,#06152d 100%);min-height:100vh;padding-bottom:calc(102px + env(safe-area-inset-bottom))}button,a{font:inherit}button{cursor:pointer}.app{max-width:720px;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 16px 36px}.top{display:flex;align-items:center;gap:12px;margin:6px 0 14px}.mark{width:58px;height:58px;border-radius:18px;background:linear-gradient(145deg,var(--yellow),#ffb400);display:grid;place-items:center;color:#071a3a;font-weight:1000;font-size:24px;box-shadow:0 8px 24px #0007}.brand h1{font-size:25px;line-height:1;margin:0}.brand p{margin:6px 0 0;color:var(--muted);font-size:14px}.top-actions{margin-left:auto;display:flex;gap:8px}.iconbtn{border:1px solid var(--line);background:#0d2448;color:#fff;border-radius:14px;min-width:46px;height:46px;font-size:20px}.statusline{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:13px;margin-bottom:14px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--good);box-shadow:0 0 0 5px #4bdd9a1a;margin-right:8px}.hero{position:relative;background:radial-gradient(circle at 90% 0,#1b64d155 0,transparent 40%),linear-gradient(160deg,#0e2c5b,#0b2146);border:1px solid #315889;border-radius:26px;padding:22px 18px 18px;overflow:hidden}.hero:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--opp-primary) 0 28%,var(--opp-secondary) 28% 38%,#153f78 38% 62%,var(--royal) 62% 84%,var(--yellow) 84% 100%)}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--sky);font-weight:800}.matchup{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px;margin-top:14px}.team{text-align:center}.team-panel{min-width:0;border:1px solid #315889;border-radius:18px;padding:10px 7px 9px;transition:border-color .2s ease,background .2s ease}.team-panel.rams-panel{box-shadow:inset 0 0 0 1px #ffd10026,0 0 22px #0047ab20}.team-logo-wrap{width:50px;height:50px;margin:0 auto 4px;display:grid;place-items:center;position:relative}.team-logo{display:block;max-width:48px;max-height:48px;object-fit:contain;filter:drop-shadow(0 4px 7px #0008)}.team-logo-fallback{display:none;width:42px;height:42px;border-radius:50%;place-items:center;font-size:13px;font-weight:1000;background:#102b55;color:#fff;border:1px solid #ffffff33}.abbr{font-size:24px;font-weight:1000;letter-spacing:-.03em;line-height:1}.teamname{font-size:11px;color:var(--muted);margin-top:4px}.versus{font-size:13px;color:var(--muted)}.versus-badge{min-width:48px;padding:8px 7px;border:1px solid #315889;border-radius:999px;background:#071a3acc;text-align:center;font-weight:900;letter-spacing:.06em}.game-team-logo{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 3px 5px #0008);margin-bottom:3px}.score{font-size:48px;line-height:1;font-weight:1000}.gamestate{text-align:center;margin-top:13px;font-size:15px;font-weight:700}.substate{text-align:center;color:var(--muted);font-size:13px;margin-top:5px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.chip{padding:7px 9px;border-radius:999px;border:1px solid var(--line);background:#071a3a99;color:#dce9ff;font-size:12px}.yellow{color:var(--yellow)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.card{background:linear-gradient(180deg,var(--card),#0b2142);border:1px solid var(--line);border-radius:20px;padding:15px}.card h3,.section-title{margin:0 0 10px;font-size:17px}.section-title{margin-top:22px;display:flex;align-items:center;justify-content:space-between}.section-title small{font-size:12px;color:var(--muted);font-weight:500}.big{font-size:26px;font-weight:900}.muted{color:var(--muted)}.tiny{font-size:12px}.watch{display:flex;align-items:center;gap:10px}.watch-badge{height:44px;min-width:56px;padding:0 10px;border-radius:12px;background:var(--yellow);color:#071a3a;display:grid;place-items:center;font-size:12px;font-weight:900}.listen-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.listen-links a,.action-pill{color:#dce9ff;text-decoration:none}.listen-links a{border:1px solid var(--line);background:#081c39;border-radius:12px;padding:9px 11px;font-size:12px;font-weight:800}.listen-links a:active,.action-pill:active{transform:scale(.98)}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#081c39;border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}.stat strong{display:block;font-size:19px}.stat span{font-size:11px;color:var(--muted)}.tabs{display:flex;gap:7px;overflow:auto;padding:1px 0 4px}.tabs::-webkit-scrollbar{display:none}.tab{white-space:nowrap;border:1px solid var(--line);color:#d9e7ff;background:#0b2142;border-radius:999px;padding:9px 12px;font-size:13px}.tab.active{background:var(--yellow);border-color:var(--yellow);color:#071a3a;font-weight:900}.panel{display:none}.panel.active{display:block}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #1b3b65}.row:first-child{border-top:0}.row .left{min-width:0}.row b{display:block}.row .meta{font-size:12px;color:var(--muted);margin-top:3px}.pill{padding:5px 8px;border-radius:999px;background:#102b55;border:1px solid var(--line);font-size:11px}.drive{padding:12px;border-radius:15px;background:#081c39;border:1px solid var(--line);margin-bottom:8px}.drive .drive-head{display:flex;justify-content:space-between;gap:8px;font-weight:800}.play{font-size:13px;padding:10px 0;border-top:1px solid #1b3b65}.play:first-child{border-top:0}.schedule-week{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #1b3b65}.schedule-week:first-child{border-top:0}.wk{font-weight:1000;color:var(--yellow)}.network{font-size:11px;border:1px solid var(--line);padding:5px 7px;border-radius:9px;color:#d7e5ff}.bye{text-align:center;color:var(--muted);padding:14px}.standings-row{display:grid;grid-template-columns:1fr 42px 42px 42px;gap:8px;padding:10px 0;border-top:1px solid #1b3b65;align-items:center}.standings-row:first-child{border-top:0}.nav{position:fixed;z-index:50;left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));bottom:0;max-width:680px;margin:auto;background:#071831f7;border:1px solid #244b7e;border-bottom:0;border-radius:24px 24px 0 0;padding:7px 7px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:4px;backdrop-filter:blur(18px);box-shadow:0 -10px 30px #0008}.nav button{min-height:58px;border:0;background:transparent;color:#8fa8cd;border-radius:18px;font-size:11px;font-weight:750}.nav .ico{display:block;font-size:20px;margin-bottom:3px}.nav button.active{background:#102b55;color:#fff}.dad-overlay{display:none;position:fixed;inset:0;z-index:100;background:#030b18;color:white;padding:calc(18px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom));overflow:auto}.dad-overlay.on{display:block}.dad-close{float:right;border:1px solid #365a83;background:#0c1e38;color:#fff;border-radius:14px;width:50px;height:50px;font-size:20px}.dad-title{font-size:15px;color:#9db1d1;text-transform:uppercase;letter-spacing:.14em;margin-top:4px}.dad-match{clear:both;padding-top:36px;text-align:center}.dad-score{font-size:min(23vw,110px);line-height:.9;font-weight:1000;letter-spacing:-.06em}.dad-teams{font-size:30px;font-weight:900;margin-top:12px}.dad-state{font-size:22px;color:var(--yellow);margin-top:10px}.dad-situation{font-size:19px;margin-top:8px}.dad-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}.dad-stat{border:1px solid #294a72;border-radius:20px;padding:16px}.dad-stat b{display:block;font-size:24px}.dad-stat span{color:#9db1d1;font-size:13px}.offline{background:#392626;border-color:#704040}.hidden{display:none!important}.mode-card{position:relative;overflow:hidden;margin-top:12px;background:linear-gradient(135deg,#102d59,#0a2041);border:1px solid #315889;border-radius:20px;padding:18px 15px 15px}.mode-card:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--opp-primary),var(--opp-secondary),var(--yellow))}.mode-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.mode-badge{font-size:11px;letter-spacing:.1em;font-weight:950;padding:6px 9px;border-radius:999px;background:#173c70;color:#9dd0ff}.mode-card h3{font-size:19px;margin:12px 0 6px}.mode-card p{margin:0;color:#c0d1eb;font-size:13px;line-height:1.45}.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:13px}.scout-keys{grid-template-columns:1fr;gap:9px}.key{background:#081c39;border:1px solid var(--line);border-radius:13px;padding:10px}.scout-keys .key{position:relative;overflow:hidden;padding:14px 13px 13px 16px}.scout-keys .key:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--opp-primary),var(--opp-secondary))}.key-head{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:11px;min-height:34px}.key-num{width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,var(--yellow),#ffb400);color:#071a3a;display:grid;place-items:center;font-size:13px;line-height:1;font-weight:1000;box-shadow:inset 0 -2px 0 #c99700,0 3px 10px #0005}.key b{display:block;font-size:12px}.scout-keys .key b{font-size:14px;line-height:1.25}.key span{display:block;color:var(--muted);font-size:10px;margin-top:3px;line-height:1.3}.scout-keys .key>span{font-size:11px;line-height:1.45;margin-top:8px}.key-proof{margin-top:10px;padding-top:10px;border-top:1px solid #1b3b65;color:#c8d8ef;font-size:10.5px;line-height:1.45}.key-proof strong{color:var(--sky);font-size:9px;letter-spacing:.09em}.key-watch{margin-top:9px;padding:8px 9px;border-radius:10px;background:#ffd1000d;color:#fff0a6;font-size:10.5px;line-height:1.45}.key-watch strong{color:var(--yellow);font-size:9px;letter-spacing:.09em}.scout-stamp{display:inline-block;margin-top:10px;padding:5px 8px;border-radius:999px;background:#173c70;color:#b8dcff;font-size:9px;font-weight:850;letter-spacing:.05em}.mode-note{margin-top:10px;color:var(--muted);font-size:11px}.happening{margin-top:12px;border-left:4px solid var(--yellow)}.happening-label{font-size:11px;color:var(--sky);text-transform:uppercase;letter-spacing:.1em;font-weight:900}.happening h3{margin:7px 0 5px;font-size:18px}.happening p{margin:0;color:#bfd0e9;font-size:13px;line-height:1.45}.tracker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.tracker{background:#081c39;border:1px solid var(--line);border-radius:15px;padding:11px;min-height:104px}.tracker .role{font-size:10px;color:var(--sky);text-transform:uppercase;letter-spacing:.08em;font-weight:800}.tracker b{display:block;margin-top:6px;font-size:13px;line-height:1.2}.tracker strong{display:block;color:var(--yellow);font-size:17px;margin-top:8px}.standings-pro{display:grid;grid-template-columns:minmax(68px,1fr) 48px 34px 54px 44px;gap:5px;padding:10px 0;border-top:1px solid #1b3b65;align-items:center;font-size:12px}.standings-pro:first-child{border-top:0}.standings-pro .teamcell{font-weight:900}.seed{font-size:9px;color:var(--sky);font-weight:800}.west-impact{border-left:4px solid var(--yellow)}.west-impact h3{margin-bottom:6px}.dad-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.wake-btn{border:1px solid #365a83;background:#0c1e38;color:white;border-radius:12px;padding:10px 12px;font-weight:800}.dad-latest{margin-top:18px;border:1px solid #294a72;border-radius:18px;padding:15px}.dad-latest span{display:block;color:#9db1d1;font-size:12px;text-transform:uppercase;letter-spacing:.1em}.dad-latest b{display:block;margin-top:7px;font-size:18px;line-height:1.35}.schedule-opp{display:flex;align-items:center;gap:8px;border-left:3px solid var(--row-accent,var(--line));padding-left:8px}.schedule-logo{width:25px;height:25px;object-fit:contain;filter:drop-shadow(0 2px 4px #0006)}.teamcell{display:flex;align-items:center;gap:6px}.standings-logo{width:22px;height:22px;object-fit:contain}.opponent-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;border:1px solid var(--opp-secondary);background:#071a3aaa;color:#e9f1ff;font-size:10px;font-weight:850}.opponent-chip img{width:18px;height:18px;object-fit:contain}.scout-stamp{border:1px solid #315889}
 .scout-keys .key-head{grid-template-columns:34px minmax(0,1fr) auto}
 .scout-keys .key-tag{justify-self:end;align-self:center;padding:4px 8px;border-radius:999px;background:#173c70;border:1px solid #2b5896;color:#9dd0ff;font-size:9px;font-weight:900;letter-spacing:.09em;white-space:nowrap}
 @media(max-width:390px){.scout-keys .key-head{grid-template-columns:34px minmax(0,1fr);row-gap:7px}.scout-keys .key-tag{grid-column:2;justify-self:start}}
-.plan-cadence{margin-top:10px;padding:9px 11px;border-radius:12px;background:#0047ab1f;border:1px solid #2b5896;color:#cfe2ff;font-size:11px;line-height:1.45}body.phase-live .hero{box-shadow:0 0 0 1px #4bdd9a33,0 0 28px #4bdd9a16}body.phase-live .mode-badge{background:#123f35;color:#7ff0bf}body.phase-post .mode-badge{background:#41390d;color:#ffe56b}@media(max-width:390px){.grid2{grid-template-columns:1fr}.keys,.tracker-grid{grid-template-columns:1fr}.standings-pro{grid-template-columns:minmax(68px,1fr) 45px 32px 50px 40px;font-size:11px}.hero{padding:19px 14px 15px}.team-logo-wrap{width:44px;height:44px}.team-logo{max-width:42px;max-height:42px}.team-panel{padding:9px 5px 8px}.abbr{font-size:21px}.score{font-size:40px}.brand h1{font-size:22px}.mark{width:52px;height:52px}.nav{left:8px;right:8px}.nav button{min-height:56px;font-size:10px}}@media(display-mode:standalone){.nav{bottom:0}}@media(min-width:721px){.nav{left:50%;right:auto;width:680px;transform:translateX(-50%)}}
+.plan-cadence{margin-top:10px;padding:9px 11px;border-radius:12px;background:#0047ab1f;border:1px solid #2b5896;color:#cfe2ff;font-size:11px;line-height:1.45}
+
+/* v2.0 --------------------------------------------------------------------- */
+.statusline{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dot.stale{background:var(--warn);box-shadow:0 0 0 5px #ffd1661a}
+.toast{position:fixed;left:50%;transform:translateX(-50%) translateY(-140%);top:max(10px,env(safe-area-inset-top));z-index:200;max-width:min(92vw,420px);padding:13px 17px;border-radius:16px;background:#0d2448f2;border:1px solid #3a6bb0;color:#fff;font-weight:800;font-size:14px;text-align:center;box-shadow:0 10px 34px #000a;backdrop-filter:blur(14px);opacity:0;transition:transform .32s cubic-bezier(.2,.9,.3,1.2),opacity .25s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast.big{background:linear-gradient(145deg,var(--yellow),#ffb400);color:#071a3a;border-color:#ffd100;font-size:18px;font-weight:1000;letter-spacing:-.01em}
+.result{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:11px;border:1px solid var(--line);background:#081c39;font-size:12px;font-weight:800;white-space:nowrap}
+.result b{font-size:11px;letter-spacing:.06em;padding:2px 6px;border-radius:6px;background:#1b3b65;color:#d7e5ff}
+.result.win b{background:#14503a;color:#7ff0bf}.result.win{border-color:#1e6d4f}
+.result.loss b{background:#5a2230;color:#ffb3b3}.result.loss{border-color:#7a3244}
+.result.live b{background:var(--yellow);color:#071a3a}.result.live{border-color:#ffd100;animation:pulseLive 2s ease-in-out infinite}
+@keyframes pulseLive{50%{box-shadow:0 0 0 4px #ffd1001f}}
+.west-game{padding:12px 0;border-top:1px solid #1b3b65}
+.west-game:first-child{border-top:0}
+.west-game.is-live{border-left:3px solid var(--yellow);padding-left:10px;margin-left:-10px}
+.west-row{display:flex;align-items:center;gap:10px}
+.west-team{display:inline-flex;align-items:center;gap:7px;min-width:0;flex:1;color:var(--muted);font-size:13px}
+.west-team b{color:#dce9ff;font-weight:900}
+.west-team strong{margin-left:auto;font-size:19px;font-weight:1000;color:#fff}
+.west-team.west-lead strong{color:var(--yellow)}
+.west-logo{width:26px;height:26px;object-fit:contain;flex:none}
+.west-at{color:var(--muted);font-size:11px;flex:none}
+.west-meta{display:flex;align-items:center;gap:8px;margin-top:7px;color:var(--muted);font-size:11.5px}
+.west-live{padding:3px 7px;border-radius:999px;background:var(--yellow);color:#071a3a;font-size:9px;font-weight:1000;letter-spacing:.08em}
+.west-final{padding:3px 7px;border-radius:999px;background:#1b3b65;color:#d7e5ff;font-size:9px;font-weight:900;letter-spacing:.08em}
+.west-ours{margin-left:auto;padding:3px 7px;border-radius:999px;background:#0047ab33;border:1px solid #2b5896;color:var(--sky);font-size:9px;font-weight:1000;letter-spacing:.08em}
+.west-game.is-rams{border-left:3px solid var(--royal);padding-left:10px;margin-left:-10px}
+.west-game.is-rams.is-live{border-left-color:var(--yellow)}
+.textsize-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.textsize-btn{border:1px solid var(--line);background:#0b2142;color:#d9e7ff;border-radius:13px;padding:13px 8px;font-size:13px;font-weight:800}
+.textsize-btn.active{background:var(--yellow);border-color:var(--yellow);color:#071a3a;font-weight:1000}
+:root[data-textsize="large"]{font-size:112.5%}
+:root[data-textsize="xlarge"]{font-size:125%}
+:root[data-textsize="large"] .dad-score,:root[data-textsize="xlarge"] .dad-score{font-size:min(23vw,110px)}body.phase-live .hero{box-shadow:0 0 0 1px #4bdd9a33,0 0 28px #4bdd9a16}body.phase-live .mode-badge{background:#123f35;color:#7ff0bf}body.phase-post .mode-badge{background:#41390d;color:#ffe56b}@media(max-width:390px){.grid2{grid-template-columns:1fr}.keys,.tracker-grid{grid-template-columns:1fr}.standings-pro{grid-template-columns:minmax(68px,1fr) 45px 32px 50px 40px;font-size:11px}.hero{padding:19px 14px 15px}.team-logo-wrap{width:44px;height:44px}.team-logo{max-width:42px;max-height:42px}.team-panel{padding:9px 5px 8px}.abbr{font-size:21px}.score{font-size:40px}.brand h1{font-size:22px}.mark{width:52px;height:52px}.nav{left:8px;right:8px}.nav button{min-height:56px;font-size:10px}}@media(display-mode:standalone){.nav{bottom:0}}@media(min-width:721px){.nav{left:50%;right:auto;width:680px;transform:translateX(-50%)}}
   
 /* v1.6.2 scouting-number alignment hotfix */
 .key-head > .key-num{
@@ -149,7 +184,8 @@
     <div class="brand"><h1>Rams GameDay</h1><p>Built for Sundays. Horns up.</p></div>
     <div class="top-actions"><button class="iconbtn" id="dadBtn" aria-label="Open Big Screen Mode">👓</button><button class="iconbtn" id="refreshBtn" aria-label="Refresh">↻</button></div>
   </header>
-  <div class="statusline"><span><span class="dot" id="dot"></span><span id="updated">Loading live data…</span></span><span id="weekLabel">2026</span></div>
+  <div class="statusline" id="statusLine" role="button" tabindex="0" title="Tap to refresh"><span><span class="dot" id="dot"></span><span id="updated">Loading live data…</span></span><span id="weekLabel">2026</span></div>
+  <div class="toast" id="toast"></div>
 
   <main>
     <section id="view-home" class="view">
@@ -257,7 +293,7 @@
     </section>
 
     <section id="view-schedule" class="view hidden">
-      <div class="section-title" style="margin-top:4px"><span>2026 Rams schedule</span><small>Your local time</small></div>
+      <div class="section-title" style="margin-top:4px"><span>2026 Rams schedule</span><small id="seasonRecord">Your local time</small></div>
       <div class="card" id="scheduleList"></div>
     </section>
 
@@ -265,6 +301,8 @@
       <div class="section-title" style="margin-top:4px"><span>NFC West race</span><small>live standings</small></div>
       <div class="card west-impact"><h3 id="westImpactTitle">Loading the race…</h3><div class="muted tiny" id="westImpactText">Calculating where the Rams stand and what the next game means.</div><div class="chips"><span class="chip" id="westRankChip">Rams rank —</span><span class="chip" id="westRemainChip">Division games —</span></div></div>
       <div class="card" style="margin-top:10px"><div class="standings-pro muted tiny"><b>Team</b><b>W-L</b><b>GB</b><b>DIV</b><b>STRK</b></div><div id="standingsList"><div class="muted tiny" style="padding:12px 0">Loading standings…</div></div></div>
+      <div class="section-title"><span>NFC West scoreboard</span><small>this week</small></div>
+      <div class="card" id="westGames"><div class="muted tiny" style="padding:12px 0">Loading division games…</div></div>
       <div class="section-title"><span>Remaining division games</span><small>Rams</small></div>
       <div class="card" id="divisionList"></div>
     </section>
@@ -272,6 +310,7 @@
     <section id="view-more" class="view hidden">
       <div class="section-title" style="margin-top:4px"><span>Rams HQ</span><small>extras</small></div>
       <div class="card"><h3>📰 Rams news</h3><div id="newsList"><div class="muted tiny">Loading news…</div></div></div>
+      <div class="card" style="margin-top:10px"><h3>🔠 Text size</h3><div class="muted tiny" style="margin-bottom:10px">Make everything in the app bigger. Saved on this device.</div><div class="textsize-row"><button class="textsize-btn" data-size="normal">Normal</button><button class="textsize-btn" data-size="large">Large</button><button class="textsize-btn" data-size="xlarge">Largest</button></div></div>
       <div class="card" style="margin-top:10px"><h3>↗ Share Rams GameDay</h3><div class="muted tiny" style="margin-bottom:10px">Know another Rams fan? Send them this beta with one tap.</div><button class="tab" id="shareAppBtn" style="width:100%;font-weight:900">Share this app</button></div>
 
       <div class="section-title"><span>▶️ Rams Media</span><small>fan favorites</small></div>
@@ -1136,11 +1175,29 @@ async function toggleWakeLock(){if(!('wakeLock' in navigator)){$('wakeBtn').text
 
 function setCurrent(g){currentGame=g||currentWeek(); if(currentGame.bye){const idx=schedule.findIndex(x=>x.w===currentGame.w);currentGame=schedule.slice(idx+1).find(x=>!x.bye)||currentGame;} const home=currentGame.loc==='vs';const awayAbbr=home?currentGame.opp:'LAR',homeAbbr=home?'LAR':currentGame.opp;applyMatchupBrand(currentGame.opp);$('awayAbbr').textContent=awayAbbr;$('homeAbbr').textContent=homeAbbr;$('awayAbbr').classList.toggle('yellow',awayAbbr==='LAR');$('homeAbbr').classList.toggle('yellow',homeAbbr==='LAR');$('awayName').textContent=names[awayAbbr]||'';$('homeName').textContent=names[homeAbbr]||'';setLogo('awayLogo','awayLogoFallback',awayAbbr);setLogo('homeLogo','homeLogoFallback',homeAbbr);brandTeamPanel('awayTeamPanel',awayAbbr,awayAbbr==='LAR');brandTeamPanel('homeTeamPanel',homeAbbr,homeAbbr==='LAR');setLogo('gAwayLogo',null,awayAbbr);setLogo('gHomeLogo',null,homeAbbr);$('gameState').textContent=currentGame.date?fmtHero(currentGame.date):`Week ${currentGame.w} • TBD`;$('gameSub').textContent=`${currentGame.venue} • ${currentGame.network}`;$('jerseyChip').textContent=`👕 ${currentGame.jersey}`;$('jerseyBig').textContent=currentGame.jersey;$('venueBig').textContent=currentGame.venue==='SoFi Stadium'?'SoFi':currentGame.venue.includes('Melbourne')?'MCG':currentGame.venue.split(' ')[0];$('venueNote').textContent=currentGame.place;const wi=watchInfo(currentGame);$('tvBadge').textContent=wi.badge;$('tvTitle').textContent=wi.title;$('watchNote').textContent=wi.note;$('primaryWatchLink').href=wi.href;$('primaryWatchLink').textContent=wi.link;$('weekLabel').textContent=`Week ${currentGame.w}`;$('gAway').textContent=awayAbbr;$('gHome').textContent=homeAbbr;$('dadTeams').textContent=`${awayAbbr} @ ${homeAbbr}`;updateCountdown();renderMode('pre');renderGameWeekIntel(null);renderKeyTracker(null,'pre',null);loadGameWeather();}
 function updateCountdown(){if(!currentGame||!currentGame.date){$('countdownChip').textContent='Kickoff TBD';return;}const diff=new Date(currentGame.date)-Date.now();if(diff<=0){$('countdownChip').textContent='Game window';return;}const days=Math.floor(diff/86400000),hrs=Math.floor((diff%86400000)/3600000),mins=Math.floor((diff%3600000)/60000);$('countdownChip').textContent=days?`${days}d ${hrs}h to kickoff`:`${hrs}h ${mins}m to kickoff`;if(document.body.classList.contains('phase-pre'))$('modeClock').textContent=$('countdownChip').textContent;}
-function renderSchedule(){const el=$('scheduleList');el.innerHTML=schedule.map(g=>{if(g.bye)return `<div class="schedule-week"><div class="wk">${g.w}</div><div><b>BYE WEEK</b></div><span class="network">Rest</span></div>`;const m=teamMeta(g.opp),a=teamAccent(g.opp);return `<div class="schedule-week"><div class="wk">${g.w}</div><div class="schedule-opp" style="--row-accent:${a.primary};--row-accent2:${a.secondary}"><img class="schedule-logo" src="${teamLogo(g.opp)}" alt="${names[g.opp]} logo"><div><b>${g.loc==='vs'?'vs':'@'} ${names[g.opp]}</b><div class="meta">${g.date?fmt(g.date):'TBD'} • ${g.venue}<br>👕 ${g.jersey}</div></div></div><span class="network">${g.network}</span></div>`}).join('');$('divisionList').innerHTML=remainingDivisionGames().map(g=>`<div class="row"><div class="left"><b>Week ${g.w}: ${g.loc==='vs'?'vs':'@'} ${names[g.opp]}</b><div class="meta">${g.date?fmt(g.date):'TBD'}</div></div><span class="pill">${g.network}</span></div>`).join('')||'<div class="muted tiny">No remaining NFC West games.</div>'; }
+function renderSchedule(){
+  const el=$('scheduleList');
+  el.innerHTML=schedule.map(g=>{
+    if(g.bye)return `<div class="schedule-week"><div class="wk">${g.w}</div><div><b>BYE WEEK</b></div><span class="network">Rest</span></div>`;
+    const a=teamAccent(g.opp),r=ramsResults[g.w];
+    let right=`<span class="network">${g.network}</span>`;
+    if(r&&(r.completed||r.live)){
+      const won=r.us>r.them,tie=r.us===r.them;
+      const tag=r.live?'LIVE':won?'W':tie?'T':'L';
+      const cls=r.live?'live':won?'win':tie?'tie':'loss';
+      right=`<span class="result ${cls}"><b>${tag}</b>${r.us}–${r.them}</span>`;
+    }
+    return `<div class="schedule-week"><div class="wk">${g.w}</div><div class="schedule-opp" style="--row-accent:${a.primary};--row-accent2:${a.secondary}"><img class="schedule-logo" src="${teamLogo(g.opp)}" alt="${names[g.opp]} logo"><div><b>${g.loc==='vs'?'vs':'@'} ${names[g.opp]}</b><div class="meta">${g.date?fmt(g.date):'TBD'} \u2022 ${g.venue}<br>\ud83d\udc55 ${g.jersey}</div></div></div>${right}</div>`;
+  }).join('');
+  const rec=$('seasonRecord');
+  if(rec){const played=Object.values(ramsResults).filter(x=>x.completed).length;
+    rec.textContent=played?`${seasonRecord()} through ${played} game${played===1?'':'s'}`:'Season starts Week 1';}
+  $('divisionList').innerHTML=remainingDivisionGames().map(g=>`<div class="row"><div class="left"><b>Week ${g.w}: ${g.loc==='vs'?'vs':'@'} ${names[g.opp]}</b><div class="meta">${g.date?fmt(g.date):'TBD'}</div></div><span class="pill">${g.network}</span></div>`).join('')||'<div class="muted tiny">No remaining NFC West games.</div>';
+}
 function findStat(stats,name){const s=(stats||[]).find(x=>(x.name||'').toLowerCase()===name.toLowerCase()||(x.label||'').toLowerCase()===name.toLowerCase());return s?s.displayValue||s.value:'—';}
 async function fetchJSON(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}
-async function refreshLive(){try{const g=currentGame||currentWeek();const week=g.w;const board=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${SEASON}&seasontype=2&week=${week}`);harvestLeague(board);const ev=(board.events||[]).find(e=>(e.competitions?.[0]?.competitors||[]).some(c=>c.team?.abbreviation==='LAR'));if(ev){liveEvent=ev;applyScoreboard(ev);try{liveSummary=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=${encodeURIComponent(ev.id)}`);planDataVersion++;applySummary(liveSummary);}catch(e){console.warn('summary',e)}}await Promise.allSettled([loadStandings(),loadNews(),loadGameWeather()]);$('dot').className='dot';$('updated').textContent='Updated '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})+' '+viewerZoneLabel(Date.now());}catch(e){console.warn(e);$('dot').className='dot offline';$('updated').textContent='Live feed unavailable • schedule still works';}}
-function applyScoreboard(ev){const comp=ev.competitions?.[0]||{};const cs=comp.competitors||[];const away=cs.find(c=>c.homeAway==='away'),home=cs.find(c=>c.homeAway==='home');const status=comp.status?.type||ev.status?.type||{};const complete=!!status.completed||status.state==='post',active=status.state==='in';const phase=active?'live':complete?'post':'pre';const a=away?.score||'0',h=home?.score||'0';const eventDate=ev.date||comp.date||currentGame?.date;const statusText=(!active&&!complete)?fmtHero(eventDate):liveStatusText(status,eventDate);$('midScore').textContent=(active||complete)?`${a} – ${h}`:'AT';$('gameState').textContent=statusText;$('heroEyebrow').textContent=active?'LIVE RAMS GAME':complete?'FINAL':'NEXT RAMS GAME';$('gAwayScore').textContent=a;$('gHomeScore').textContent=h;$('gClock').textContent=statusText;$('dadScore').textContent=`${a}–${h}`;$('dadState').textContent=statusText;$('companionStatus').textContent=statusText;const situation=comp.situation||{};let poss=situation.possessionText||situation.possession||'—';if(poss&&typeof poss==='string'&&poss.length>8)poss=poss.slice(0,8);$('possession').textContent=poss||'—';$('dadPoss').textContent=poss||'—';const down=situation.shortDownDistanceText||situation.downDistanceText||'—';$('downDist').textContent=down==='—'?'—':down.replace(/&/g,'&');$('dadDown').textContent=down;$('gSituation').textContent=situation.downDistanceText||situation.lastPlay?.text||'Kickoff information above';$('dadSituation').textContent=$('gSituation').textContent;$('recordChip').textContent='LAR '+((cs.find(c=>c.team?.abbreviation==='LAR')?.records||[])[0]?.summary||'0-0');renderMode(phase,comp);if(phase==='live')updateWhats(liveSummary,phase,comp);if(phase==='post')updateWhats(liveSummary,phase,comp);}
+async function refreshLive(){if(refreshInFlight)return;refreshInFlight=true;try{const g=currentGame||currentWeek();const week=g.w;const board=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${SEASON}&seasontype=2&week=${week}`);harvestLeague(board);harvestWestGames(board,week);const ev=(board.events||[]).find(e=>(e.competitions?.[0]?.competitors||[]).some(c=>c.team?.abbreviation==='LAR'));if(ev){liveEvent=ev;applyScoreboard(ev);try{liveSummary=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=${encodeURIComponent(ev.id)}`);planDataVersion++;applySummary(liveSummary);}catch(e){console.warn('summary',e)}}await Promise.allSettled([loadStandings(),loadNews(),loadGameWeather()]);lastGoodFetch=Date.now();const stamp='Updated '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})+' '+viewerZoneLabel(Date.now());$('updated').dataset.stamp=stamp;$('updated').textContent=stamp;$('dot').className='dot';saveSnapshot();}catch(e){console.warn(e);$('dot').className='dot offline';const el=$('updated');el.textContent=lastGoodFetch?`${el.dataset.stamp||'Last update'} • reconnecting…`:el.dataset.stamp?`${el.dataset.stamp} • offline`:'Live feed unavailable • schedule still works';}finally{refreshInFlight=false;}}
+function applyScoreboard(ev){const comp=ev.competitions?.[0]||{};const cs=comp.competitors||[];const away=cs.find(c=>c.homeAway==='away'),home=cs.find(c=>c.homeAway==='home');const status=comp.status?.type||ev.status?.type||{};const complete=!!status.completed||status.state==='post',active=status.state==='in';const phase=active?'live':complete?'post':'pre';currentPhaseHint=phase;const a=away?.score||'0',h=home?.score||'0';const eventDate=ev.date||comp.date||currentGame?.date;const statusText=(!active&&!complete)?fmtHero(eventDate):liveStatusText(status,eventDate);$('midScore').textContent=(active||complete)?`${a} – ${h}`:'AT';$('gameState').textContent=statusText;$('heroEyebrow').textContent=active?'LIVE RAMS GAME':complete?'FINAL':'NEXT RAMS GAME';$('gAwayScore').textContent=a;$('gHomeScore').textContent=h;$('gClock').textContent=statusText;$('dadScore').textContent=`${a}–${h}`;$('dadState').textContent=statusText;$('companionStatus').textContent=statusText;const situation=comp.situation||{};let poss=situation.possessionText||situation.possession||'—';if(poss&&typeof poss==='string'&&poss.length>8)poss=poss.slice(0,8);$('possession').textContent=poss||'—';$('dadPoss').textContent=poss||'—';const down=situation.shortDownDistanceText||situation.downDistanceText||'—';$('downDist').textContent=down==='—'?'—':down.replace(/&/g,'&');$('dadDown').textContent=down;$('gSituation').textContent=situation.downDistanceText||situation.lastPlay?.text||'Kickoff information above';$('dadSituation').textContent=$('gSituation').textContent;$('recordChip').textContent='LAR '+((cs.find(c=>c.team?.abbreviation==='LAR')?.records||[])[0]?.summary||'0-0');const larC=cs.find(c=>c.team?.abbreviation==='LAR'),oppC=cs.find(c=>c.team?.abbreviation!=='LAR');checkScoreChange(larC?.score,oppC?.score,phase);renderMode(phase,comp);if(phase==='live')updateWhats(liveSummary,phase,comp);if(phase==='post')updateWhats(liveSummary,phase,comp);}
 function applySummary(s){const teams=s.boxscore?.teams||[];const rt=teams.find(t=>t.team?.abbreviation==='LAR');if(rt){$('larYards').textContent=findStat(rt.statistics,'totalYards');$('larFirst').textContent=findStat(rt.statistics,'firstDowns');$('larTurn').textContent=findStat(rt.statistics,'turnovers');$('dadYards').textContent=$('larYards').textContent;const rows=['totalYards','firstDowns','turnovers','possessionTime','thirdDownEff'].map(n=>{const st=(rt.statistics||[]).find(x=>x.name===n);return st?`<div class="row"><div class="left"><b>${st.label||n}</b></div><span>${st.displayValue}</span></div>`:''}).join('');$('teamStats').innerHTML=rows||'<div class="muted tiny">Stats populate during the game.</div>';}
 const wp=(s.winprobability||[]).at(-1);if(wp){const header=s.header?.competitions?.[0];const home=(header?.competitors||[]).find(c=>c.homeAway==='home')?.team?.abbreviation==='LAR';const pct=Math.round((home?wp.homeWinPercentage:1-wp.homeWinPercentage)*100);$('winPct').textContent=pct+'%';$('gWin').textContent=pct+'%';$('dadWin').textContent=pct+'%';}
 const headerComp=s.header?.competitions?.[0]||{};const sit=headerComp.situation||{};const headerStatus=headerComp.status?.type||{};const headerDate=headerComp.date||currentGame?.date;const headerActive=headerStatus.state==='in';const headerComplete=!!headerStatus.completed||headerStatus.state==='post';$('situationTitle').textContent=(!headerActive&&!headerComplete)?fmtHero(headerDate):(sit.downDistanceText||headerStatus.detail||'Game status');$('situationText').textContent=sit.lastPlay?.text||'Live situation appears here when the game begins.';
@@ -1155,10 +1212,225 @@ function switchView(v){document.querySelectorAll('.view').forEach(x=>x.classList
 document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));$('panel-'+b.dataset.panel).classList.add('active')}));
 $('dadBtn').addEventListener('click',()=>$('dadOverlay').classList.add('on'));$('dadClose').addEventListener('click',async()=>{$('dadOverlay').classList.remove('on');if(wakeLock){wakeWanted=false;await wakeLock.release().catch(()=>{});wakeLock=null;$('wakeBtn').textContent='☀️ Keep screen awake';}});$('wakeBtn').addEventListener('click',toggleWakeLock);$('refreshBtn').addEventListener('click',refreshLive);const shareBtn=$('shareAppBtn');if(shareBtn)shareBtn.addEventListener('click',async()=>{const data={title:'Rams GameDay',text:'Check out this Rams GameDay beta — matchup intelligence, live game tracking, weather and Rams media.',url:location.href};try{if(navigator.share){await navigator.share(data);}else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);shareBtn.textContent='Link copied ✓';setTimeout(()=>shareBtn.textContent='Share this app',1800);}else{prompt('Copy this link',location.href);}}catch(e){if(e?.name!=='AbortError')console.warn('share',e);}});document.addEventListener('visibilitychange',async()=>{if(document.visibilityState==='visible'&&wakeWanted&&!wakeLock&&'wakeLock' in navigator){try{wakeLock=await navigator.wakeLock.request('screen');}catch(e){}}});
-setCurrent(currentWeek());renderSchedule();refreshLive();setInterval(updateCountdown,60000);setInterval(refreshLive,60000);
+/* ===========================================================================
+   v2.0 — the things you feel on a phone
+   ---------------------------------------------------------------------------
+   1. Adaptive polling. It used to hit ESPN every 60s forever, backgrounded
+      and five days out included. Now the interval matches what is actually
+      happening, and it stops entirely when the app is not on screen.
+   2. Freshness you can see. The status dot ages, and coming back to the app
+      refreshes immediately instead of showing a stale score until the next tick.
+   3. Works on a bad connection. Last good payloads are kept on the device and
+      shown with an honest "as of" stamp when the network is gone.
+   4. Season results in the schedule, with a running record.
+   5. NFC West scoreboard — the rival games, live, on the division tab.
+   6. A score alert while the app is open.
+   7. Bigger text, because the app is for reading across a room.
+   =========================================================================== */
+
+/* --- 1 + 2: adaptive polling and freshness -------------------------------- */
+let lastGoodFetch=0,pollTimer=null,currentPhaseHint='pre',refreshInFlight=false;
+
+function pollIntervalMs(){
+  if(currentPhaseHint==='live')return 20000;          /* in-game: near real time */
+  const g=currentGame;
+  if(!g?.date)return 900000;
+  const mins=(new Date(g.date).getTime()-Date.now())/60000;
+  if(mins<=0)return 30000;                            /* kicked off, feed catching up */
+  if(mins<=90)return 30000;                           /* pregame hour */
+  if(mins<=60*24)return 120000;                       /* gameday */
+  if(mins<=60*24*7)return 600000;                     /* game week */
+  return 1800000;                                     /* nothing happening */
+}
+function schedulePoll(){
+  clearTimeout(pollTimer);
+  if(document.hidden)return;                          /* never poll in the background */
+  pollTimer=setTimeout(async()=>{await refreshLive();schedulePoll();},pollIntervalMs());
+}
+function freshnessLabel(){
+  if(!lastGoodFetch)return'';
+  const secs=Math.round((Date.now()-lastGoodFetch)/1000);
+  if(secs<75)return'just now';
+  const mins=Math.round(secs/60);
+  if(mins<60)return`${mins} min ago`;
+  const hrs=Math.round(mins/60);
+  return hrs<24?`${hrs}h ago`:'a while ago';
+}
+function paintFreshness(){
+  const dot=$('dot');if(!dot)return;
+  if(!lastGoodFetch){dot.className='dot offline';return;}
+  const age=Date.now()-lastGoodFetch;
+  const stale=age>Math.max(pollIntervalMs()*3,180000);
+  dot.className=stale?'dot stale':'dot';
+  const el=$('updated');
+  if(el&&el.dataset.stamp)el.textContent=`${el.dataset.stamp} • ${freshnessLabel()}`;
+}
+
+/* --- 3: keep the last good payloads so a dead connection still shows something */
+const SNAP_KEY=`rams-gameday-snap-${SEASON}`;
+/* A full ESPN summary runs to hundreds of KB. Keep only what the app rehydrates
+   so the snapshot cannot blow the localStorage quota. */
+function trimSummary(s){
+  if(!s)return null;
+  const {boxscore,leaders,injuries,header,gameInfo,standings}=s;
+  return {boxscore,leaders,injuries,header,gameInfo,standings};
+}
+function saveSnapshot(){
+  try{
+    localStorage.setItem(SNAP_KEY,JSON.stringify({
+      at:Date.now(),week:currentGame?.w,
+      event:liveEvent,summary:trimSummary(liveSummary),
+      standings:lastStandings,league:leagueStats,records:leagueRecords,
+      teamSchedule:ramsResults
+    }));
+  }catch(e){/* private mode, quota — the app just loses its offline copy */}
+}
+function loadSnapshot(){
+  let snap=null;
+  try{snap=JSON.parse(localStorage.getItem(SNAP_KEY)||'null');}catch(e){}
+  if(!snap||!snap.at)return false;
+  if(Date.now()-snap.at>1000*60*60*36)return false;   /* older than a day and a half is noise */
+  try{
+    if(snap.league&&Object.keys(snap.league).length){leagueStats=snap.league;planDataVersion++;}
+    if(snap.records)leagueRecords=snap.records;
+    if(snap.teamSchedule)ramsResults=snap.teamSchedule;
+    if(snap.event){liveEvent=snap.event;applyScoreboard(snap.event);}
+    if(snap.summary){liveSummary=snap.summary;planDataVersion++;applySummary(snap.summary);}
+    if(snap.teamSchedule)renderSchedule();
+    const when=new Intl.DateTimeFormat('en-US',{hour:'numeric',minute:'2-digit',timeZone:VIEWER_TZ}).format(new Date(snap.at));
+    const el=$('updated');
+    if(el){el.dataset.stamp=`Last known ${when}`;el.textContent=`${el.dataset.stamp} • offline`;}
+    $('dot').className='dot offline';
+    return true;
+  }catch(e){console.warn('snapshot',e);return false;}
+}
+
+/* --- 4: real results in the schedule -------------------------------------- */
+let ramsResults={};   /* week -> {us, them, result, completed, live} */
+const RAMS_TEAM_ID=14;
+function espnScore(c){
+  const raw=c?.score?.displayValue??c?.score?.value??c?.score;
+  return statNumber(raw);
+}
+async function loadRamsResults(){
+  try{
+    const d=await fetchJSON(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${RAMS_TEAM_ID}/schedule?season=${SEASON}&seasontype=2`);
+    const next={};
+    for(const ev of (d.events||[])){
+      const comp=ev.competitions?.[0];if(!comp)continue;
+      const week=Number(ev.week?.number??comp.week?.number??0);if(!week)continue;
+      const us=(comp.competitors||[]).find(c=>c.team?.abbreviation==='LAR');
+      const them=(comp.competitors||[]).find(c=>c.team?.abbreviation!=='LAR');
+      const st=comp.status?.type||ev.status?.type||{};
+      const ourScore=espnScore(us),theirScore=espnScore(them);
+      if(ourScore==null||theirScore==null)continue;
+      next[week]={us:ourScore,them:theirScore,
+        completed:!!st.completed||st.state==='post',
+        live:st.state==='in',
+        detail:st.shortDetail||st.detail||''};
+    }
+    if(Object.keys(next).length){ramsResults=next;renderSchedule();}
+  }catch(e){console.warn('results',e);}
+}
+function seasonRecord(){
+  let w=0,l=0,t=0;
+  for(const r of Object.values(ramsResults)){
+    if(!r.completed)continue;
+    if(r.us>r.them)w++;else if(r.us<r.them)l++;else t++;
+  }
+  return t?`${w}-${l}-${t}`:`${w}-${l}`;
+}
+
+/* --- 5: the rival games, live -------------------------------------------- */
+const WEST=['LAR','SF','SEA','ARI'];
+let westBoard=[];
+function harvestWestGames(board,week){
+  const rows=[];
+  for(const ev of (board?.events||[])){
+    const comp=ev.competitions?.[0];if(!comp)continue;
+    const cs=comp.competitors||[];
+    const west=cs.find(c=>WEST.includes(c.team?.abbreviation));
+    if(!west)continue;
+    const isRams=cs.some(c=>c.team?.abbreviation==='LAR');
+    const away=cs.find(c=>c.homeAway==='away')||cs[1],home=cs.find(c=>c.homeAway==='home')||cs[0];
+    const st=comp.status?.type||ev.status?.type||{};
+    rows.push({
+      week,
+      awayAb:away?.team?.abbreviation||'',homeAb:home?.team?.abbreviation||'',
+      awayScore:espnScore(away),homeScore:espnScore(home),
+      state:st.state||'pre',completed:!!st.completed,
+      detail:st.state==='pre'?(ev.date?fmt(ev.date):'TBD'):(st.shortDetail||st.detail||''),
+      rival:west.team.abbreviation,isRams
+    });
+  }
+  rows.sort((a,b)=>(b.isRams?1:0)-(a.isRams?1:0));   /* Rams game first */
+  westBoard=rows;
+  renderWestGames();
+}
+function renderWestGames(){
+  const el=$('westGames');if(!el)return;
+  if(!westBoard.length){el.innerHTML='<div class="muted tiny" style="padding:12px 0">No NFC West games on this week’s slate yet.</div>';return;}
+  el.innerHTML=westBoard.map(r=>{
+    const live=r.state==='in';
+    const scored=live||r.completed;
+    const lead=scored?(r.awayScore>r.homeScore?'away':r.homeScore>r.awayScore?'home':''):'';
+    const chip=live?'<span class="west-live">LIVE</span>':r.completed?'<span class="west-final">FINAL</span>':'';
+    const cell=(ab,score,side)=>`<span class="west-team${lead===side?' west-lead':''}"><img class="west-logo" src="${teamLogo(ab)}" alt="${ab}"><b>${ab}</b>${scored?`<strong>${score??0}</strong>`:''}</span>`;
+    return `<div class="west-game${live?' is-live':''}${r.isRams?' is-rams':''}">
+      <div class="west-row">${cell(r.awayAb,r.awayScore,'away')}<span class="west-at">@</span>${cell(r.homeAb,r.homeScore,'home')}</div>
+      <div class="west-meta">${chip}<span>${esc(r.detail)}</span>${r.isRams?'<span class="west-ours">RAMS</span>':''}</div>
+    </div>`;
+  }).join('');
+}
+
+/* --- 6: tell him when the Rams score ------------------------------------- */
+let lastScores=null;
+function toast(msg,big){
+  const el=$('toast');if(!el)return;
+  el.innerHTML=`<span>${esc(msg)}</span>`;
+  el.className='toast show'+(big?' big':'');
+  clearTimeout(toast._t);
+  toast._t=setTimeout(()=>{el.className='toast';},6000);
+  try{if(navigator.vibrate)navigator.vibrate(big?[90,60,90,60,140]:[60]);}catch(e){}
+}
+function checkScoreChange(larScore,oppScore,phase){
+  const next={lar:Number(larScore)||0,opp:Number(oppScore)||0};
+  if(phase!=='live'&&phase!=='post'){lastScores=next;return;}
+  if(!lastScores){lastScores=next;return;}       /* never fire on the first poll */
+  const dLar=next.lar-lastScores.lar,dOpp=next.opp-lastScores.opp;
+  const opp=names[currentGame?.opp]||currentGame?.opp||'them';
+  if(dLar>0)toast(`🐏 RAMS SCORE! ${next.lar}–${next.opp}`,true);
+  else if(dOpp>0)toast(`${opp} score. ${next.lar}–${next.opp}`,false);
+  lastScores=next;
+}
+
+/* --- 7: text size -------------------------------------------------------- */
+const TEXT_KEY='rams-gameday-textsize';
+function applyTextSize(size){
+  const s=['normal','large','xlarge'].includes(size)?size:'normal';
+  document.documentElement.dataset.textsize=s;
+  document.querySelectorAll('.textsize-btn').forEach(b=>b.classList.toggle('active',b.dataset.size===s));
+  try{localStorage.setItem(TEXT_KEY,s);}catch(e){}
+}
+
+/* ---- bootstrap ---- */
+applyTextSize((()=>{try{return localStorage.getItem(TEXT_KEY)||'normal'}catch(e){return'normal'}})());
+document.querySelectorAll('.textsize-btn').forEach(b=>b.addEventListener('click',()=>applyTextSize(b.dataset.size)));
+setCurrent(currentWeek());
+renderSchedule();
+loadSnapshot();                         /* paint last-known data instantly, before the network answers */
+refreshLive().then(schedulePoll);
+loadRamsResults();
+setInterval(updateCountdown,60000);
+setInterval(paintFreshness,15000);
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){clearTimeout(pollTimer);return;}
+  refreshLive().then(schedulePoll);     /* back on screen: refresh now, do not wait for a tick */
+});
+$('statusLine').addEventListener('click',()=>{toast('Refreshing…');refreshLive().then(schedulePoll);});
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('./sw.js?v=1.9.3',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
+    navigator.serviceWorker.register('./sw.js?v=2.0.0',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
   });
 }
 </script>
